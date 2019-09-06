@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     private CharacterMovement _characterMovement;
     bool CanDamage;//если тру то можно нанести типо урон 
-
 	[SerializeField] private KeyCode _AttackButton = KeyCode.F;//кнопка которую можно менять в инспекторе
 
 	void Awake()
@@ -46,6 +45,7 @@ public class PlayerController : MonoBehaviour
 	}
 	#endregion
 
+	#region//всякие тригеры
 	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if (collision.gameObject.tag == "Enemy")
@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
 			CanDamage = false;
 		}
 	}
+	#endregion
 }
-	 
- 
+
+
