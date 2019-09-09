@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 10428355}
   - component: {fileID: 10428354}
   - component: {fileID: 10428353}
+  - component: {fileID: 10428356}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -226,6 +227,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &10428356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10428352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447a4755890e0ea49a03a36cb0b2af12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  Maxhealth: 100
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +339,7 @@ GameObject:
   - component: {fileID: 2085621213}
   - component: {fileID: 2085621212}
   - component: {fileID: 2085621214}
+  - component: {fileID: 2085621215}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -420,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AttackButton: 102
+  PlayerDamage: 15
 --- !u!58 &2085621212
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -483,3 +500,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2085621215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085621207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447a4755890e0ea49a03a36cb0b2af12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  Maxhealth: 100

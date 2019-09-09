@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterMovement _characterMovement;
-    bool CanDamage;//если тру то можно нанести типо урон 
+
+
+	private CharacterMovement _characterMovement;
+	bool CanDamage;//если тру то можно нанести типо урон 
 	[SerializeField] private KeyCode _AttackButton = KeyCode.F;//кнопка которую можно менять в инспекторе
 
-	void Awake()
-    {
-        _characterMovement = GetComponent<CharacterMovement>(); 
-    }
+	Health Enemyhealth;
+	GameObject Enemy;
+	[SerializeField] int PlayerDamage;
 
-    void Update()
-    {
-        _characterMovement.vecocity = new Vector2(
-            Input.GetAxis("Horizontal"),
-            Input.GetAxis("Vertical"));
-		    Attack(_AttackButton);  
-    }
+	void Awake()
+	{
+		Enemy = GameObject.FindGameObjectWithTag("Enemy");
+		Enemyhealth = Enemy.GetComponent<Health>();
+		_characterMovement = GetComponent<CharacterMovement>();
+	}
+
+	void Update()
+	{
+		_characterMovement.vecocity = new Vector2(
+			Input.GetAxis("Horizontal"),
+			Input.GetAxis("Vertical"));
+		Attack(_AttackButton);
+	}
 
 
 	#region//метод атаки
@@ -27,15 +35,16 @@ public class PlayerController : MonoBehaviour
 	/// метод атаки
 	/// </summary>
 	/// <param name="кнопка удара"></param>
-	void Attack(KeyCode  AttackButton)
+	void Attack(KeyCode AttackButton)
 	{
-		 AttackButton = _AttackButton;
+		AttackButton = _AttackButton;
 		if (Input.GetKeyDown(AttackButton))
 		{
 
 			if (CanDamage)
 			{
 				Debug.Log("ударил по врагу");
+				Enemyhealth.GetDamage(PlayerDamage);
 			}
 			else
 			{
@@ -51,7 +60,7 @@ public class PlayerController : MonoBehaviour
 		if (collision.gameObject.tag == "Enemy")
 		{
 			CanDamage = true;
-	    }
+		}
 	}
 	private void OnTriggerExit2D(Collider2D collision)
 	{
@@ -62,5 +71,3 @@ public class PlayerController : MonoBehaviour
 	}
 	#endregion
 }
-
-
