@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-
+    Health Enemyhealth;
 	private CharacterMovement _characterMovement;
-	bool CanDamage;//если тру то можно нанести типо урон 
-	[SerializeField] private KeyCode _AttackButton = KeyCode.F;//кнопка которую можно менять в инспекторе
 
-	Health Enemyhealth;
-	GameObject Enemy;
-	[SerializeField] int PlayerDamage;
+	bool CanDamage;//если тру то можно нанести типо урон 
+    GameObject Enemy;
+
+	[SerializeField] private KeyCode _AttackButton = KeyCode.F;//кнопка которую можно менять в инспекторе
+    [SerializeField] int PlayerDamage;
+	
+	
+	
 
 	void Awake()
 	{
