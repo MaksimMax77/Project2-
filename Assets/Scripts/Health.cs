@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
 		}
 		if (health <= 0)
 		{
-			health = 0;
+			health =   0;
 		}
     }
 	public void GetDamage(int damage)
