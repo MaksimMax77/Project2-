@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
 	[SerializeField] int health;
 	[SerializeField] int Maxhealth;
-	 
+	public bool death;
 	private void Awake()
 	{
 		Maxhealth = 100; 
@@ -22,11 +22,11 @@ public class Health : MonoBehaviour
 		if (health <= 0)
 		{
 			health =   0;
+			death = true;
 		}
     }
 	public void GetDamage(int damage)
-	{
-		 
+	{	 
 		health = health - damage;
 	}	 
 }
