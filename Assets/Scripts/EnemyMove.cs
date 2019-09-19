@@ -36,7 +36,6 @@ public class EnemyMove : MonoBehaviour
 
 		if (hit.collider)
 		{
-			Debug.Log("с чем-то столкнулся");
 			if (hit.collider.gameObject.tag == "Player")
 			{
 				patrul = false;
