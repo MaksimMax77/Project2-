@@ -9,7 +9,7 @@ namespace Services
     {
         private readonly String _fileName = "save.json";
 
-        public void SaveCharacterPosition(Vector2 position)
+        public void SaveCharacter(Vector3 position,int health)
         {
             using (var file = File.Open(
                 MakePath(), 
@@ -17,14 +17,14 @@ namespace Services
             using (var streamWriter = new StreamWriter(file))
             {
                 var json = JsonConvert.SerializeObject(
-                    new CharacterStoreInfo(position)
+                    new CharacterStoreInfo(position,health)
                 );
 
                 streamWriter.Write(json);
             }
         }
 
-        public Vector2 LoadCharacterPosition()
+        public Vector3 LoadCharacterPosition()
         {
             using (var file = File.Open(MakePath(), FileMode.Open))
             using (var streamReader = new StreamReader(file))
@@ -34,24 +34,42 @@ namespace Services
                 var storeInfo = JsonConvert.DeserializeObject<CharacterStoreInfo>(json);
                 return storeInfo.position;
             }
-        }
+			 
+		}
+        public int LoadCharacterHealth()
+		{
+			using (var file = File.Open(MakePath(), FileMode.Open))
+			using (var streamReader = new StreamReader(file))
+			{
+				var json = streamReader.ReadToEnd();
 
-        private string MakePath()
+				var storeInfo = JsonConvert.DeserializeObject<CharacterStoreInfo>(json);
+				return storeInfo.health;
+			}
+
+		}
+
+		private string MakePath()
         {
             return Path.Combine(Application.streamingAssetsPath.Replace("StreamingAssets", ""), _fileName);
         }
-    }
+
+		
+	}
 
     [Serializable]
     public struct CharacterStoreInfo
     {
         [JsonProperty]
-        public readonly Vector2 position;
+        public readonly Vector3 position;
+		[JsonProperty]
+		public readonly int health;
 
-        [JsonConstructor]
-        public CharacterStoreInfo(Vector2 position)
+		[JsonConstructor]
+        public CharacterStoreInfo(Vector3 position,int health)
         {
             this.position = position;
+			this.health = health;
         }
     }
 }

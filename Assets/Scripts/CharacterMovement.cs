@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     public Vector2 vecocity;
-    public float speed = 0.0F;
+    public float speed;
 
 	public bool WalkSide; // переменные для AnimController
  

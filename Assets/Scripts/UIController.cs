@@ -5,9 +5,15 @@ using Zenject;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private Transform _player;
+    [SerializeField] GameObject Player;
     private ISaveService _saveService;
+	Health health;
+	private void Awake()
+	{
+		health = Player.GetComponent<Health>();
+	}
 
-    [Inject]
+	[Inject]
     public void Init(ISaveService saveService)
     {
         print(_saveService + " injected correctly");
@@ -16,12 +22,14 @@ public class UIController : MonoBehaviour
 
     public void SaveCharacterPosition()
     {
-        _saveService.SaveCharacterPosition(_player.position);
+        _saveService.SaveCharacter(_player.position,health.health);
     }
 
     public void LoadCharacterPosition()
     {
         _player.position = _saveService.LoadCharacterPosition();
+		health.health = _saveService.LoadCharacterHealth();
+
     }
 
 }

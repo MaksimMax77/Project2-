@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-	[SerializeField] int health;
+	[SerializeField] public int health;
 	[SerializeField] int Maxhealth;
 	public bool death;
 	private void Awake()
 	{
 		Maxhealth = 100; 
 	}
-
-
 	void Update()
     {
 		if (health > Maxhealth)

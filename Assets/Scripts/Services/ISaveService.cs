@@ -6,7 +6,9 @@ namespace Services
 {
     public interface ISaveService
     {
-        void SaveCharacterPosition(Vector2 position);
-        Vector2 LoadCharacterPosition();
-    }
+        void SaveCharacter(Vector3 position,int health);
+        Vector3 LoadCharacterPosition();
+		int LoadCharacterHealth();
+
+	}
 }

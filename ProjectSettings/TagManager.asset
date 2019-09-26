@@ -8,6 +8,8 @@ TagManager:
   - asteroid
   - ship
   - Platform
+  - LeftPlatform
+  - RightPlatform
   layers:
   - Default
   - TransparentFX
