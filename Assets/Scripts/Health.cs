@@ -2,31 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class Health : MonoBehaviour 
+public class Health : MonoBehaviour
 {
-	[SerializeField] public int health;
-	[SerializeField] public int Maxhealth;
-	public bool death;
-	private void Awake()
-	{
-		Maxhealth = 100; 
-	}
-	void Update()
+    [field: SerializeField] public int health { get; private set; }
+    [field: SerializeField] public int maxHealth { get; private set; } = 100;
+    [field: SerializeField] public bool death { get; private set; }
+
+    public void Init(int health)
     {
-		if (health > Maxhealth)
-		{
-			health = Maxhealth;
-		}
-		if (health <= 0)
-		{
-			health =   0;
-			death = true;
-		}
+        this.health = health;
     }
+
+    public void AddHealth(int healthToAdd)
+    {
+        health = Mathf.Min(health + healthToAdd, maxHealth);
+    }
+    
 	public void GetDamage(int damage)
-	{	 
-		health = health - damage;
-	}	 
+    {
+        health -= Mathf.Max( health, damage);
+        if (health == 0) death = true;
+    }	 
 }

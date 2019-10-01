@@ -26,7 +26,7 @@ public class testing : MonoBehaviour
 		for (int i = 0; i < entityArray.Length; i++)
 		{
 			Entity entity = entityArray[i];
-			entityManager.SetComponentData(entity, new LevelComponent { level = UnityEngine.Random.Range(10f, 20f) });
+            entityManager.SetComponentData(entity, new LevelComponent { level = UnityEngine.Random.Range(10f, 20f) });
 
 			entityManager.SetSharedComponentData(entity, new RenderMesh { mesh = Mesh, material = material });
 

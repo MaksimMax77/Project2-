@@ -1,7 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
+enum AiState
+{
+    Attack,
+    Patrol,
+}
+
 public class EnemyAi : MonoBehaviour
 {
 	[SerializeField] Transform target;
@@ -12,6 +18,7 @@ public class EnemyAi : MonoBehaviour
 
 	private bool IsStop;
 	public bool patrol;// хрень для энемимув
+    private AiState currentState;
 
 	private void Awake()
 	{

@@ -37,7 +37,7 @@ public class EnemyAttack : MonoBehaviour
 		if (distance < AttackDistance)
 		{
 			IsAttack = true;	 
-			 PlayerHp.GetDamage(EnemyDamage);
+			PlayerHp.GetDamage(EnemyDamage);
 		}
 		else
 		{

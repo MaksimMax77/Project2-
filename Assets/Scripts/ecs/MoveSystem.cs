@@ -7,7 +7,7 @@ public class MoveSystem :ComponentSystem
 {
 	protected override void OnUpdate()
 	{
-		Entities.ForEach((ref Translation translation,ref MoveSpeedComponent moveSpeedComponent ) => 
+        Entities.ForEach((ref Translation translation,ref MoveSpeedComponent moveSpeedComponent ) => 
 		{
 			translation.Value.x += moveSpeedComponent.speed * Time.deltaTime;
 			if (translation.Value.x > 15f)

@@ -28,7 +28,7 @@ public class UIController : MonoBehaviour
     public void LoadCharacterPosition()
     {
         _player.position = _saveService.LoadCharacterPosition();
-		health.health = _saveService.LoadCharacterHealth();
+		health.Init(_saveService.LoadCharacterHealth());
 
     }
 
