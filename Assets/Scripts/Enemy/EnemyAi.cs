@@ -1,24 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+ 
 public class EnemyAi : MonoBehaviour
 {
 	[SerializeField] Transform target;
-    public 	bool Patrol;
-	bool IsAttack;
-
-	[SerializeField] float _distance;
+	[SerializeField] float _StopDistance;
 
 	private CharacterMovement _characterMovement;
 	private Health Enemyhealth;
-	 
+
+	private bool IsStop;
+	public bool patrol;// хрень для энемимув
+
 	private void Awake()
 	{
 		_characterMovement = GetComponent<CharacterMovement>();
 		Enemyhealth = GetComponent<Health>();
-		 
-
+		patrol = true;
 	}
 
 	private void Update()
@@ -27,36 +26,28 @@ public class EnemyAi : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+		if (IsStop == false && patrol==false)
+		{
+            _characterMovement.vecocity = target.position - transform.position;
+		}
+		else if (IsStop == true)
+		{
+			_characterMovement.vecocity = new Vector2(0, 0);
+		}
 	 
-		if (Patrol == false)
-		{
-           _characterMovement.vecocity = target.position - transform.position;
-			float distance = Vector3.Distance(target.position, transform.position);
-			if (distance < 1.5f)
-			{
-				Debug.Log("говно");
-				_characterMovement.speed = 0;
-			}
-		 
+		float distance = Vector3.Distance(target.position, transform.position);
+		if(distance> _StopDistance && distance < 15f)
+		{ 
+			IsStop = false;
+			patrol = false;
 		}
-	}
-
- 
-
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.tag == "Player")
+		else
 		{
-			Patrol = false;
+			patrol = true;
 		}
-
-	}
-	private void OnTriggerExit2D(Collider2D collision)
-	{
-		if (collision.gameObject.tag == "Player")
+		if (distance < _StopDistance)
 		{
-			Patrol = true;
+			IsStop = true;
 		}
-
 	}
 }

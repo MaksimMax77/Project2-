@@ -16,8 +16,7 @@ public class EnemyAnim : MonoBehaviour
 		movement = GetComponent<CharacterMovement>();
 		enemyAttack = GetComponent<EnemyAttack>();
 	}
-
-	 
+	
 	void Update()
     {
 		if (movement.WalkSide)

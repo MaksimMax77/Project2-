@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Zenject;
 public class EnemyAttack : MonoBehaviour
 {
 	[SerializeField] GameObject target;
     [SerializeField] float AttackDistance;
 	[SerializeField] int EnemyDamage;
-	 public bool IsAttack;
+	 public bool IsAttack;//хрень для сробатывания анимаций 
 
 	Health PlayerHp;
+	
 
 	public float timeBetweenAttacks;
 	public float timer;
 
 	private void Awake()
 	{
-		PlayerHp = target.GetComponent<Health>();
-		 
+		PlayerHp = target.GetComponent<Health>();	 
 	}
 
 	void Update()
@@ -25,14 +25,8 @@ public class EnemyAttack : MonoBehaviour
 		timer += Time.deltaTime;
 		if (timer >= timeBetweenAttacks)
 		{
-           Attack();
-		 
+           Attack(); 
 		}
-		if(timer <= timeBetweenAttacks)
-		{
-			 
-		}
-		
     }
 
 
@@ -43,18 +37,13 @@ public class EnemyAttack : MonoBehaviour
 		if (distance < AttackDistance)
 		{
 			IsAttack = true;	 
-			PlayerHp.GetDamage(EnemyDamage);
+			 PlayerHp.GetDamage(EnemyDamage);
 		}
 		else
 		{
 			IsAttack = false;
-		}
-	}
-
-	IEnumerator enumeratorAttack()
-	{
-		yield return new WaitForSeconds(3);
-		timer = 0f;
+		}	 
 	}
 	
+
 }

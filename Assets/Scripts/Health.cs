@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+
+
+public class Health : MonoBehaviour 
 {
 	[SerializeField] public int health;
-	[SerializeField] int Maxhealth;
+	[SerializeField] public int Maxhealth;
 	public bool death;
 	private void Awake()
 	{
