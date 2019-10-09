@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
     Health Enemyhealth;
+	Health Plahealth;
 	private CharacterMovement _characterMovement;
 
 	bool CanDamage;//если тру то можно нанести типо урон 
@@ -17,13 +18,14 @@ public class PlayerController : MonoBehaviour
 	GameObject Enemy;
 
 	[SerializeField] private KeyCode _AttackButton = KeyCode.F;//кнопка которую можно менять в инспекторе
-    [SerializeField] int PlayerDamage;
+    [SerializeField] public int PlayerDamage;
 	[SerializeField] GameObject blood;
 	[SerializeField] Transform BloodPos;
 
 
 	void Awake()
 	{
+		Plahealth = GetComponent<Health>();
 		Enemy = GameObject.FindGameObjectWithTag("Enemy");
 		Enemyhealth = Enemy.GetComponent<Health>();
 		_characterMovement = GetComponent<CharacterMovement>();
@@ -31,19 +33,22 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		_characterMovement.vecocity = new Vector2(
-
-			Input.GetAxis("Horizontal"),
-			Input.GetAxis("Vertical"));
-		Attack(_AttackButton);
-
-		if(_characterMovement.vecocity.x > 0 && !facing)
+		if (Plahealth.death == false)//шоб обездвижить если умер 
 		{
-			Flip();
-		}
-		else if(_characterMovement.vecocity.x < 0 && facing)
-		{
-			Flip();
+			_characterMovement.vecocity = new Vector2(
+
+				Input.GetAxis("Horizontal"),
+				Input.GetAxis("Vertical"));
+			Attack(_AttackButton);
+
+			if (_characterMovement.vecocity.x > 0 && !facing)
+			{
+				Flip();
+			}
+			else if (_characterMovement.vecocity.x < 0 && facing)
+			{
+				Flip();
+			}
 		}
 	 
 

@@ -4,33 +4,25 @@ using UnityEngine;
 public class SphereStateMachine : MonoBehaviour
 {
     private StateMachine _stateMachine;
-
-    void Awake()
+	 
+	void Awake()
     {
         var moveState = new MoveState(transform);
         var rotateState = new RotateState(transform);
 
-        moveState.Add(
-        new Transition(
-            rotateState, 
-            () => Input.GetKeyDown(KeyCode.Space))
-        );
+        moveState.Add(new Transition(rotateState, () => Input.GetKeyDown(KeyCode.Space)));
 
-        rotateState.Add(
-            new Transition(
-                moveState,
-                () => Input.GetKeyDown(KeyCode.LeftControl)
-            )
-        );
+        rotateState.Add(new Transition(moveState,() => Input.GetKeyDown(KeyCode.LeftControl)));
 
         _stateMachine = new StateMachine(rotateState);
-    }
+		 
+	}
 
     // Update is called once per frame
     void Update()
     {
-        _stateMachine.OnUpdate();
-    }
+         _stateMachine.OnUpdate();
+	}
 }
 
 class MoveState : State

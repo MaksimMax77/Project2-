@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FSM;
 
 public class EnemyAnim : MonoBehaviour
 {
@@ -9,9 +10,11 @@ public class EnemyAnim : MonoBehaviour
 	[SerializeField] GameObject AnimatorObj;
 	EnemyAttack enemyAttack;
 
+	EnemyStateMachine stateMachine;
 
 	private void Awake()
 	{
+		stateMachine = GetComponent<EnemyStateMachine>();
 		animator = AnimatorObj.GetComponent<Animator>();
 		movement = GetComponent<CharacterMovement>();
 		enemyAttack = GetComponent<EnemyAttack>();
@@ -28,13 +31,22 @@ public class EnemyAnim : MonoBehaviour
 			animator.SetBool("WalkSide", false);
 		}
 
-		if (enemyAttack.IsAttack)
+		if (enemyAttack.IsAttack  )
 		{
 			animator.SetBool("AttackSide", true);
 		}
-		else if (!enemyAttack.IsAttack)
+		else if (!enemyAttack.IsAttack )
 		{
 			animator.SetBool("AttackSide", false);
 		}
+		if (stateMachine.IsAttack)
+		{
+			animator.SetBool("AttackSide", true);
+		}
+		else
+		{
+			animator.SetBool("AttackSide", false);
+		}
+	 
 	}
 }

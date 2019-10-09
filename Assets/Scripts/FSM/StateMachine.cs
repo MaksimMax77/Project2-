@@ -11,7 +11,7 @@ namespace FSM
         public StateMachine(IState beginState)
         {
             currentState = beginState;
-            currentState.OnEnter();
+             currentState.OnEnter();
         }
 
 

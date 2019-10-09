@@ -6,7 +6,7 @@ public class EnemyAttack : MonoBehaviour
 {
 	[SerializeField] GameObject target;
     [SerializeField] float AttackDistance;
-	[SerializeField] int EnemyDamage;
+	[SerializeField] public int EnemyDamage;
 	 public bool IsAttack;//хрень для сробатывания анимаций 
 
 	Health PlayerHp;

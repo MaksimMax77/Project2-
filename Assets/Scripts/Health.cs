@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [field: SerializeField] public int health { get; private set; }
+	[field: SerializeField] public int health { get; set; } 
     [field: SerializeField] public int maxHealth { get; private set; } = 100;
     [field: SerializeField] public bool death { get; private set; }
 
@@ -20,7 +20,11 @@ public class Health : MonoBehaviour
     
 	public void GetDamage(int damage)
     {
-        health -= Mathf.Max( health, damage);
-        if (health == 0) death = true;
-    }	 
+		health -= damage;
+       // health -= Mathf.Max( damage,health  );
+        if (health <= 0)
+		{
+          death = true;
+		}		
+    }	  
 }
