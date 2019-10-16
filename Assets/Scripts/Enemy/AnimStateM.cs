@@ -8,9 +8,10 @@ public class AnimStateM : MonoBehaviour
 	Animator animator;
 	EnemyStateMachine enemy;
 	CharacterMovement movement;
-	
+	Health _health;
 	void Awake()
     {
+		_health = GetComponent<Health>();
         movement = GetComponent<CharacterMovement>();
 		enemy = GetComponent<EnemyStateMachine>();
 		animator = _animatorObj.GetComponent<Animator>();
@@ -34,6 +35,10 @@ public class AnimStateM : MonoBehaviour
 		else if (!movement.WalkSide)
 		{
 			animator.SetBool("WalkSide", false);
+		}
+		if (_health.death)
+		{
+			animator.SetBool("Die", true);
 		}
 
 	}

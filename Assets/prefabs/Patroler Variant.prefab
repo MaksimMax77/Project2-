@@ -67,6 +67,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1,
+        type: 3}
+      propertyPath: _Attackdistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1,
+        type: 3}
+      propertyPath: _StopDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9171777365502458489, guid: b9943f7949dbd594297150cfde48e8a1,
         type: 3}
       propertyPath: WalkSide
@@ -122,26 +142,6 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.8980392
       objectReference: {fileID: 0}
-    - target: {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1,
-        type: 3}
-      propertyPath: _Attackdistance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1,
-        type: 3}
-      propertyPath: _StopDistance
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 9171777365502458495, guid: b9943f7949dbd594297150cfde48e8a1,
         type: 3}
       propertyPath: target
@@ -154,4 +154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9171777365502458495, guid: b9943f7949dbd594297150cfde48e8a1, type: 3}
+    - {fileID: 9171777365502458494, guid: b9943f7949dbd594297150cfde48e8a1, type: 3}
+    - {fileID: 9171777365502458488, guid: b9943f7949dbd594297150cfde48e8a1, type: 3}
+    - {fileID: 9171777365502458470, guid: b9943f7949dbd594297150cfde48e8a1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b9943f7949dbd594297150cfde48e8a1, type: 3}

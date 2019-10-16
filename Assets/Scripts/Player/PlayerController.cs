@@ -10,15 +10,15 @@ public class PlayerController : MonoBehaviour
 	Health Plahealth;
 	private CharacterMovement _characterMovement;
 
-	bool CanDamage;//если тру то можно нанести типо урон 
+	public bool CanDamage;//если тру то можно нанести типо урон 
 	bool facing;//направлен ли персонаж вправо или влево 
 	public bool PlayerAttack;// атакует ли персонаж (для анимконтроллера)
-	 
 
+	[SerializeField] Weapon currentWeapon;
+	 
 	GameObject Enemy;
 
 	[SerializeField] private KeyCode _AttackButton = KeyCode.F;//кнопка которую можно менять в инспекторе
-    [SerializeField] public int PlayerDamage;
 	[SerializeField] GameObject blood;
 	[SerializeField] Transform BloodPos;
 
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 	{
 		Plahealth = GetComponent<Health>();
 		Enemy = GameObject.FindGameObjectWithTag("Enemy");
-		Enemyhealth = Enemy.GetComponent<Health>();
+		//Enemyhealth = Enemy.GetComponent<Health>();
 		_characterMovement = GetComponent<CharacterMovement>();
 	}
 
@@ -50,8 +50,6 @@ public class PlayerController : MonoBehaviour
 				Flip();
 			}
 		}
-	 
-
 	}
 
 	 
@@ -81,9 +79,8 @@ public class PlayerController : MonoBehaviour
 			if (CanDamage)
 			{
 				Instantiate(blood, BloodPos.position,Quaternion.identity);
-				Destroy(blood, 1);
-				Debug.Log("ударил по врагу");
-				Enemyhealth.GetDamage(PlayerDamage);
+				currentWeapon.Attack(Enemyhealth);
+				// Enemyhealth.GetDamage(PlayerDamage);
 			}
 		}
 	 	
@@ -95,6 +92,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
+			Enemyhealth = collision.GetComponent<Health>();
 			CanDamage = true;
 		}
 	}

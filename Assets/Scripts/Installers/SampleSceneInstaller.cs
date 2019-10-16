@@ -8,7 +8,7 @@ namespace Installers
         public override void InstallBindings()
         {
             Container.Bind<ISaveService>().To<JsonSaveService>().AsSingle().NonLazy();
-			Container.Bind<IPlayerXP>().To<PlayerXP>().AsSingle();
+		 
 		}
     }
 }

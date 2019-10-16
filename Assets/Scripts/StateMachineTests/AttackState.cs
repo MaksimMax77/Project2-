@@ -13,14 +13,14 @@ namespace FSM
 		private Transform _transform;
 		Health _PlayerHp;
 		CharacterMovement _characterMovement;
-
+		DamageType _damageType;
 		public bool _IsAttack;
 
 		EnemyStateMachine stateMachine = new EnemyStateMachine();
 		public AttackState() { }
-		public AttackState(  float AtacckDistance, int enemyDamage, GameObject target, Transform transform, Health PlayerHp, CharacterMovement characterMovement)
+		public AttackState(  float AtacckDistance, int enemyDamage, GameObject target, Transform transform, Health PlayerHp, CharacterMovement characterMovement,DamageType damageType)
 		{
-			 
+			_damageType = damageType;
 		   _AttackDistance = AtacckDistance;
 			_EnemyDamage = enemyDamage;
 			_target = target;
@@ -40,7 +40,7 @@ namespace FSM
 			if (_timer >=2)
 			{
 				 _timer = 0;
-				_PlayerHp.GetDamage(_EnemyDamage);
+				_PlayerHp.GetDamage(_EnemyDamage,_damageType);
 				_IsAttack = true;
 			}
 			else

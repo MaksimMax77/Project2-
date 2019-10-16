@@ -114,20 +114,15 @@ PrefabInstance:
       propertyPath: vecocity.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6338037966838458730, guid: 5505c418b788cd740ae5d6ecd2c0091f,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: target
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6338037966838458732, guid: 5505c418b788cd740ae5d6ecd2c0091f,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6338037966838458738, guid: 5505c418b788cd740ae5d6ecd2c0091f, type: 3}
-    - {fileID: 6338037966838458730, guid: 5505c418b788cd740ae5d6ecd2c0091f, type: 3}
-    - {fileID: 6338037966838458732, guid: 5505c418b788cd740ae5d6ecd2c0091f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5505c418b788cd740ae5d6ecd2c0091f, type: 3}
 --- !u!1 &6687496660281585988 stripped
 GameObject:

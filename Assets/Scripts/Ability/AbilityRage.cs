@@ -43,12 +43,12 @@ public class AbilityRage : MonoBehaviour
 	IEnumerator AbbilityTime()
 	{
 		_abilityUse = true;
-		_playerController.PlayerDamage = _playerController.PlayerDamage* 2;
+		//_playerController.PlayerDamage = _playerController.PlayerDamage* 2;
 		_effectAbility.SetActive(true);
 		_mana.TakeMana(_needMana);
 		yield return new WaitForSeconds(timer);
 		_abilityUse = false;
 		_effectAbility.SetActive(false);
-		_playerController.PlayerDamage = 15;
+		//_playerController.PlayerDamage = 15;
 	}
 }

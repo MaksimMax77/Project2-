@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Health : MonoBehaviour
 {
 	[field: SerializeField] public int health { get; set; } 
     [field: SerializeField] public int maxHealth { get; private set; } = 100;
     [field: SerializeField] public bool death { get; private set; }
 
-    public void Init(int health)
+	[SerializeField]DamageType ResistanceType;
+ 
+	public void Init(int health)
     {
         this.health = health;
     }
@@ -18,9 +21,18 @@ public class Health : MonoBehaviour
         health = Mathf.Min(health + healthToAdd, maxHealth);
     }
     
-	public void GetDamage(int damage)
+	public void GetDamage(int damage, DamageType damageType )
     {
-		health -= damage;
+		if ( ResistanceType == damageType  )
+		{
+			damage = damage / 2;	
+		}
+		else if(ResistanceType == DamageType.None|| ResistanceType != damageType)
+		{
+            damage = damage;
+		}
+		 
+	   health -= damage;
        // health -= Mathf.Max( damage,health  );
         if (health <= 0)
 		{

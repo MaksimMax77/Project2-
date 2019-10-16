@@ -8,6 +8,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float AttackDistance;
 	[SerializeField] public int EnemyDamage;
 	 public bool IsAttack;//хрень для сробатывания анимаций 
+	[SerializeField] DamageType damageType;
 
 	Health PlayerHp;
 	
@@ -37,7 +38,7 @@ public class EnemyAttack : MonoBehaviour
 		if (distance < AttackDistance)
 		{
 			IsAttack = true;	 
-			PlayerHp.GetDamage(EnemyDamage);
+			PlayerHp.GetDamage(EnemyDamage,damageType);
 		}
 		else
 		{
