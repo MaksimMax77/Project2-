@@ -47,6 +47,14 @@ public class AnimController : MonoBehaviour
 		{
 			animator.SetBool("Die", false);
 		}
+		if (health.Hit == true)
+		{
+			animator.SetBool("Hit", true);
+		}
+		 else if (health.Hit ==false)
+		 {
+	 	 	animator.SetBool("Hit", false);
+	 	 }
 
 	 
 	}

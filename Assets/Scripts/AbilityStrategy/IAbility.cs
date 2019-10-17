@@ -7,4 +7,5 @@ public interface IAbility
 {
 	 
 	IEnumerator AbbilityTime();
+	 
 }

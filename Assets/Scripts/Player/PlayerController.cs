@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Weapon currentWeapon;
 	 
 	GameObject Enemy;
-
+	 
 	[SerializeField] private KeyCode _AttackButton = KeyCode.F;//кнопка которую можно менять в инспекторе
 	[SerializeField] GameObject blood;
 	[SerializeField] Transform BloodPos;
@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
+	 
 		Plahealth = GetComponent<Health>();
 		Enemy = GameObject.FindGameObjectWithTag("Enemy");
-		//Enemyhealth = Enemy.GetComponent<Health>();
 		_characterMovement = GetComponent<CharacterMovement>();
 	}
 
@@ -71,26 +71,26 @@ public class PlayerController : MonoBehaviour
 	void Attack(KeyCode AttackButton)
 	{
 		AttackButton = _AttackButton;
-		if (Input.GetKeyDown(AttackButton))
+		if (Input.GetKeyDown(AttackButton)&&PlayerAttack==false)
 		{
-
-			StartCoroutine(enumerator());
+             StartCoroutine(enumerator());
 
 			if (CanDamage)
 			{
-				Instantiate(blood, BloodPos.position,Quaternion.identity);
+				if (PlayerAttack == true)
+				{   
+				Instantiate(blood, BloodPos.position, Quaternion.identity);
 				currentWeapon.Attack(Enemyhealth);
-				// Enemyhealth.GetDamage(PlayerDamage);
+				}
 			}
-		}
-	 	
+		}	
 	}
 	#endregion
 
 	#region//всякие тригеры
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "Enemy")
+		if (collision.gameObject.tag == "Enemy"  )
 		{
 			Enemyhealth = collision.GetComponent<Health>();
 			CanDamage = true;
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 	IEnumerator enumerator()
 	{
 		PlayerAttack = true;
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.6f);
 		PlayerAttack = false;
 	}
 }

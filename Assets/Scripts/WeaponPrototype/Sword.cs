@@ -8,10 +8,9 @@ public class Sword : Weapon
 	//[SerializeField] int _swordDamage;
 	 
 	[field:SerializeField]public override int damage { get; set; } = 15;
-
+ 
 	protected override void DoAttack( Health EnemyHp )
 	{
-	 
-		EnemyHp.GetDamage(damage, damageType);//
+	 	EnemyHp.GetDamage(damage, damageType);//
 	}
 }

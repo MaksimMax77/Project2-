@@ -203,9 +203,9 @@ Transform:
   m_Children:
   - {fileID: 4053617530647447978}
   - {fileID: 7428514267887342263}
-  - {fileID: 7428514266886303021}
   - {fileID: 7428514267977465392}
   - {fileID: 7428514267460556754}
+  - {fileID: 7428514266886303021}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -321,6 +321,7 @@ MonoBehaviour:
   <maxHealth>k__BackingField: 100
   <death>k__BackingField: 0
   ResistanceType: 0
+  Hit: 0
 --- !u!114 &7428514268272208943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2769,6 +2770,7 @@ MonoBehaviour:
   <maxHealth>k__BackingField: 100
   <death>k__BackingField: 0
   ResistanceType: 0
+  Hit: 0
 --- !u!1 &4059834638125975516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3903,7 +3905,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4053703150036014852}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7428514266886303186
 Camera:
@@ -4090,6 +4092,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: R_Weapon
       objectReference: {fileID: 0}
+    - target: {fileID: 5587051052905498466, guid: 5a8948e95e6219e4aa865d729f8b2b28,
+        type: 3}
+      propertyPath: damageType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587051052905498466, guid: 5a8948e95e6219e4aa865d729f8b2b28,
+        type: 3}
+      propertyPath: <damage>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3067861770412642928, guid: 5a8948e95e6219e4aa865d729f8b2b28,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4144,16 +4156,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587051052905498466, guid: 5a8948e95e6219e4aa865d729f8b2b28,
-        type: 3}
-      propertyPath: damageType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5587051052905498466, guid: 5a8948e95e6219e4aa865d729f8b2b28,
-        type: 3}
-      propertyPath: <damage>k__BackingField
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a8948e95e6219e4aa865d729f8b2b28, type: 3}
@@ -4226,7 +4228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a27a781607ee88444b948f4a54b69343, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a27a781607ee88444b948f4a54b69343, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4299,7 +4301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7a2b3c6dde1175a439506d7d2e259bbf, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7a2b3c6dde1175a439506d7d2e259bbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

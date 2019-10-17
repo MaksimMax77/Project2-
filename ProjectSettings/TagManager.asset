@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - LeftPlatform
   - RightPlatform
+  - CanTake
   layers:
   - Default
   - TransparentFX

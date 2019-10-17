@@ -20,12 +20,11 @@ public class UseAbility : MonoBehaviour
 
 	healAbility healAbility;
 	rageAbility rageAbility;
-	 
+ 
 	 
 	void Start()
     {
-		var enemy = GameObject.FindGameObjectWithTag("Enemy");
-		 
+	 
 		health = GetComponent<Health>();
 		_mana = GetComponent<Mana>();
 		healAbility = new healAbility(HealAbbilityEffect, NeadMana, health, _mana,timer );
@@ -51,6 +50,7 @@ public class UseAbility : MonoBehaviour
 
 	  void DoAbility(IAbility ability)
 	{
-		StartCoroutine(ability.AbbilityTime());
+		 
+		 StartCoroutine(ability.AbbilityTime());
 	}
 }

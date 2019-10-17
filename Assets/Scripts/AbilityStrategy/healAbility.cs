@@ -46,4 +46,21 @@ public class healAbility :MonoBehaviour, IAbility
 			Debug.Log("нехватает маны, петушара");
 		}
 	}
+
+	public void UseAbility()
+	{
+		if (_mana.mana >= _needMana && _abilityUse == false)
+		{
+			StartCoroutine(AbbilityTime());
+		}
+		if (_abilityUse == true)
+		{
+
+			Debug.Log("Скилл уже используется");
+		}
+		else if (_mana.mana < _needMana)
+		{
+			Debug.Log("нехватает маны, петушара");
+		}
+	}
 }

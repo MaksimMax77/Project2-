@@ -10,18 +10,20 @@ public class rageAbility : MonoBehaviour,IAbility
 	public bool _abilityUse = false;
 
 	Mana _mana;
-	public rageAbility(GameObject effectAbility, int needMana,  Mana mana, float timer)
+	Sword weapon = new Sword();
+	public rageAbility(GameObject effectAbility, int needMana,  Mana mana, float timer  )
 	{
 		_effectAbility = effectAbility;
 		_needMana = needMana;
 		_mana = mana;
 		_timer = timer;
+		 
 	}
 	public rageAbility()
 	{
 
 	}
-
+ 
 	public IEnumerator AbbilityTime()
 	{
 		if (_mana.mana >= _needMana && _abilityUse == false)
@@ -29,18 +31,22 @@ public class rageAbility : MonoBehaviour,IAbility
 			_abilityUse = true;
 			_effectAbility.SetActive(true);
 			_mana.TakeMana(_needMana);
+			weapon.damage = 30;
 			yield return new WaitForSeconds(_timer);
 			_abilityUse = false;
 			_effectAbility.SetActive(false);
 		}
 		if (_abilityUse == true)
 		{
-
+			 
 			Debug.Log("Скилл уже используется");
 		}
 		else if (_mana.mana < _needMana)
 		{
+			 
 			Debug.Log("нехватает маны, петушара");
 		}
 	}
+
+ 
 }
