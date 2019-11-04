@@ -8,31 +8,22 @@ namespace FSM
 		
 		private StateMachine _stateMachine;
 		CharacterMovement _characterMovement;
-
-		 
-		[SerializeField] float AttackDictance;
-		[SerializeField] int EnemyDamage;
-		[SerializeField] GameObject AttackTarget;
-        [SerializeField] Transform player;
-		[SerializeField] DamageType damageType;
-		public bool IsAttack;
-
-		AttackState Attack;
-		Health PlayerHp;
+		[SerializeField] IEnemy currentEnemy ;//
 		Health EnemyHealth;
 		Collider2D _collider;
+
 		void Start()
 		{
 			_collider = GetComponent<Collider2D>();
-			AttackTarget = GameObject.FindGameObjectWithTag("Player");//
+			 
 			EnemyHealth = GetComponent<Health>();
-		   PlayerHp = AttackTarget.GetComponent<Health>();
+		   
 			_characterMovement = GetComponent<CharacterMovement>();
-			var patrol = new PatrolState(transform, player,_characterMovement);
-			var Chase = new ChaseState(transform, player, _characterMovement);
-			  Attack = new AttackState(  AttackDictance, EnemyDamage, AttackTarget, transform, PlayerHp, _characterMovement,damageType);
-			var Death = new DeathState(_characterMovement, EnemyHealth,_collider);
-			Attack._IsAttack = IsAttack;
+			var patrol = new PatrolState(transform,  currentEnemy);
+			var Chase = new ChaseState(currentEnemy);
+			var  Attack = new AttackState(_characterMovement, currentEnemy);
+			var Death = new DeathState(EnemyHealth, currentEnemy);
+
 			patrol.Add(new Transition(Chase, () => Chase.CanChase()));
 			patrol.Add(new Transition( Death, () => Death.CanDeath())); 
 
@@ -50,17 +41,6 @@ namespace FSM
 		void Update()
 		{
 			_stateMachine.OnUpdate();
-			if (Attack._IsAttack)
-			{
-				IsAttack = true;
-				StartCoroutine(AttackFalse());
-			}
-		 
-		}
-		IEnumerator AttackFalse()
-		{
-			yield return new WaitForSeconds(1);
-			IsAttack = false;
 		}
 	}
 }

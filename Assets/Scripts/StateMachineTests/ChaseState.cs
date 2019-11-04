@@ -7,17 +7,11 @@ namespace FSM
 
 	class ChaseState : State
 	{
-		private Transform transform;
-		float MaxRange;
-		Transform _player;
-		CharacterMovement _characterMovement;
+		IEnemy _currentEnemy;
 
-
-		public ChaseState(Transform transform, Transform Player, CharacterMovement characterMovement)
+		public ChaseState( IEnemy currentEnemy)
 		{
-			this._characterMovement = characterMovement;
-			this.transform = transform;
-			this._player = Player;
+			_currentEnemy = currentEnemy;
 		}
 
 		public override void OnEnter() { }
@@ -25,14 +19,15 @@ namespace FSM
 
 		public override void OnUpdate()
 		{
-			_characterMovement.vecocity = _player.position - transform.position;
+			_currentEnemy.EnemyChase();
 		}
 
 		public bool CanChase()
 		{
-			var heading = transform.position - _player.position;
-			if (heading.sqrMagnitude < 15 * 15&& heading.sqrMagnitude>6)
+			if (_currentEnemy.ChaseDistance())
+			{
 				return true;
+			}
 			return false;
 		}
 	}

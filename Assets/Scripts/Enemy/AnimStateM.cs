@@ -6,21 +6,20 @@ public class AnimStateM : MonoBehaviour
 {
 	public GameObject _animatorObj;
 	Animator animator;
-	EnemyStateMachine enemy;
+	[SerializeField]IEnemy Curenemy;
 	CharacterMovement movement;
 	Health _health;
 	void Awake()
     {
 		_health = GetComponent<Health>();
         movement = GetComponent<CharacterMovement>();
-		enemy = GetComponent<EnemyStateMachine>();
 		animator = _animatorObj.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-		if (enemy.IsAttack == true)
+		if (Curenemy._IsAttack == true)
 		{
 			animator.SetBool("AttackSide", true);
 		}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyFacing : MonoBehaviour
 {
 	private CharacterMovement _characterMovement;
-	bool facing;
+	public bool facing;
 
 	void Awake()
     {

@@ -6,28 +6,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    Health Enemyhealth;
+    
 	Health Plahealth;
 	private CharacterMovement _characterMovement;
 
-	public bool CanDamage;//если тру то можно нанести типо урон 
-	bool facing;//направлен ли персонаж вправо или влево 
+ 	bool facing;//направлен ли персонаж вправо или влево 
 	public bool PlayerAttack;// атакует ли персонаж (для анимконтроллера)
-
-	[SerializeField] Weapon currentWeapon;
+	ButtonManager buttonManager;
 	 
-	GameObject Enemy;
 	 
-	[SerializeField] private KeyCode _AttackButton = KeyCode.F;//кнопка которую можно менять в инспекторе
-	[SerializeField] GameObject blood;
-	[SerializeField] Transform BloodPos;
-
-
 	void Awake()
 	{
-	 
-		Plahealth = GetComponent<Health>();
-		Enemy = GameObject.FindGameObjectWithTag("Enemy");
+		buttonManager = GetComponent<ButtonManager>();
+		   Plahealth = GetComponent<Health>();
 		_characterMovement = GetComponent<CharacterMovement>();
 	}
 
@@ -39,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
 				Input.GetAxis("Horizontal"),
 				Input.GetAxis("Vertical"));
-			Attack(_AttackButton);
+			Attack(buttonManager.AttackButton);
 
 			if (_characterMovement.vecocity.x > 0 && !facing)
 			{
@@ -70,40 +61,15 @@ public class PlayerController : MonoBehaviour
 	/// <param name="кнопка удара"></param>
 	void Attack(KeyCode AttackButton)
 	{
-		AttackButton = _AttackButton;
+		 
 		if (Input.GetKeyDown(AttackButton)&&PlayerAttack==false)
 		{
              StartCoroutine(enumerator());
-
-			if (CanDamage)
-			{
-				if (PlayerAttack == true)
-				{   
-				Instantiate(blood, BloodPos.position, Quaternion.identity);
-				currentWeapon.Attack(Enemyhealth);
-				}
-			}
 		}	
 	}
 	#endregion
 
-	#region//всякие тригеры
-	private void OnTriggerStay2D(Collider2D collision)
-	{
-		if (collision.gameObject.tag == "Enemy"  )
-		{
-			Enemyhealth = collision.GetComponent<Health>();
-			CanDamage = true;
-		}
-	}
-	private void OnTriggerExit2D(Collider2D collision)
-	{
-		if (collision.gameObject.tag == "Enemy")
-		{
-			CanDamage = false;
-		}
-	}
-	#endregion
+	 
 	IEnumerator enumerator()
 	{
 		PlayerAttack = true;

@@ -7,14 +7,13 @@ namespace FSM
 
 	public class DeathState : State
 	{
-		private CharacterMovement _characterMovement;
+		 
 		private Health _health;
-		Collider2D _collider;
-		public DeathState(CharacterMovement characterMovement,Health health , Collider2D collider)
+		IEnemy _currentEnemy;
+		public DeathState( Health health ,IEnemy  currentEnemy )
 		{
-			_characterMovement = characterMovement;
 			_health = health;
-			_collider = collider;
+			_currentEnemy=currentEnemy; ;
 		}
 		public override void OnEnter()
 		{
@@ -28,8 +27,7 @@ namespace FSM
 
 		public override void OnUpdate()
 		{
-			 _characterMovement.vecocity = new Vector2(0, 0);
-			_collider.enabled = false;
+			_currentEnemy.EnemyDeath();
 		}
 		public bool CanDeath()
 		{

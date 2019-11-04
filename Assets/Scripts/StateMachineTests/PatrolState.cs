@@ -9,12 +9,13 @@ namespace FSM
 		 
 		 
 		private Transform transform;
-		Transform _player;
+		 
 		CharacterMovement _characterMovement;
-		public PatrolState(Transform transform, Transform player, CharacterMovement characterMovement)
+		IEnemy _currentEnemy;
+		public PatrolState(Transform transform,  IEnemy currentEnemy)
 		{
-			_characterMovement = characterMovement;
-			this._player = player;
+			_currentEnemy = currentEnemy;
+			 
 			this.transform = transform;
 		}
 		public override void OnEnter()
@@ -24,9 +25,8 @@ namespace FSM
 
 		public override void OnUpdate()
 		{
-			_characterMovement.vecocity.x = 0;
-			 
-			 
+			// _characterMovement.vecocity.x = 0;
+			 _currentEnemy.EnemyPatrol();
 		}
 
 		public override void OnExit()
@@ -35,9 +35,10 @@ namespace FSM
 		}
 		public bool CanPatrol()
 		{
-			var heading = transform.position - _player.position;
-			if (heading.sqrMagnitude > 15 * 15)
+			if (_currentEnemy.PatrolDistance())
+			{
 				return true;
+			}
 			return false;
 		}
 	}

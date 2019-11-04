@@ -138,4 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fbb73638fc0cd45a7008bc7f4bb557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _swordDamage: 15
+  damageType: 0
+  BloodObj: {fileID: 0}
+  BloodPos: {fileID: 0}
+  <damage>k__BackingField: 15

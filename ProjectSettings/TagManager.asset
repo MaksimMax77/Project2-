@@ -11,6 +11,8 @@ TagManager:
   - LeftPlatform
   - RightPlatform
   - CanTake
+  - Sword
+  - Axe
   layers:
   - Default
   - TransparentFX
