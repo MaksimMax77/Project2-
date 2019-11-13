@@ -91,7 +91,7 @@ public class StandartEnemy : IEnemy // методы данного класса 
 	public override void EnemyChase()
 	{
 		_characterMovement.vecocity = Player.transform.position - transform.position;
-		_characterMovement.speed = 10;
+		//_characterMovement.speed = 10;
 	}
 
 	public override void EnemyDeath()

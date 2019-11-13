@@ -39,6 +39,14 @@ public class AnimStateM : MonoBehaviour
 		{
 			animator.SetBool("Die", true);
 		}
+		if (_health.Hit)
+		{
+			animator.SetBool("Hit", true);
+		}
+		else if (!_health.Hit)
+		{
+			animator.SetBool("Hit", false);
+		}  
 
 	}
 }

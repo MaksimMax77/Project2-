@@ -327,14 +327,14 @@ public class SoundManager1 : MonoBehaviour
 
 		if (sameCountGuard > 8)
 		{
-			Debug.Log("Too much duplicates for sound: " + soundName);
+			//Debug.Log("Too much duplicates for sound: " + soundName);
 			sound.IsValid = false;
 			return sound;
 		}
 
 		if (_sounds.Count > 16)
 		{
-			Debug.Log("Too much sounds");
+		//	Debug.Log("Too much sounds");
 			sound.IsValid = false;
 			return sound;
 		}

@@ -7,6 +7,8 @@ public class ButtonManager : MonoBehaviour
 	  public KeyCode AttackButton = KeyCode.F;
 	  public KeyCode UseAbilityButton = KeyCode.Q;
 	  public KeyCode UseAbilityButton2 = KeyCode.R;
-	  public KeyCode TakeDropWeapon = KeyCode.G;
+	public KeyCode UseAbilityButton3 = KeyCode.T;
+	public KeyCode TakeDropWeapon = KeyCode.G;
+
 	 
 }

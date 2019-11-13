@@ -14,7 +14,7 @@ public class SuperEnemy : IEnemy
 	int RandomSpot;
 	[SerializeField] Transform[] patrolSpots;
 	[SerializeField] float patrolTimer;
-	Rigidbody2D _rigidbody;
+	 
 	CharacterMovement PlaCharMove;
 	RaycastHit2D _hit;
 	Collider2D _collider;
@@ -27,7 +27,7 @@ public class SuperEnemy : IEnemy
 		_characterMovement = GetComponent<CharacterMovement>();
 		_health = Player.GetComponent<Health>();
 		PlaCharMove = Player.GetComponent<CharacterMovement>();
-		_rigidbody = Player.GetComponent<Rigidbody2D>();
+		 
 	}
 
 
@@ -41,7 +41,7 @@ public class SuperEnemy : IEnemy
 	public override bool AttackDistance()
 	{
 		var heading = transform.position - Player.transform.position;
-		if (heading.sqrMagnitude < 8 * 8)
+		if (heading.sqrMagnitude < distaceToPla * distaceToPla)
 		{
 			return true;
 		}
@@ -100,7 +100,6 @@ public class SuperEnemy : IEnemy
 	public override void EnemyChase()
 	{
 		_characterMovement.vecocity = Player.transform.position - transform.position;
-		_characterMovement.speed = 10;
 	}
 
 	public override void EnemyDeath()
@@ -125,7 +124,6 @@ public class SuperEnemy : IEnemy
 				_characterMovement.vecocity.x = 0;
 				_characterMovement.vecocity.y = 0;
 			}
-			_characterMovement.speed = 5;
 		}
 	}
 	private void OnDrawGizmos()

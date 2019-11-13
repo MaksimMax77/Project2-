@@ -23,7 +23,8 @@ public class healAbility :MonoBehaviour, IAbility
 		_mana = mana;
 		_timer = timer;
 	}
- 
+	public healAbility() { }
+
 	public IEnumerator AbbilityTime()
 	{
 		if (_mana.mana >= _needMana && _abilityUse == false)
@@ -47,12 +48,10 @@ public class healAbility :MonoBehaviour, IAbility
 		}
 	}
 
-	public void UseAbility()
+ 
+
+	public void GetMessege()//
 	{
-		if (_mana.mana >= _needMana && _abilityUse == false)
-		{
-			StartCoroutine(AbbilityTime());
-		}
 		if (_abilityUse == true)
 		{
 
@@ -63,4 +62,5 @@ public class healAbility :MonoBehaviour, IAbility
 			Debug.Log("нехватает маны, петушара");
 		}
 	}
+
 }
