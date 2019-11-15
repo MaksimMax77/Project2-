@@ -18,7 +18,10 @@ public class SuperEnemy : IEnemy
 	CharacterMovement PlaCharMove;
 	RaycastHit2D _hit;
 	Collider2D _collider;
-
+	[SerializeField] GameObject bullet;
+	[SerializeField] Transform gunPoint;
+	[SerializeField] GameObject Gun;
+	public AbstractBullet currentBullet;
 	private void Awake()
 	{
 		_collider = GetComponent<Collider2D>();
@@ -59,7 +62,7 @@ public class SuperEnemy : IEnemy
 	public override bool ChaseDistance()
 	{
 		var heading = transform.position - Player.transform.position;
-		if (heading.sqrMagnitude < 20 * 20 && heading.sqrMagnitude > 12*12)
+		if (heading.sqrMagnitude < 20 * 20 && heading.sqrMagnitude > 15*15)
 			return true;
 		return false;
 	}
@@ -79,21 +82,15 @@ public class SuperEnemy : IEnemy
 		}
 		if (_timer <= 0)
 		{
-			Physics2D.queriesStartInColliders = false;
-			_hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, 25);
-			if (_hit.collider != null && _hit.collider.tag == "Player")
-			{
-				_health.GetDamage(EnemyDamage, damageType);
-				if (transform.position.x < Player.transform.position.x)
+				GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
+				if (gunPoint.position.x < transform.position.x)
 				{
-					Player.transform.position += Vector3.right * 2;
+					newBullet.GetComponent<Rigidbody2D>().velocity = -Gun.transform.right * currentBullet.speed;
 				}
-				else if (transform.position.x > Player.transform.position.x)
+				else if (gunPoint.position.x > transform.position.x)
 				{
-					Player.transform.position += Vector3.left * 2;
+					newBullet.GetComponent<Rigidbody2D>().velocity = Gun.transform.right * currentBullet.speed;
 				}
-			}
-             Instantiate(fire, gun.position, Quaternion.identity);	 
 		}
 	}
 
@@ -106,6 +103,7 @@ public class SuperEnemy : IEnemy
 	{
 		_characterMovement.vecocity = new Vector2(0, 0);
 		_collider.enabled = false;
+		Destroy(Gun);
 	}
 
 	public override void EnemyPatrol()
@@ -125,10 +123,5 @@ public class SuperEnemy : IEnemy
 				_characterMovement.vecocity.y = 0;
 			}
 		}
-	}
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.blue;
-		Gizmos.DrawLine(transform.position, transform.position + Vector3.left * transform.localScale.x *25);
 	}
 }

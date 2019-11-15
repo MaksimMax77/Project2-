@@ -44,9 +44,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}
       propertyPath: m_Name
       value: FireBall Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4923640358437204491, guid: a590c04abd57be544b50a1b51a6674ac,
+        type: 3}
+      propertyPath: enemyTag
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,13 +125,13 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 19800004, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 19800004, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}
       propertyPath: lengthInSec
@@ -127,14 +140,6 @@ PrefabInstance:
     - target: {fileID: 19800002, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19800004, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a590c04abd57be544b50a1b51a6674ac, type: 3}

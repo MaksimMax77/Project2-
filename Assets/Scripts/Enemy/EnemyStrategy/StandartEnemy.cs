@@ -13,7 +13,7 @@ public class StandartEnemy : IEnemy // методы данного класса 
 	[SerializeField] float _timer;
 	[SerializeField] float patrolTimer;
 	GameObject Player;
-	[SerializeField] float distaceToPla = 4.5f;
+	[SerializeField] float distaceToPla;
 	[field: SerializeField] public override bool _IsAttack { get; set; }// для аниматора
 	Collider2D _collider;
 	 
@@ -53,8 +53,9 @@ public class StandartEnemy : IEnemy // методы данного класса 
 
 	public override bool AttackDistance()//необходимая дистанция чтоб враг начал бить
 	{
-		var heading = transform.position - Player.transform.position;
-		if (heading.sqrMagnitude < distaceToPla * distaceToPla)
+		float dist = Vector3.Distance(Player.transform.position, transform.position);
+		//var heading = transform.position - Player.transform.position;
+		if (dist < 5f )
 		{
 			return true;
 		}
@@ -62,8 +63,9 @@ public class StandartEnemy : IEnemy // методы данного класса 
 	}
 	public override bool ChaseDistance()//необходимая дистанция чтоб враг начал преследование
 	{
-		var heading = transform.position - Player.transform.position;
-		if (heading.sqrMagnitude < 15 * 15 && heading.sqrMagnitude > 6)
+
+		float dist = Vector3.Distance(Player.transform.position, transform.position);
+		if (dist < 20f  && dist >5f)
 			return true;
 		return false;
 	}
@@ -84,7 +86,7 @@ public class StandartEnemy : IEnemy // методы данного класса 
 				_characterMovement.vecocity.x = 0;
 				_characterMovement.vecocity.y = 0;
 			}
-			_characterMovement.speed = 5;
+		 
 		}
 	}
 
@@ -102,8 +104,8 @@ public class StandartEnemy : IEnemy // методы данного класса 
 
 	public override bool PatrolDistance()//насколько далеко или близко нужно быть чтоб враг патрулировал
 	{
-		var heading = transform.position - Player.transform.position;
-		if (heading.sqrMagnitude > 15 * 15)
+		float dist = Vector3.Distance(Player.transform.position, transform.position);
+		if (dist > 20f )
 			return true;
 		return false;
 	}

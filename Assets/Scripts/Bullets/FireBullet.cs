@@ -7,6 +7,7 @@ public class FireBullet : AbstractBullet
 	 
 	Health enemyHealth;
 	[SerializeField]GameObject explosion;
+	[SerializeField] string enemyTag;
 
 	void Start()
     {
@@ -16,7 +17,7 @@ public class FireBullet : AbstractBullet
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "Enemy")
+		if (collision.gameObject.tag == enemyTag)
 		{
 			enemyHealth = collision.GetComponent<Health>();
 			enemyHealth.GetDamage(damage, damageType);
@@ -30,7 +31,7 @@ public class FireBullet : AbstractBullet
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == "Enemy")
+		if (collision.gameObject.tag == enemyTag)
 		{
 			enemyHealth = collision.GetComponent<Health>();
 			enemyHealth.GetDamage(damage, damageType);
