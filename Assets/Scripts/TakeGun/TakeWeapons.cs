@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class TakeWeapons : MonoBehaviour
 {
-	
-	public WeaponHolder[] weapons; // здесь всё оружие лежит
-	public int currentWeapon = 0; // текущее оружие
+	public int wpn;
+	public List<WeaponHolder> weapons; // здесь всё оружие лежит
+	public  int currentWeapon = 0; // текущее оружие
 
+	int nextweapon;
+[SerializeField] GameObject[]  canTakeWeapons;
+	private void Awake()
+	{
+		  canTakeWeapons = GameObject.FindGameObjectsWithTag("TakeGun");
+	}
 	// метод при подборе оружия для активации у игрока
 	void OnWeaponPickup(string _name)
 	{
@@ -16,19 +22,26 @@ public class TakeWeapons : MonoBehaviour
 				wh.isPresent = true;
 	}
 
+
+
 	void Update()
 	{
-		int wpn = -1;
+		//wpn = -1;
 		if (Input.GetKeyDown(KeyCode.Alpha1)) wpn = 0;
-		if (Input.GetKeyDown(KeyCode.Alpha2))wpn = 1;
-		if (Input.GetKeyDown(KeyCode.Alpha3)) wpn = 2;
-		if (Input.GetKeyDown(KeyCode.Alpha4)) wpn = 3;
-		if (Input.GetKeyDown(KeyCode.Alpha5)) wpn = 4;
-		if (wpn >= 0)
-		{
-			weapons[currentWeapon].gunGO.SetActive(false); // выключаем текущее
-			weapons[wpn].gunGO.SetActive(true); // включаем выбранное
-			currentWeapon = wpn; // запоминаем выбранное
+		if (Input.GetKeyDown(KeyCode.Alpha2)) wpn = 1;
+		foreach (var Gun in canTakeWeapons) {
+			float dist = Vector3.Distance(Gun.transform.position, transform.position);
+			if (dist < 1)
+			{
+				if (Gun.activeSelf)
+				{
+                  var obj = Gun.GetComponent<WeaponHolder>();
+
+				weapons.Add(obj);
+				 Gun.SetActive(false);
+				}
+				
+			}
 		}
 	}
 
@@ -36,8 +49,19 @@ public class TakeWeapons : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "TakeGun")
 		{
-			OnWeaponPickup("FireGun");
-			Debug.Log("Pines");
+		 
 		}
 	}
-}
+
+
+	public void ButtonClick()
+	{
+
+		    wpn = (wpn + 1) % weapons.Count;
+			weapons[currentWeapon].gunGO.SetActive(false); // выключаем текущее
+			weapons[wpn].gunGO.SetActive(true); // включаем выбранное
+			 currentWeapon = wpn; // запоминаем выбранное
+	 
+	}
+}	 
+ 

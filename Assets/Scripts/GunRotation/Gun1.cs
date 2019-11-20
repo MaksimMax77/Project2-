@@ -15,7 +15,7 @@ public class Gun1 : MonoBehaviour
 	public float minAngle = -40;
 	public float maxAngle = 40;
 
-	TakeThisGun thisGun;
+	 
 
 	private float curTimeout;
 	Aim aim;
@@ -24,7 +24,7 @@ public class Gun1 : MonoBehaviour
 	void Awake()
 	{
 		var Player = GameObject.FindGameObjectWithTag("Player");
-		thisGun = Player.GetComponent<TakeThisGun>();
+		 
 		aim =GetComponent<Aim>();
 	}
 
@@ -41,8 +41,6 @@ public class Gun1 : MonoBehaviour
 
 	void Update()
 	{
-		 if (thisGun._holdGun)
-		 {
 			if (Input.GetMouseButton(0))
 			{
 				Fire();
@@ -53,7 +51,6 @@ public class Gun1 : MonoBehaviour
 			}
 
 			 if (zRotate && aim.canAim==false) SetRotation();
-		 }
 	}
 
 	void Fire()

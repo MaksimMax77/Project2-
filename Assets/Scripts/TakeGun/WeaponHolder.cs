@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponHolder : MonoBehaviour
 {
@@ -8,16 +9,14 @@ public class WeaponHolder : MonoBehaviour
 	public GameObject gunGO; // го оружия
 	public bool isPresent; // флаг наличия оружия
 
+	public GameObject Button;
+
 	private void Update()
 	{
-		if (isPresent)
-		{
+	 	if (isPresent)
+	 	{
 			gunGO.SetActive(true);
-			gameObject.SetActive(false);
-		}
-		else
-		{
-			gunGO.SetActive(false);
-		}
+	 	}
+	 
 	}
 }

@@ -19,6 +19,11 @@ public class Aim : MonoBehaviour
 		canAim = false;
 	}
 
+	private void Update()
+	{
+		
+	}
+
 	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if (collision.gameObject.tag == EnemyTag)
