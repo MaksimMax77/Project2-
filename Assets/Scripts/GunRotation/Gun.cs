@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun1 : MonoBehaviour
+public class Gun : MonoBehaviour
 {
 	public float speed = 10; // скорость пули
 	public GameObject bullet; // префаб нашей пули
@@ -19,12 +19,10 @@ public class Gun1 : MonoBehaviour
 
 	private float curTimeout;
 	Aim aim;
-	public Transform Player;
+	public Transform player;
 
 	void Awake()
 	{
-		var Player = GameObject.FindGameObjectWithTag("Player");
-		 
 		aim =GetComponent<Aim>();
 	}
 
@@ -50,7 +48,7 @@ public class Gun1 : MonoBehaviour
 				curTimeout = 100;
 			}
 
-			 if (zRotate && aim.canAim==false) SetRotation();
+			 if (zRotate && aim.isAiming==false) SetRotation();
 	}
 
 	void Fire()
@@ -60,11 +58,11 @@ public class Gun1 : MonoBehaviour
 		{
 			curTimeout = 0;
 			GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
-			if (gunPoint.position.x < Player.position.x)
+			if (gunPoint.position.x < player.position.x)
 			{
 				newBullet.GetComponent<Rigidbody2D>().velocity = -transform.right * currentBullet.speed;
 			}
-			else if(gunPoint.position.x > Player.position.x)
+			else if(gunPoint.position.x > player.position.x)
 			{
 				newBullet.GetComponent<Rigidbody2D>().velocity = transform.right * currentBullet.speed;
 			}

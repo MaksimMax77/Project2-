@@ -12,23 +12,16 @@ public class WeaponHolder : MonoBehaviour
 	 
 	public Sprite sprite;
 	public bool spritOn;
-	public Image imageButton;
-
-	private void Awake()
-	{
-		imageButton = GetComponent<Image>();
-	}
-
+ 
 	private void Update()
 	{
-		if (spritOn)
-		{
-			imageButton.sprite = sprite;
-		}
+		 
 	 	if (isPresent)
 	 	{
 			gunGO.SetActive(true);
 	 	}
 	 
 	}
+
+ 
 }

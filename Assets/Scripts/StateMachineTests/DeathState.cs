@@ -8,12 +8,12 @@ namespace FSM
 	public class DeathState : State
 	{
 		 
-		private Health _health;
-		IEnemy _currentEnemy;
-		public DeathState( Health health ,IEnemy  currentEnemy )
+		private Health health;
+		IEnemy currentEnemy;
+		public DeathState(Health health ,IEnemy currentEnemy)
 		{
-			_health = health;
-			_currentEnemy=currentEnemy; ;
+			this.health = health;
+			this.currentEnemy =currentEnemy; 
 		}
 		public override void OnEnter()
 		{
@@ -27,11 +27,11 @@ namespace FSM
 
 		public override void OnUpdate()
 		{
-			_currentEnemy.EnemyDeath();
+			currentEnemy.EnemyDeath();
 		}
 		public bool CanDeath()
 		{
-			if (_health.death == true)
+			if (health.death == true)
 			{
 				return true;
 			}

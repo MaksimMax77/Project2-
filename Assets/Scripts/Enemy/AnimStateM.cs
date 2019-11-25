@@ -4,22 +4,22 @@ using UnityEngine;
 using FSM;
 public class AnimStateM : MonoBehaviour
 {
-	public GameObject _animatorObj;
+	public GameObject animatorObj;
 	Animator animator;
-	[SerializeField]IEnemy Curenemy;
+	[SerializeField]IEnemy currentEnemy;
 	CharacterMovement movement;
-	Health _health;
+	Health health;
 	void Awake()
     {
-		_health = GetComponent<Health>();
+		health = GetComponent<Health>();
         movement = GetComponent<CharacterMovement>();
-		animator = _animatorObj.GetComponent<Animator>();
+		animator = animatorObj.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-		if (Curenemy._IsAttack == true)
+		if (currentEnemy.IsAttack == true)
 		{
 			animator.SetBool("AttackSide", true);
 		}
@@ -35,15 +35,15 @@ public class AnimStateM : MonoBehaviour
 		{
 			animator.SetBool("WalkSide", false);
 		}
-		if (_health.death)
+		if (health.death)
 		{
 			animator.SetBool("Die", true);
 		}
-		if (_health.Hit)
+		if (health.Hit)
 		{
 			animator.SetBool("Hit", true);
 		}
-		else if (!_health.Hit)
+		else if (!health.Hit)
 		{
 			animator.SetBool("Hit", false);
 		}  

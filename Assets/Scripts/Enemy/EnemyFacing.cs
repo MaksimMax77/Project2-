@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyFacing : MonoBehaviour
 {
-	private CharacterMovement _characterMovement;
+	private CharacterMovement characterMovement;
 	public bool facing;
 
 	void Awake()
     {
-		_characterMovement = GetComponent<CharacterMovement>();
+		characterMovement = GetComponent<CharacterMovement>();
 	}
 
 	void Update()
@@ -26,11 +26,11 @@ public class EnemyFacing : MonoBehaviour
 	}
 	void FacingRightLeft()
 	{
-		if (_characterMovement.vecocity.x > 0 && !facing)
+		if (characterMovement.vecocity.x > 0 && !facing)
 		{
 			Flip();
 		}
-		else if (_characterMovement.vecocity.x < 0 && facing)
+		else if (characterMovement.vecocity.x < 0 && facing)
 		{
 			Flip();
 		}

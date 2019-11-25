@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class UIMana : MonoBehaviour
 {
-	[SerializeField] GameObject ProgressBar;
+	[SerializeField] GameObject progressBarGameObj;
 	Mana mana;
 	ProgressBar progressBar;
 
 	void Awake()
 	{
 		mana = GetComponent<Mana>();
-		progressBar = ProgressBar.GetComponent<ProgressBar>();
+		progressBar = progressBarGameObj.GetComponent<ProgressBar>();
 	}
 	private void Update()
 	{

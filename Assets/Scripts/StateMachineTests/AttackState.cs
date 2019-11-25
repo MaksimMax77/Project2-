@@ -6,15 +6,15 @@ namespace FSM
 {
 	class AttackState : State
 	{
-		CharacterMovement _characterMovement;
-		IEnemy _currentEnemy;//
+		CharacterMovement characterMovement;
+		IEnemy currentEnemy;//
 		 
 		public AttackState() { }
 
 		public AttackState(CharacterMovement characterMovement, IEnemy currentEnemy)
 		{
-			_characterMovement = characterMovement;
-			_currentEnemy = currentEnemy; // 
+			this.characterMovement = characterMovement;
+			this.currentEnemy = currentEnemy;   
 		}
 
 		public override void OnEnter() { }
@@ -23,13 +23,12 @@ namespace FSM
 
 		public override void OnUpdate()
 		{
-				_currentEnemy.EnemyAttack();
-			 
+				 currentEnemy.EnemyAttack();
 		}
 
 		public bool CanAttack()
 		{
-			if (_currentEnemy.AttackDistance())
+			if (currentEnemy.AttackDistance())
 			{
 				return true;
 			}

@@ -6,23 +6,21 @@ namespace FSM
 	public class EnemyStateMachine : MonoBehaviour
 	{
 		
-		private StateMachine _stateMachine;
-		CharacterMovement _characterMovement;
+		private StateMachine stateMachine;
+		CharacterMovement characterMovement;
 		[SerializeField] IEnemy currentEnemy ;//
-		Health EnemyHealth;
+		Health enemyHealth;
 		Collider2D _collider;
 
 		void Start()
 		{
 			_collider = GetComponent<Collider2D>();
-			 
-			EnemyHealth = GetComponent<Health>();
-		   
-			_characterMovement = GetComponent<CharacterMovement>();
+			enemyHealth = GetComponent<Health>();
+			characterMovement = GetComponent<CharacterMovement>();
 			var patrol = new PatrolState(transform,  currentEnemy);
 			var Chase = new ChaseState(currentEnemy);
-			var  Attack = new AttackState(_characterMovement, currentEnemy);
-			var Death = new DeathState(EnemyHealth, currentEnemy);
+			var  Attack = new AttackState(characterMovement, currentEnemy);
+			var Death = new DeathState(enemyHealth, currentEnemy);
 
 			patrol.Add(new Transition(Chase, () => Chase.CanChase()));
 			patrol.Add(new Transition( Death, () => Death.CanDeath())); 
@@ -34,13 +32,13 @@ namespace FSM
 			Attack.Add(new Transition(Chase, () => Chase.CanChase()));
 			Attack.Add(new Transition(Death, () => Death.CanDeath()));
 
-			_stateMachine = new StateMachine(patrol);
+			stateMachine = new StateMachine(patrol);
 		}
 
 	 
 		void Update()
 		{
-			_stateMachine.OnUpdate();
+			stateMachine.OnUpdate();
 		}
 	}
 }

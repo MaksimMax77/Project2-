@@ -19,11 +19,11 @@ public class Usesound : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(buttonManager.AttackButton))
+		if (Input.GetKeyDown(buttonManager.attackButton))
 		{
 			SoundManager1.PlaySound("AttackSound");
 		}
-		if (Input.GetKeyDown(buttonManager.UseAbilityButton))
+		if (Input.GetKeyDown(buttonManager.useAbilityButton))
 		{
 			SoundManager1.PlaySound("UseAbility");
 		}

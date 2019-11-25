@@ -6,45 +6,41 @@ public class Aim : MonoBehaviour
 {
 	Vector3 direction;
 	// This is what the player is looking at. In this example it is the dinosaur's head.
-	public string EnemyTag;
+	public string enemyTag;
 	public float lookSpeed = 500;
 	// How fast the rotation happens.
-    public	bool canAim;
-	RaycastHit2D _hit;
+    public	bool isAiming;
+	RaycastHit2D hit;
 
 	float angle;
 
 	private void Awake()
 	{
-		canAim = false;
+		isAiming = false;
 	}
 
-	private void Update()
-	{
-		
-	}
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == EnemyTag)
+		if (collision.gameObject.tag == enemyTag)   							
 		{
-			Aiming(collision);
+			GunAiming(collision);
 			RedCircleOffOn(collision);
 		}
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (collision.gameObject.tag == EnemyTag)
+		if (collision.gameObject.tag == enemyTag)
 		{
-			canAim = false;
+			isAiming = false;
 		}
 	}
 
 	#region //отвечает за автоприцел пушки
-	void Aiming(Collider2D collision)
+	void GunAiming(Collider2D collision)
 	{
-		canAim = true;
+		isAiming = true;
 		if (transform.position.x > collision.gameObject.transform.position.x)
 		{
 			direction = transform.position - collision.gameObject.transform.position;
@@ -64,16 +60,19 @@ public class Aim : MonoBehaviour
 	{
 
 		Physics2D.queriesStartInColliders = false;//
-		_hit = Physics2D.Raycast(transform.position, -transform.right * transform.localScale.x, 12);
+		hit = Physics2D.Raycast(transform.position, -transform.right * transform.localScale.x, 12);
 		var circle = collision.gameObject.GetComponent<RedCircleOnnOff>();
 
-		if (_hit.collider != null && _hit.collider.tag == EnemyTag)
+		if (hit.collider != null && hit.collider.tag == enemyTag)
 		{
-			var redCircle = _hit.collider.GetComponent<RedCircleOnnOff>();
-			redCircle.RedCircleOn = true;
+			var redCircle = hit.collider.GetComponent<RedCircleOnnOff>();
+			if (redCircle != null)
+			{
+                  redCircle.RedCircleOn = true;
+			}	
 		}
 
-		if (_hit.collider == null)
+		if (hit.collider == null)
 		{
 			if (circle != null)
 			{

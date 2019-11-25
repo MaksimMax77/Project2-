@@ -8,13 +8,13 @@ public class AnimController : MonoBehaviour
 	CharacterMovement movement;
 	PlayerController player;
 	Health health;
-	[SerializeField] GameObject AnimatorObj;
+	[SerializeField] GameObject animatorObj;
 	 
     void Awake()
     {
 		 
 		health = GetComponent<Health>();
-		animator = AnimatorObj.GetComponent<Animator>();
+		animator = animatorObj.GetComponent<Animator>();
 		movement = GetComponent<CharacterMovement>();
 		player = GetComponent<PlayerController>();
     }
@@ -31,11 +31,11 @@ public class AnimController : MonoBehaviour
 			animator.SetBool("WalkSide", false);
 		}
 		 
-		if (player.PlayerAttack)
+		if (player.IsAttack)
 		{
 			animator.SetBool("AttackSide", true);
 		}
-		else if (!player.PlayerAttack)
+		else if (!player.IsAttack)
 		{
 				animator.SetBool("AttackSide", false);	 
 		}

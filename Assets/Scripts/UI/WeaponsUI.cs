@@ -4,19 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 public class WeaponsUI : MonoBehaviour
 {
-	TakeWeapons takeWeapons;
-	Image image;
-    void Awake()
+	 
+ 
+	public GameObject buttonChangeWeapon;
+	public Image image;
+
+	WeaponHolder weaponsHol;
+	public WeaponHolder[] guns;
+
+
+	void Awake()
     {
-		var Player = GameObject.FindGameObjectWithTag("Player");
-		takeWeapons = Player.GetComponent<TakeWeapons>();
-		image = GetComponent<Image>();
+		image = buttonChangeWeapon.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-	// image.sprite=
+		foreach(var gun in guns)
+		{
+			if (gun.spritOn)
+			{
+				image.sprite = gun.sprite;
+			}
+		}
+		 
 	}
  
 }

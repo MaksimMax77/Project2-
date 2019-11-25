@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class UiHealth : MonoBehaviour
 {
-	[SerializeField] GameObject ProgressBar; 
+	[SerializeField] GameObject progressBarGameObj; 
 	Health health;
 	ProgressBar progressBar;
 	void Awake()
     {
 		health = GetComponent<Health>();
-		progressBar = ProgressBar.GetComponent<ProgressBar>();
+		progressBar = progressBarGameObj.GetComponent<ProgressBar>();
 	
 	}
 	private void Update()

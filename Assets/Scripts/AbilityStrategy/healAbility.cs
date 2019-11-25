@@ -3,64 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class healAbility :MonoBehaviour, IAbility
+public class HealAbility :MonoBehaviour, IAbility
 {
 
-	GameObject _effectAbility;
-	int _needMana;
-    float _timer ;
-    bool _abilityUse = false;
+	GameObject effectAbility;
+	int needMana;
+    float timer ;
+    bool abilityUse = false;
 
-	Health _playerhealth;
-	Mana _mana ;
+	Health  playerHealth;
+	Mana mana ;
 	 
 
-	public healAbility(  GameObject effectAbility, int needMana,Health playerhealth, Mana mana, float timer)
+	public HealAbility(GameObject effectAbility, int needMana,Health playerHealth, Mana mana, float timer)
 	{
-		_effectAbility = effectAbility;
-		_needMana = needMana;
-		_playerhealth = playerhealth;
-		_mana = mana;
-		_timer = timer;
+		 this.effectAbility = effectAbility;
+		this.needMana = needMana;
+		this.playerHealth = playerHealth;
+		this.mana = mana;
+		this.timer = timer;
 	}
-	public healAbility() { }
+	public HealAbility() { }
 
 	public IEnumerator AbbilityTime()
 	{
-		if (_mana.mana >= _needMana && _abilityUse == false)
+		if (mana.mana >= needMana && abilityUse == false)
 		{
-			_abilityUse = true;
-			_playerhealth.AddHealth(25);
-			_effectAbility.SetActive(true);
-			_mana.TakeMana(_needMana);
-			yield return new WaitForSeconds(_timer);
-			_abilityUse = false;
-			_effectAbility.SetActive(false);
+			abilityUse = true;
+			playerHealth.AddHealth(25);
+			effectAbility.SetActive(true);
+			mana.TakeMana(needMana);
+			yield return new WaitForSeconds(timer);
+			abilityUse = false;
+			effectAbility.SetActive(false);
 		}
-		if (_abilityUse == true)
-		{
-
-			Debug.Log("Скилл уже используется");
-		}
-		else if (_mana.mana < _needMana)
-		{
-			Debug.Log("нехватает маны, петушара");
-		}
-	}
-
- 
-
-	public void GetMessege()//
-	{
-		if (_abilityUse == true)
+		if (abilityUse == true)
 		{
 
 			Debug.Log("Скилл уже используется");
 		}
-		else if (_mana.mana < _needMana)
+		else if (mana.mana < needMana)
 		{
 			Debug.Log("нехватает маны, петушара");
 		}
 	}
-
 }

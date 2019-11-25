@@ -7,11 +7,11 @@ namespace FSM
 
 	class ChaseState : State
 	{
-		IEnemy _currentEnemy;
+		IEnemy currentEnemy;
 
-		public ChaseState( IEnemy currentEnemy)
+		public ChaseState(IEnemy currentEnemy)
 		{
-			_currentEnemy = currentEnemy;
+			this.currentEnemy = currentEnemy;
 		}
 
 		public override void OnEnter() { }
@@ -19,12 +19,12 @@ namespace FSM
 
 		public override void OnUpdate()
 		{
-			_currentEnemy.EnemyChase();
+			currentEnemy.EnemyChase();
 		}
 
 		public bool CanChase()
 		{
-			if (_currentEnemy.ChaseDistance())
+			if (currentEnemy.ChaseDistance())
 			{
 				return true;
 			}

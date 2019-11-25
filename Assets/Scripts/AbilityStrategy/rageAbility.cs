@@ -2,48 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rageAbility : MonoBehaviour,IAbility
+public class RageAbility : MonoBehaviour,IAbility
 {
-	GameObject _effectAbility;
-	int _needMana;
-	float _timer;
-	public bool _abilityUse = false;
+	GameObject effectAbility;
+	int needMana;
+	float timer;
+	public bool abilityUse = false;
 
-	Mana _mana;
+	Mana mana;
 	Sword weapon = new Sword();
-	public rageAbility(GameObject effectAbility, int needMana,  Mana mana, float timer  )
+	public RageAbility(GameObject effectAbility, int needMana,  Mana mana, float timer  )
 	{
-		_effectAbility = effectAbility;
-		_needMana = needMana;
-		_mana = mana;
-		_timer = timer;
+		this.effectAbility = effectAbility;
+		this.needMana = needMana;
+		this.mana = mana;
+		this.timer = timer;
 		 
 	}
-	public rageAbility()
+	public RageAbility()
 	{
 
 	}
  
 	public IEnumerator AbbilityTime()
 	{
-		if (_mana.mana >= _needMana && _abilityUse == false)
+		if (mana.mana >= needMana && abilityUse == false)
 		{
-			_abilityUse = true;
-			_effectAbility.SetActive(true);
-			_mana.TakeMana(_needMana);
+            abilityUse = true;
+			effectAbility.SetActive(true);
+			mana.TakeMana(needMana);
 			weapon.damage = 30;
-			yield return new WaitForSeconds(_timer);
-			_abilityUse = false;
-			_effectAbility.SetActive(false);
+			yield return new WaitForSeconds(timer);
+			abilityUse = false;
+			effectAbility.SetActive(false);
 		}
-		if (_abilityUse == true)
-		{
-			 
+		if (abilityUse == true)
+		{	 
 			Debug.Log("Скилл уже используется");
 		}
-		else if (_mana.mana < _needMana)
+		else if (mana.mana < needMana)
 		{
-			 
 			Debug.Log("нехватает маны, петушара");
 		}
 	}

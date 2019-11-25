@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-	  public KeyCode AttackButton = KeyCode.F;
-	  public KeyCode UseAbilityButton = KeyCode.Q;
-	  public KeyCode UseAbilityButton2 = KeyCode.R;
-	public KeyCode UseAbilityButton3 = KeyCode.T;
-	public KeyCode TakeDropWeapon = KeyCode.G;
+	  public KeyCode attackButton = KeyCode.F;
+	  public KeyCode useAbilityButton = KeyCode.Q;
+	  public KeyCode useAbilityButton2 = KeyCode.R;
+	public KeyCode useAbilityButton3 = KeyCode.T;
+	public KeyCode takeDropWeapon = KeyCode.G;
 
 	 
 }

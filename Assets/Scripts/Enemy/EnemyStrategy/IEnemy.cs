@@ -7,7 +7,7 @@ public abstract class IEnemy :MonoBehaviour
 
 
 	abstract public void EnemyAttack();
-	abstract public bool _IsAttack { get; set; }
+	abstract public bool IsAttack { get; set; }
 	abstract public void EnemyPatrol();
 	abstract public void EnemyChase();
 	abstract public void EnemyDeath();

@@ -10,12 +10,11 @@ namespace FSM
 		 
 		private Transform transform;
 		 
-		CharacterMovement _characterMovement;
-		IEnemy _currentEnemy;
+		CharacterMovement characterMovement;
+		IEnemy currentEnemy;
 		public PatrolState(Transform transform,  IEnemy currentEnemy)
 		{
-			_currentEnemy = currentEnemy;
-			 
+			this.currentEnemy = currentEnemy;
 			this.transform = transform;
 		}
 		public override void OnEnter()
@@ -25,8 +24,7 @@ namespace FSM
 
 		public override void OnUpdate()
 		{
-			// _characterMovement.vecocity.x = 0;
-			 _currentEnemy.EnemyPatrol();
+			 currentEnemy.EnemyPatrol();
 		}
 
 		public override void OnExit()
@@ -35,7 +33,7 @@ namespace FSM
 		}
 		public bool CanPatrol()
 		{
-			if (_currentEnemy.PatrolDistance())
+			if (currentEnemy.PatrolDistance())
 			{
 				return true;
 			}

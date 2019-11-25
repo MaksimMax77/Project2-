@@ -7,36 +7,36 @@ public class PlayerController : MonoBehaviour
 {
 
     
-	Health Plahealth;
-	private CharacterMovement _characterMovement;
+	Health plahealth;
+	private CharacterMovement characterMovement;
 
- 	bool facing;//направлен ли персонаж вправо или влево 
-	public bool PlayerAttack;// атакует ли персонаж (для анимконтроллера)
+ 	bool isfacing;//направлен ли персонаж вправо или влево 
+	public bool IsAttack;// атакует ли персонаж (для анимконтроллера)
 	ButtonManager buttonManager;
 	 
 	 
 	void Awake()
 	{
 		buttonManager = GetComponent<ButtonManager>();
-		   Plahealth = GetComponent<Health>();
-		_characterMovement = GetComponent<CharacterMovement>();
+		plahealth = GetComponent<Health>();
+		characterMovement = GetComponent<CharacterMovement>();
 	}
 
 	void Update()
 	{
-		if (Plahealth.death == false)//шоб обездвижить если умер 
+		if (plahealth.death == false)//шоб обездвижить если умер 
 		{
-			_characterMovement.vecocity = new Vector2(
+			characterMovement.vecocity = new Vector2(
 
 				Input.GetAxis("Horizontal"),
 				Input.GetAxis("Vertical"));
-			Attack(buttonManager.AttackButton);
+			Attack(buttonManager.attackButton);
 
-			if (_characterMovement.vecocity.x > 0 && !facing)
+			if (characterMovement.vecocity.x > 0 && !isfacing)
 			{
 				Flip();
 			}
-			else if (_characterMovement.vecocity.x < 0 && facing)
+			else if (characterMovement.vecocity.x < 0 && isfacing)
 			{
 				Flip();
 			}
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Flip()
 	{
-		facing = !facing;
+		isfacing = !isfacing;
 		Vector3 theScale = transform.localScale;  
 		 theScale.x *= -1;
 		 transform.localScale = theScale; 
@@ -62,18 +62,18 @@ public class PlayerController : MonoBehaviour
 	void Attack(KeyCode AttackButton)
 	{
 		 
-		if (Input.GetKeyDown(AttackButton)&&PlayerAttack==false)
+		if (Input.GetKeyDown(AttackButton)&&IsAttack==false)
 		{
-             StartCoroutine(enumerator());
+             StartCoroutine(Enumerator());
 		}	
 	}
 	#endregion
 
 	 
-	IEnumerator enumerator()
+	IEnumerator Enumerator()
 	{
-		PlayerAttack = true;
+		IsAttack = true;
 		yield return new WaitForSeconds(0.6f);
-		PlayerAttack = false;
+		IsAttack = false;
 	}
 }

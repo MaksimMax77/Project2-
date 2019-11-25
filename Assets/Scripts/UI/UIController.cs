@@ -4,32 +4,30 @@ using Zenject;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
-    [SerializeField] GameObject Player;
-    private ISaveService _saveService;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] GameObject player;
+    private ISaveService saveService;
 	Health health;
 	private void Awake()
 	{
-		health = Player.GetComponent<Health>();
+		health = player.GetComponent<Health>();
 	}
 
 	[Inject]
     public void Init(ISaveService saveService)
     {
-        print(_saveService + " injected correctly");
-        _saveService = saveService;
+        print(saveService + " injected correctly");
+		this.saveService = saveService;
     }
 
     public void SaveCharacterPosition()
     {
-        _saveService.SaveCharacter(_player.position,health.health);
+		saveService.SaveCharacter(playerTransform.position,health.health);
     }
 
     public void LoadCharacterPosition()
     {
-        _player.position = _saveService.LoadCharacterPosition();
-		health.Init(_saveService.LoadCharacterHealth());
-
+		playerTransform.position = saveService.LoadCharacterPosition();
+		health.Init(saveService.LoadCharacterHealth());
     }
-
 }

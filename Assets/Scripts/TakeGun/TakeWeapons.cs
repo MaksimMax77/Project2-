@@ -54,8 +54,10 @@ public class TakeWeapons : MonoBehaviour
 	 
 		    wpn = (wpn + 1) % weapons.Count;
 		    weapons[currentWeapon].gunGO.SetActive(false); // выключаем текущее
+		weapons[currentWeapon].spritOn = false;
 			weapons[wpn].gunGO.SetActive(true); // включаем выбранное
-			 currentWeapon = wpn; // запоминаем выбранное
+		weapons[wpn].spritOn = true ;
+		currentWeapon = wpn; // запоминаем выбранное
 	 
 	}
 }	 

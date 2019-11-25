@@ -834,8 +834,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 301.5, y: -167.28668}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 301.25, y: -56.544983}
+  m_SizeDelta: {x: 159.5, y: 58.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &507783432
 MonoBehaviour:
@@ -855,7 +855,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -865,8 +865,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 37ba816049212634087d9a146c278369,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 2ebd3669dbaf9f142bd6b1444934a403, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -880,7 +881,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1080161045}
         m_MethodName: ButtonClick
         m_Mode: 1
         m_Arguments:
@@ -1105,6 +1106,14 @@ PrefabInstance:
       objectReference: {fileID: 1126533981}
     - target: {fileID: 471996055, guid: f43bd3b964966084c880f3f1444a7ddc, type: 3}
       propertyPath: Curenemy
+      value: 
+      objectReference: {fileID: 1126533985}
+    - target: {fileID: 471996055, guid: f43bd3b964966084c880f3f1444a7ddc, type: 3}
+      propertyPath: animatorObj
+      value: 
+      objectReference: {fileID: 848028155}
+    - target: {fileID: 471996055, guid: f43bd3b964966084c880f3f1444a7ddc, type: 3}
+      propertyPath: currentEnemy
       value: 
       objectReference: {fileID: 1126533985}
     - target: {fileID: 6687019129630145773, guid: f43bd3b964966084c880f3f1444a7ddc,
@@ -5610,6 +5619,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &699885625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 917895358395447340, guid: 92ae4bbe7fb1b294fa6271ccab46fe2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6052003089092619632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &718842764
 GameObject:
   m_ObjectHideFlags: 0
@@ -5692,7 +5707,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 850793441}
         m_MethodName: SaveCharacterPosition
         m_Mode: 1
         m_Arguments:
@@ -5773,9 +5788,8 @@ MonoBehaviour:
   _name: LaserGun
   gunGO: {fileID: 1401603191}
   isPresent: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 37ba816049212634087d9a146c278369, type: 3}
   spritOn: 0
-  imageButton: {fileID: 0}
 --- !u!212 &780057031
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5865,6 +5879,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.48, y: 1.1966667}
   m_EdgeRadius: 0
+--- !u!1 &848028155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6686631423553796666, guid: f43bd3b964966084c880f3f1444a7ddc,
+    type: 3}
+  m_PrefabInstance: {fileID: 624350687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &850793435
 GameObject:
   m_ObjectHideFlags: 0
@@ -5878,6 +5898,7 @@ GameObject:
   - component: {fileID: 850793437}
   - component: {fileID: 850793436}
   - component: {fileID: 850793440}
+  - component: {fileID: 850793441}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5981,6 +6002,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48907a659f1529647a4cb493d4c0d35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonChangeWeapon: {fileID: 507783430}
+  image: {fileID: 0}
+  guns:
+  - {fileID: 1699715789}
+  - {fileID: 780057030}
+  - {fileID: 1541350137}
+--- !u!114 &850793441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850793435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb14a6702b117c4b9b516d132ae63a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 2020515815}
+  player: {fileID: 1080161032}
 --- !u!1 &853841508
 GameObject:
   m_ObjectHideFlags: 0
@@ -6138,9 +6179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ea335d13d9cac46b7f60c62cd285f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyTag: Enemy
+  enemyTag: Enemy
   lookSpeed: 500
-  canAim: 0
+  isAiming: 0
 --- !u!58 &983952373
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6204,7 +6245,7 @@ MonoBehaviour:
     type: 3}
   minAngle: -90
   maxAngle: 90
-  Player: {fileID: 2020515815}
+  player: {fileID: 2020515815}
 --- !u!212 &983952376
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6683,7 +6724,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 850793441}
         m_MethodName: LoadCharacterPosition
         m_Mode: 1
         m_Arguments:
@@ -6730,6 +6771,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118347230}
   m_CullTransparentMesh: 0
+--- !u!1 &1126453540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6686631423553796666, guid: f43bd3b964966084c880f3f1444a7ddc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1896053948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1126533977 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6687496660281585988, guid: f43bd3b964966084c880f3f1444a7ddc,
@@ -6764,12 +6811,12 @@ MonoBehaviour:
   - {fileID: 1772524044}
   - {fileID: 76739302}
   - {fileID: 1252213098}
-  EnemyDamage: 10
+  enemyDamage: 15
   damageType: 3
-  _timer: 0
+  timer: 0
   patrolTimer: 2
   distaceToPla: 7
-  <_IsAttack>k__BackingField: 0
+  <IsAttack>k__BackingField: 0
 --- !u!114 &1126533986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7214,7 +7261,7 @@ MonoBehaviour:
     type: 3}
   minAngle: -90
   maxAngle: 90
-  Player: {fileID: 2020515815}
+  player: {fileID: 2020515815}
 --- !u!114 &1307069775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7227,9 +7274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ea335d13d9cac46b7f60c62cd285f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyTag: Enemy
+  enemyTag: Enemy
   lookSpeed: 500
-  canAim: 0
+  isAiming: 0
 --- !u!212 &1307069776
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7454,7 +7501,7 @@ MonoBehaviour:
     type: 3}
   minAngle: -90
   maxAngle: 90
-  Player: {fileID: 2020515815}
+  player: {fileID: 2020515815}
 --- !u!212 &1401603193
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7531,9 +7578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ea335d13d9cac46b7f60c62cd285f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyTag: Enemy
+  enemyTag: Enemy
   lookSpeed: 500
-  canAim: 0
+  isAiming: 0
 --- !u!58 &1401603196
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7830,9 +7877,8 @@ MonoBehaviour:
   _name: 
   gunGO: {fileID: 1307069772}
   isPresent: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2ebd3669dbaf9f142bd6b1444934a403, type: 3}
   spritOn: 0
-  imageButton: {fileID: 0}
 --- !u!1 &1610109118
 GameObject:
   m_ObjectHideFlags: 0
@@ -8193,9 +8239,8 @@ MonoBehaviour:
   _name: FireGun
   gunGO: {fileID: 983952371}
   isPresent: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 065db74c4addc6f4fbb775a206dc939d, type: 3}
   spritOn: 0
-  imageButton: {fileID: 0}
 --- !u!1001 &1724150743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8417,11 +8462,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83f221701bf0bc46b00d2660aa18dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyDamage: 10
+  enemyDamage: 15
   distaceToPla: 15
   gun: {fileID: 1296765848}
   fire: {fileID: 3497213985927944046, guid: a7dd9a6fdd4b1aa428858251f204b6f1, type: 3}
-  _timer: 0
+  timer: 0
   damageType: 3
   patrolSpots:
   - {fileID: 853841509}
@@ -9312,9 +9357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ea335d13d9cac46b7f60c62cd285f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyTag: Player
+  enemyTag: Player
   lookSpeed: 500
-  canAim: 0
+  isAiming: 0
 --- !u!58 &1792997682
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9606,6 +9651,14 @@ PrefabInstance:
       propertyPath: Curenemy
       value: 
       objectReference: {fileID: 1729972149}
+    - target: {fileID: 471996055, guid: f43bd3b964966084c880f3f1444a7ddc, type: 3}
+      propertyPath: animatorObj
+      value: 
+      objectReference: {fileID: 1126453540}
+    - target: {fileID: 471996055, guid: f43bd3b964966084c880f3f1444a7ddc, type: 3}
+      propertyPath: currentEnemy
+      value: 
+      objectReference: {fileID: 1729972149}
     - target: {fileID: 6687019129630145773, guid: f43bd3b964966084c880f3f1444a7ddc,
         type: 3}
       propertyPath: speed
@@ -9722,8 +9775,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -44}
+  m_SizeDelta: {x: 0, y: -25.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2102003103
 MonoBehaviour:
@@ -10117,9 +10170,19 @@ PrefabInstance:
       propertyPath: ProgressBar
       value: 
       objectReference: {fileID: 1487924273}
+    - target: {fileID: 3812977547882351865, guid: 92ae4bbe7fb1b294fa6271ccab46fe2f,
+        type: 3}
+      propertyPath: progressBarGameObj
+      value: 
+      objectReference: {fileID: 1487924273}
     - target: {fileID: 3812977547882351846, guid: 92ae4bbe7fb1b294fa6271ccab46fe2f,
         type: 3}
       propertyPath: ProgressBar
+      value: 
+      objectReference: {fileID: 1329116467}
+    - target: {fileID: 3812977547882351846, guid: 92ae4bbe7fb1b294fa6271ccab46fe2f,
+        type: 3}
+      propertyPath: progressBarGameObj
       value: 
       objectReference: {fileID: 1329116467}
     - target: {fileID: 1080161045, guid: 92ae4bbe7fb1b294fa6271ccab46fe2f, type: 3}
@@ -10170,6 +10233,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6052003088795538399, guid: 92ae4bbe7fb1b294fa6271ccab46fe2f,
+        type: 3}
+      propertyPath: animatorObj
+      value: 
+      objectReference: {fileID: 699885625}
     m_RemovedComponents:
     - {fileID: 1080161045, guid: 92ae4bbe7fb1b294fa6271ccab46fe2f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 92ae4bbe7fb1b294fa6271ccab46fe2f, type: 3}

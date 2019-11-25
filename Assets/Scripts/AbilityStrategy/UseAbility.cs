@@ -5,50 +5,49 @@ using UnityEngine;
 public class UseAbility : MonoBehaviour
 {
 	 
-	[SerializeField] GameObject HealAbbilityEffect;
-	[SerializeField] GameObject RageAbbilityEffect;
-	[SerializeField] GameObject ImpulsAbbilityEffect;
+	[SerializeField] GameObject healAbbilityEffect;
+	[SerializeField] GameObject rageAbbilityEffect;
+	[SerializeField] GameObject impulsAbbilityEffect;
 	[SerializeField] int impulsDamage;
 
 	[SerializeField] GameObject enemy;
-	[SerializeField]int NeadMana;
+	[SerializeField]int neadMana;
 	[SerializeField] float timer;
-	[SerializeField] DamageType impulsdamageType;
-	[SerializeField] GameObject Player;
+	[SerializeField] DamageType impulsDamageType;
+	[SerializeField] GameObject player;
 	RaycastHit2D hit; 
 
 	Health health;
-	Mana _mana;
+	Mana mana;
     ButtonManager buttonManager;
-	healAbility healAbility;
-	rageAbility rageAbility;
+	HealAbility healAbility;
+	RageAbility rageAbility;
 	ImpulsAbility impulsAbility;
-
 	public DamageType damageType;
+
+
 	void Start()
     {
 		buttonManager = GetComponent<ButtonManager>();
 		   health = GetComponent<Health>();
-		_mana = GetComponent<Mana>();
-		healAbility = new healAbility(HealAbbilityEffect, NeadMana, health, _mana,timer );
-		rageAbility = new rageAbility(RageAbbilityEffect, NeadMana, _mana, timer);
-		impulsAbility = new ImpulsAbility(ImpulsAbbilityEffect, NeadMana, _mana, timer, impulsDamage, impulsdamageType, hit, Player);
-
-
+		mana = GetComponent<Mana>();
+		healAbility = new HealAbility(healAbbilityEffect, neadMana, health, mana,timer );
+		rageAbility = new RageAbility(rageAbbilityEffect, neadMana, mana, timer);
+		impulsAbility = new ImpulsAbility(impulsAbbilityEffect, neadMana, mana, timer, impulsDamage, impulsDamageType, hit, player);
 	}
 
     // Update is called once per frame
     void Update()
     {
-		if(Input.GetKeyDown(buttonManager.UseAbilityButton))
+		if(Input.GetKeyDown(buttonManager.useAbilityButton))
 		{
           DoAbility(healAbility);	 
 		}
-		if (Input.GetKeyDown(buttonManager.UseAbilityButton2))
+		if (Input.GetKeyDown(buttonManager.useAbilityButton2))
 		{
 			DoAbility(rageAbility);
 		}
-		if (Input.GetKeyDown(buttonManager.UseAbilityButton3))
+		if (Input.GetKeyDown(buttonManager.useAbilityButton3))
 		{
 			//Physics2D.queriesStartInColliders = false;
 			//	hit = Physics2D.Raycast(transform.position, Vector2.left * transform.localScale.x, 25);
@@ -69,7 +68,7 @@ public class UseAbility : MonoBehaviour
 
 	public IEnumerator AbbilityTime()
 	{
-		if (_mana.mana >= NeadMana  )
+		if ( mana.mana >= neadMana  )
 		{
 			 
 			Physics2D.queriesStartInColliders = false;
@@ -90,18 +89,18 @@ public class UseAbility : MonoBehaviour
 					Enemy1.transform.position += Vector3.left * 10;
 				}
 			}
-			ImpulsAbbilityEffect.SetActive(true);
-			_mana.TakeMana(NeadMana);
+			impulsAbbilityEffect.SetActive(true);
+			mana.TakeMana(neadMana);
 			yield return new WaitForSeconds(timer);
 			//_abilityUse = false;
-			ImpulsAbbilityEffect.SetActive(false);
+			impulsAbbilityEffect.SetActive(false);
 		}
 		//if (_abilityUse == true)
 		//{
 		//
 		//	Debug.Log("Скилл уже используется");
 		//}
-		else if (_mana.mana < NeadMana)
+		else if (mana.mana < neadMana)
 		{
 			Debug.Log("нехватает маны, петушара");
 		}

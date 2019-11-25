@@ -26,7 +26,7 @@ public class Sword : Weapon
 	 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (playerController.PlayerAttack)
+		if (playerController.IsAttack)
 		{
 			if (collision.gameObject.tag == "Enemy")
 			{
