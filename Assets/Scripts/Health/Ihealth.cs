@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPause 
+public interface Ihealth 
 {
-	  void SetPauseOn();
-	void SetPauseOff();
+	void AddHealth(int healthToAdd);
+	bool death { get; set; }
 }

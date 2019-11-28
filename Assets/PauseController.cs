@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseController : MonoBehaviour,IPause
+public class PauseController : IPause
 {
-	bool pauseOff;
-
-   public void SetPauseOnOff()
+   public void SetPauseOn()
 	{
-		if (pauseOff)
-		{
 			Time.timeScale = 0;
-			Debug.Log("пауза включена");
-			pauseOff = false;
-		}
-		else
-		{
+	}
+
+	public void SetPauseOff()
+	{
 			Time.timeScale = 1;
-			Debug.Log("пауза отключена");
-			pauseOff = true;
-		}
 	}
 }

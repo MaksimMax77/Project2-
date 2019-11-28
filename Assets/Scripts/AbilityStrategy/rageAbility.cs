@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RageAbility : MonoBehaviour,IAbility
+public class RageAbility :IAbility
 {
 	GameObject effectAbility;
 	int needMana;
@@ -11,14 +11,25 @@ public class RageAbility : MonoBehaviour,IAbility
 
 	Mana mana;
 	Sword weapon = new Sword();
-	public RageAbility(GameObject effectAbility, int needMana,  Mana mana, float timer  )
+
+	//public RageAbility(GameObject effectAbility, int needMana,  Mana mana, float timer  )
+	//{
+	//	this.effectAbility = effectAbility;
+	//	this.needMana = needMana;
+		//this.mana = mana;
+	//	this.timer = timer;
+		 
+	//}
+
+	public void RageAbilityInit(GameObject effectAbility, int needMana, Mana mana, float timer)
 	{
 		this.effectAbility = effectAbility;
 		this.needMana = needMana;
 		this.mana = mana;
 		this.timer = timer;
-		 
+
 	}
+
 	public RageAbility()
 	{
 

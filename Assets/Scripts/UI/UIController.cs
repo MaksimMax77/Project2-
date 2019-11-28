@@ -1,6 +1,7 @@
 ﻿using Services;
 using UnityEngine;
 using Zenject;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -30,4 +31,10 @@ public class UIController : MonoBehaviour
 		playerTransform.position = saveService.LoadCharacterPosition();
 		health.Init(saveService.LoadCharacterHealth());
     }
+
+	public void RestartThisScene()
+	{
+      SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
 }

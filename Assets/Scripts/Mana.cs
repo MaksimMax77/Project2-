@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mana : MonoBehaviour
+public class Mana : MonoBehaviour,IMana
 {
 	[field: SerializeField] public float mana { get; private set; }
 	[field: SerializeField] public int maxMana { get; private set; } = 100;
@@ -16,11 +16,13 @@ public class Mana : MonoBehaviour
 	{
 		mana -= ManaPrice;
 	}
-	void ManaRegen()
+	public void ManaRegen()
 	{
 		if (mana < maxMana)
 		{
 			mana += 1 * Time.deltaTime;
 		}
 	}
+
+	 
 }

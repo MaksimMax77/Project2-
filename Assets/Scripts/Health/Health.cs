@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Health : MonoBehaviour 
+public class Health : MonoBehaviour,Ihealth
 {
 	[field: SerializeField] public int health { get; set; } 
     [field: SerializeField] public int maxHealth { get; set; } = 100;

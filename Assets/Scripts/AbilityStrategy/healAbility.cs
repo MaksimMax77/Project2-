@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HealAbility :MonoBehaviour, IAbility
+public class HealAbility : IAbility
 {
 
 	GameObject effectAbility;
@@ -11,20 +11,19 @@ public class HealAbility :MonoBehaviour, IAbility
     float timer ;
     bool abilityUse = false;
 
-	Health  playerHealth;
+	Ihealth  playerHealth;
 	Mana mana ;
-	 
+ 
 
-	public HealAbility(GameObject effectAbility, int needMana,Health playerHealth, Mana mana, float timer)
+	public void HealAbilityInit(GameObject effectAbility, int needMana, Ihealth playerHealth, Mana mana, float timer)
 	{
-		 this.effectAbility = effectAbility;
+		this.effectAbility = effectAbility;
 		this.needMana = needMana;
 		this.playerHealth = playerHealth;
 		this.mana = mana;
 		this.timer = timer;
 	}
-	public HealAbility() { }
-
+ 
 	public IEnumerator AbbilityTime()
 	{
 		if (mana.mana >= needMana && abilityUse == false)
@@ -47,4 +46,5 @@ public class HealAbility :MonoBehaviour, IAbility
 			Debug.Log("нехватает маны, петушара");
 		}
 	}
+
 }

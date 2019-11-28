@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPause 
+public interface IMana  
 {
-	  void SetPauseOn();
-	void SetPauseOff();
+    void TakeMana(int ManaPrice);
+	void ManaRegen();
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImpulsAbility : MonoBehaviour,IAbility
+public class ImpulsAbility :IAbility
 {
 	GameObject effectAbility;
 	GameObject enemy;
@@ -17,10 +17,24 @@ public class ImpulsAbility : MonoBehaviour,IAbility
 	Mana mana;
 	RaycastHit2D hit;
 
-	public ImpulsAbility(GameObject effectAbility, int needMana,   Mana mana, float timer, 
-	int damage, DamageType  damageType, RaycastHit2D hit,GameObject player)
+	//public ImpulsAbility(GameObject effectAbility, int needMana,   Mana mana, float timer, 
+	//int damage, DamageType  damageType, RaycastHit2D hit,GameObject player)
+	//{
+	//	 
+	//	this.effectAbility = effectAbility;
+	//	this.damage = damage;
+	// 	this.damageType = damageType;
+		//this.timer = timer;
+	//	this.needMana = needMana;
+	//	this.mana = mana;
+	//	this.hit = hit;
+	//	this.player = player;
+	//}
+
+	public void ImpulsAbilityInit(GameObject effectAbility, int needMana, Mana mana, float timer,
+	int damage, DamageType damageType, RaycastHit2D hit, GameObject player)
 	{
-		 
+
 		this.effectAbility = effectAbility;
 		this.damage = damage;
 		this.damageType = damageType;

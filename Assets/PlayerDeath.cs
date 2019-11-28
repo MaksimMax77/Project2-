@@ -5,29 +5,40 @@ using Zenject;
 
 public class PlayerDeath : MonoBehaviour
 {
-	Health playerHealth;
-	PauseController pause;
-	GameObject player;
-     
-    void Awake()
+	private Ihealth playerHealth;
+	private IPause pause;
+	[SerializeField] GameObject deathSprite;
+ 
+	void Update()
     {
-		player = GameObject.FindGameObjectWithTag("Player");
-		playerHealth = player.GetComponent<Health>();
-    }
+		DeathScreenOffOn();
+	}
 
-	[Inject]
-	public void Init(PauseController pause)
+    [Inject]
+	public void Init(IPause pause, Ihealth playerHealth)
 	{
 		print(pause + " injected zaebal");
 		this.pause = pause;
+		this.playerHealth = playerHealth;
 	}
 
-	void Update()
-    {
+	void DeathScreenOffOn()
+	{
 		if (playerHealth.death)
 		{
-			
-			pause.SetPauseOnOff();
+			StartCoroutine(PauseEnumerator());
 		}
-    }
+		else
+		{
+			deathSprite.SetActive(false);
+			pause.SetPauseOff();
+		}
+	}
+
+	IEnumerator PauseEnumerator()
+	{
+		yield return new WaitForSeconds(2);
+		pause.SetPauseOn();
+		deathSprite.SetActive(true);
+	}
 }
