@@ -1,77 +1,35 @@
 ﻿using UnityEngine;
 
-public class SuperEnemy : IEnemy
-{
-	Health health;
-	[SerializeField] int enemyDamage;
-	[SerializeField] float distaceToPla;
+public class SuperEnemy : AbstractEnemy
+{ 
 	[SerializeField] Transform gun;
 	[SerializeField] GameObject fire;
-	[SerializeField] float timer;
-	[SerializeField] DamageType damageType;
-	GameObject player;
-	CharacterMovement characterMovement;
-	int randomSpot;
-	[SerializeField] Transform[] patrolSpots;
-	[SerializeField] float patrolTimer;
+	public override bool IsAttack { get; set; }
+
 	 
-	CharacterMovement plaCharMove;
 	RaycastHit2D hit;
-	Collider2D _collider;
+	 
 	[SerializeField] GameObject bullet;
 	[SerializeField] Transform gunPoint;
 	[SerializeField] GameObject Gun;
 	public AbstractBullet currentBullet;
+
+
 	private void Awake()
 	{
 		_collider = GetComponent<Collider2D>();
 		randomSpot = Random.Range(0, patrolSpots.Length);
 		player = GameObject.FindGameObjectWithTag("Player");
 		characterMovement = GetComponent<CharacterMovement>();
-		health = player.GetComponent<Health>();
-		plaCharMove = player.GetComponent<CharacterMovement>();
+		playerHealth = player.GetComponent<Health>();
 		 
-	}
-
-
-	public SuperEnemy(Health health)
-	{
-		this.health = health;
-	}
-
-	public override bool IsAttack { get; set; }
-
-	public override bool AttackDistance()
-	{
-		var heading = transform.position - player.transform.position;
-		if (heading.sqrMagnitude < distaceToPla * distaceToPla)
-		{
-			return true;
-		}
-		return false;
-	}
-
-	public override bool PatrolDistance()
-	{
-		var heading = transform.position - player.transform.position;
-		if (heading.sqrMagnitude > 25 * 25)
-			return true;
-		return false;
-	}
-
-	public override bool ChaseDistance()
-	{
-		var heading = transform.position - player.transform.position;
-		if (heading.sqrMagnitude < 20 * 20 && heading.sqrMagnitude > 15*15)
-			return true;
-		return false;
-	}
+	}	
 
 	override public void EnemyAttack()
 	{
 		 
 		var heading = transform.position - player.transform.position;
-		if(heading.sqrMagnitude < distaceToPla * distaceToPla)
+		if(heading.sqrMagnitude < distanceToPlayer * distanceToPlayer)
 		{
           characterMovement.vecocity = new Vector2(0, 0);
 		}
@@ -82,22 +40,11 @@ public class SuperEnemy : IEnemy
 		}
 		if (timer <= 0)
 		{
-				GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
-				if (gunPoint.position.x < transform.position.x)
-				{
-					newBullet.GetComponent<Rigidbody2D>().velocity = -Gun.transform.right * currentBullet.speed;
-				}
-				else if (gunPoint.position.x > transform.position.x)
-				{
-					newBullet.GetComponent<Rigidbody2D>().velocity = Gun.transform.right * currentBullet.speed;
-				}
+			Shoot();
 		}
 	}
 
-	public override void EnemyChase()
-	{
-		characterMovement.vecocity = player.transform.position - transform.position;
-	}
+ 
 
 	public override void EnemyDeath()
 	{
@@ -106,22 +53,18 @@ public class SuperEnemy : IEnemy
 		Destroy(Gun);
 	}
 
-	public override void EnemyPatrol()
+	#region Shoot
+	void Shoot()
 	{
-		characterMovement.vecocity = patrolSpots[randomSpot].transform.position - transform.position;
-		if (Vector2.Distance(transform.position, patrolSpots[randomSpot].position) < 0.2f)
+		GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
+		if (gunPoint.position.x < transform.position.x)
 		{
-			if (patrolTimer <= 0)
-			{
-				patrolTimer = 2;
-				randomSpot = Random.Range(0, patrolSpots.Length);
-			}
-			else
-			{
-				patrolTimer -= Time.deltaTime;
-				characterMovement.vecocity.x = 0;
-				characterMovement.vecocity.y = 0;
-			}
+			newBullet.GetComponent<Rigidbody2D>().velocity = -Gun.transform.right * currentBullet.speed;
+		}
+		else if (gunPoint.position.x > transform.position.x)
+		{
+			newBullet.GetComponent<Rigidbody2D>().velocity = Gun.transform.right * currentBullet.speed;
 		}
 	}
+	#endregion
 }

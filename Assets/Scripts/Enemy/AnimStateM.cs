@@ -6,7 +6,7 @@ public class AnimStateM : MonoBehaviour
 {
 	public GameObject animatorObj;
 	Animator animator;
-	[SerializeField]IEnemy currentEnemy;
+	[SerializeField] AbstractEnemy currentEnemy;
 	CharacterMovement movement;
 	Health health;
 	void Awake()

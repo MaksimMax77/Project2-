@@ -8,7 +8,7 @@ namespace FSM
 		
 		private StateMachine stateMachine;
 		CharacterMovement characterMovement;
-		[SerializeField] IEnemy currentEnemy ;//
+		[SerializeField] AbstractEnemy currentEnemy ;//
 		Health enemyHealth;
 		Collider2D _collider;
 

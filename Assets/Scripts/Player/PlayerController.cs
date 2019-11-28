@@ -2,29 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+ 
 public class PlayerController : MonoBehaviour
 {
-
-    
-	Health plahealth;
+	 
+	Health plaHealth;
 	private CharacterMovement characterMovement;
-
  	bool isfacing;//направлен ли персонаж вправо или влево 
 	public bool IsAttack;// атакует ли персонаж (для анимконтроллера)
 	ButtonManager buttonManager;
 	 
-	 
+ 
 	void Awake()
 	{
 		buttonManager = GetComponent<ButtonManager>();
-		plahealth = GetComponent<Health>();
+		 plaHealth = GetComponent<Health>();
 		characterMovement = GetComponent<CharacterMovement>();
 	}
 
 	void Update()
 	{
-		if (plahealth.death == false)//шоб обездвижить если умер 
+		if (plaHealth.death == false)//шоб обездвижить если умер 
 		{
 			characterMovement.vecocity = new Vector2(
 

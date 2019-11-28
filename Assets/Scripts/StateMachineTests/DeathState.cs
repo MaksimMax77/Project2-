@@ -9,8 +9,8 @@ namespace FSM
 	{
 		 
 		private Health health;
-		IEnemy currentEnemy;
-		public DeathState(Health health ,IEnemy currentEnemy)
+		AbstractEnemy currentEnemy;
+		public DeathState(Health health , AbstractEnemy currentEnemy)
 		{
 			this.health = health;
 			this.currentEnemy =currentEnemy; 

@@ -7,11 +7,11 @@ namespace FSM
 	class AttackState : State
 	{
 		CharacterMovement characterMovement;
-		IEnemy currentEnemy;//
+		AbstractEnemy currentEnemy;//
 		 
 		public AttackState() { }
 
-		public AttackState(CharacterMovement characterMovement, IEnemy currentEnemy)
+		public AttackState(CharacterMovement characterMovement, AbstractEnemy currentEnemy)
 		{
 			this.characterMovement = characterMovement;
 			this.currentEnemy = currentEnemy;   

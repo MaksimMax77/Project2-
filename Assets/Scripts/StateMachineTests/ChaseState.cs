@@ -7,9 +7,9 @@ namespace FSM
 
 	class ChaseState : State
 	{
-		IEnemy currentEnemy;
+		AbstractEnemy currentEnemy;
 
-		public ChaseState(IEnemy currentEnemy)
+		public ChaseState(AbstractEnemy currentEnemy)
 		{
 			this.currentEnemy = currentEnemy;
 		}

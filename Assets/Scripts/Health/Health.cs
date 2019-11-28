@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour 
 {
 	[field: SerializeField] public int health { get; set; } 
-    [field: SerializeField] public int maxHealth { get; private set; } = 100;
-    [field: SerializeField] public bool death { get; private set; }
+    [field: SerializeField] public int maxHealth { get; set; } = 100;
+    [field: SerializeField] public bool death { get; set; }
 
 	[SerializeField]DamageType ResistanceType;
 	public bool Hit;//для аниматора
+	 
+
 	public void Init(int health)
     {
         this.health = health;

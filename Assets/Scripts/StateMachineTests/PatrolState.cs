@@ -11,8 +11,8 @@ namespace FSM
 		private Transform transform;
 		 
 		CharacterMovement characterMovement;
-		IEnemy currentEnemy;
-		public PatrolState(Transform transform,  IEnemy currentEnemy)
+		AbstractEnemy currentEnemy;
+		public PatrolState(Transform transform, AbstractEnemy currentEnemy)
 		{
 			this.currentEnemy = currentEnemy;
 			this.transform = transform;
