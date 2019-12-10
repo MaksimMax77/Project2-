@@ -5,11 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - asteroid
-  - ship
   - Platform
-  - LeftPlatform
-  - RightPlatform
+  - CanTake
+  - Sword
+  - TakeGun
+  - TakeGun1
+  - TakeGun2
+  - TakeFireGun
+  - TakeLaserGun
+  - RocketLauncher
   layers:
   - Default
   - TransparentFX
