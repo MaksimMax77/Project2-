@@ -6,7 +6,7 @@ public class AnimStateM : MonoBehaviour
 {
 	public GameObject animatorObj;
 	Animator animator;
-	[SerializeField] AbstractEnemy currentEnemy;
+	[SerializeField] CharBehavior currentCharBehavior;
 	CharacterMovement movement;
 	Health health;
 	void Awake()
@@ -19,7 +19,7 @@ public class AnimStateM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (currentEnemy.IsAttack == true)
+		if (currentCharBehavior.IsAttack == true)
 		{
 			animator.SetBool("AttackSide", true);
 		}

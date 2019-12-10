@@ -18,7 +18,7 @@ public abstract class AbstractEnemy :MonoBehaviour
 	[SerializeField] protected float maxDistanceToPlayer;
 
 	abstract public void EnemyAttack();
-	abstract public bool IsAttack { get; set; }
+	 
 	abstract public void EnemyDeath();
 
 	public void EnemyPatrol()

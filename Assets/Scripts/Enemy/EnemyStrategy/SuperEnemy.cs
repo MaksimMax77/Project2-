@@ -3,8 +3,7 @@
 public class SuperEnemy : AbstractEnemy
 { 
 	[SerializeField] Transform gun;
-	[SerializeField] GameObject fire;
-	public override bool IsAttack { get; set; }
+	[SerializeField] GameObject fire; 
 
 	 
 	RaycastHit2D hit;
@@ -12,11 +11,12 @@ public class SuperEnemy : AbstractEnemy
 	[SerializeField] GameObject bullet;
 	[SerializeField] Transform gunPoint;
 	[SerializeField] GameObject Gun;
-	public AbstractBullet currentBullet;
+	public  Bullet currentBullet;
 
 
 	private void Awake()
 	{
+		 
 		_collider = GetComponent<Collider2D>();
 		randomSpot = Random.Range(0, patrolSpots.Length);
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -56,6 +56,7 @@ public class SuperEnemy : AbstractEnemy
 	#region Shoot
 	void Shoot()
 	{
+	 
 		GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
 		if (gunPoint.position.x < transform.position.x)
 		{

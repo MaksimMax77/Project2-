@@ -21,11 +21,11 @@ public class Usesound : MonoBehaviour
 	{
 		if (Input.GetKeyDown(buttonManager.attackButton))
 		{
-			SoundManager1.PlaySound("AttackSound");
+			//SoundManager1.PlaySound("AttackSound");
 		}
 		if (Input.GetKeyDown(buttonManager.useAbilityButton))
 		{
-			SoundManager1.PlaySound("UseAbility");
+			//SoundManager1.PlaySound("UseAbility");
 		}
 		PlaySteps();
 	}
@@ -33,7 +33,7 @@ public class Usesound : MonoBehaviour
 	IEnumerator EnumeratorSteps()//для шагов
 	{
 		Istepping = true;
-		SoundManager1.PlaySound("StepsSound");
+		//SoundManager1.PlaySound("StepsSound");
 		yield return new WaitForSeconds(0.3f);
 		Istepping = false;
 	}

@@ -5,25 +5,26 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 	public float speed = 10; // скорость пули
-	public GameObject bullet; // префаб нашей пули
 	public Transform gunPoint; // точка рождения
 	public float fireRate = 1; // скорострельность
 
 	public Transform zRotate; // объект для вращения по оси Z
-	[SerializeField] AbstractBullet currentBullet;
+	[SerializeField]  Bullet currentBullet;
 	// ограничение вращения
 	public float minAngle = -40;
 	public float maxAngle = 40;
+ 
 
-	 
+
 
 	private float curTimeout;
 	Aim aim;
 	public Transform player;
-
+ 
 	void Awake()
 	{
 		aim =GetComponent<Aim>();
+		 
 	}
 
 	void SetRotation()
@@ -48,7 +49,12 @@ public class Gun : MonoBehaviour
 				curTimeout = 100;
 			}
 
-			 if (zRotate && aim.isAiming==false) SetRotation();
+		if (zRotate && aim.isAiming == false)
+		{
+           SetRotation();
+		} 
+	 
+			
 	}
 
 	void Fire()
@@ -57,7 +63,9 @@ public class Gun : MonoBehaviour
 		if (curTimeout > fireRate)
 		{
 			curTimeout = 0;
-			GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
+			 //GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
+			 GameObject newBullet = PoolManager2.GetObject(currentBullet.bulletPrefab.name, gunPoint.position, transform.rotation);
+		 
 			if (gunPoint.position.x < player.position.x)
 			{
 				newBullet.GetComponent<Rigidbody2D>().velocity = -transform.right * currentBullet.speed;

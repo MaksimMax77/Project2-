@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
 	Health plaHealth;
 	private CharacterMovement characterMovement;
  	bool isfacing;//направлен ли персонаж вправо или влево 
-	public bool IsAttack;// атакует ли персонаж (для анимконтроллера)
+	CharBehavior charBehavior;// атакует ли персонаж (для анимконтроллера)
+	 
 	ButtonManager buttonManager;
 	 
  
 	void Awake()
 	{
+		charBehavior = GetComponent<CharBehavior>();
 		buttonManager = GetComponent<ButtonManager>();
 		 plaHealth = GetComponent<Health>();
 		characterMovement = GetComponent<CharacterMovement>();
@@ -60,8 +62,9 @@ public class PlayerController : MonoBehaviour
 	void Attack(KeyCode AttackButton)
 	{
 		 
-		if (Input.GetKeyDown(AttackButton)&&IsAttack==false)
+		if (Input.GetKeyDown(AttackButton)&& charBehavior.IsAttack == false)
 		{
+
              StartCoroutine(Enumerator());
 		}	
 	}
@@ -70,8 +73,8 @@ public class PlayerController : MonoBehaviour
 	 
 	IEnumerator Enumerator()
 	{
-		IsAttack = true;
-		yield return new WaitForSeconds(0.6f);
-		IsAttack = false;
+		charBehavior.IsAttack = true;
+		yield return new WaitForSeconds(0.3f);
+		charBehavior.IsAttack = false;
 	}
 }

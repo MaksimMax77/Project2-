@@ -5,36 +5,17 @@ using Zenject;
 
 public class UseAbility : MonoBehaviour
 {
-	 
-	[SerializeField] GameObject healAbbilityEffect;
-	[SerializeField] GameObject rageAbbilityEffect;
-	[SerializeField] GameObject impulsAbbilityEffect;
-	[SerializeField] int impulsDamage;
-
- 
-	[SerializeField]int neadMana;
-	[SerializeField] float timer;
-	[SerializeField] DamageType impulsDamageType;
-	[SerializeField] GameObject player;
-	RaycastHit2D hit; 
-
-	Ihealth health;
-	Mana mana;
+	public Ihealth health;
+	public IMana mana;
     ButtonManager buttonManager;
-	HealAbility healAbility;
-	RageAbility rageAbility;
-	ImpulsAbility impulsAbility;
-	public DamageType damageType;
+ 
+	[SerializeField] HealAbility2 healAbility2;
+	[SerializeField] ImpulsAbility2 impulsAbility2;
 
 
 	void Awake()
     {
 		buttonManager = GetComponent<ButtonManager>();
-		//mana = GetComponent<Mana>();
-
-		healAbility.HealAbilityInit(healAbbilityEffect,  neadMana, health, mana, timer);//
-		impulsAbility.ImpulsAbilityInit(impulsAbbilityEffect, neadMana, mana, timer, impulsDamage, impulsDamageType, hit, player);//
-		rageAbility.RageAbilityInit(rageAbbilityEffect, neadMana, mana, timer);//
 	}
 
     // Update is called once per frame
@@ -42,34 +23,17 @@ public class UseAbility : MonoBehaviour
     {
 		if(Input.GetKeyDown(buttonManager.useAbilityButton))
 		{
-          DoAbility(healAbility);	 
+		  
+			healAbility2.UseAbility();
 		}
-		if (Input.GetKeyDown(buttonManager.useAbilityButton2))
-		{
-			DoAbility(rageAbility);
-		}
+	 
 		if (Input.GetKeyDown(buttonManager.useAbilityButton3))
 		{
-			 DoAbility(impulsAbility);
+	 
+			impulsAbility2.UseAbility();
 		}
 	}
+ 
 
-	[Inject]
-	public void ZenjectInit(ImpulsAbility impulsAbility , HealAbility healAbility, RageAbility rageAbility,Ihealth  health)
-	{
-		this.impulsAbility = impulsAbility;
-		this.healAbility = healAbility;
-		this.rageAbility = rageAbility;
-		this.health = health;
-	}
-
-	void DoAbility(IAbility ability)
-	{ 
-		 StartCoroutine(ability.AbbilityTime());
-	}
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawLine(transform.position, transform.position + Vector3.left * transform.localScale.x * 10);
-	}
+ 
 }

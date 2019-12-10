@@ -6,7 +6,8 @@ public class AnimController : MonoBehaviour
 {
 	Animator animator;
 	CharacterMovement movement;
-	PlayerController player;
+	CharBehavior charBehavior;
+ 
 	Health health;
 	[SerializeField] GameObject animatorObj;
 	 
@@ -16,7 +17,7 @@ public class AnimController : MonoBehaviour
 		health = GetComponent<Health>();
 		animator = animatorObj.GetComponent<Animator>();
 		movement = GetComponent<CharacterMovement>();
-		player = GetComponent<PlayerController>();
+		charBehavior = GetComponent<CharBehavior>();
     }
 
     
@@ -31,11 +32,11 @@ public class AnimController : MonoBehaviour
 			animator.SetBool("WalkSide", false);
 		}
 		 
-		if (player.IsAttack)
+		if (charBehavior.IsAttack)
 		{
 			animator.SetBool("AttackSide", true);
 		}
-		else if (!player.IsAttack)
+		else if (!charBehavior.IsAttack)
 		{
 				animator.SetBool("AttackSide", false);	 
 		}

@@ -10,11 +10,11 @@ public class Sword : Weapon
 	[field:SerializeField]public override int damage { get; set; } = 15;
 	 
 	private Health enemyHealth;
-	private PlayerController playerController;
+	CharBehavior charBehavior;
 	private void Awake()
 	{
 		var Player = GameObject.FindGameObjectWithTag("Player");
-		playerController = Player.GetComponent<PlayerController>();
+		charBehavior = Player.GetComponent<CharBehavior>();
 	}
 
 
@@ -26,7 +26,7 @@ public class Sword : Weapon
 	 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (playerController.IsAttack)
+		if (charBehavior.IsAttack)
 		{
 			if (collision.gameObject.tag == "Enemy")
 			{

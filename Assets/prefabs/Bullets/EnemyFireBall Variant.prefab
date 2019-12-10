@@ -10,13 +10,19 @@ PrefabInstance:
     - target: {fileID: 7771873485423694653, guid: 9f9a862eb8242b54ba45f8aec151cf7e,
         type: 3}
       propertyPath: m_Name
-      value: EnemyFireBall
+      value: EnemyFireBall Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3427086569265719188, guid: 9f9a862eb8242b54ba45f8aec151cf7e,
         type: 3}
       propertyPath: enemyTag
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3427086569265719188, guid: 9f9a862eb8242b54ba45f8aec151cf7e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 9172530983165278160, guid: b9943f7949dbd594297150cfde48e8a1,
+        type: 3}
     - target: {fileID: 7771873485423595293, guid: 9f9a862eb8242b54ba45f8aec151cf7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -72,5 +78,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5297230371127432744, guid: 9f9a862eb8242b54ba45f8aec151cf7e,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5423562343947016726}
+    - target: {fileID: 5297230371127432744, guid: 9f9a862eb8242b54ba45f8aec151cf7e,
+        type: 3}
+      propertyPath: enemyTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297230371127432744, guid: 9f9a862eb8242b54ba45f8aec151cf7e,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f9a862eb8242b54ba45f8aec151cf7e, type: 3}
+--- !u!1 &5423562343947016726 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7771873485423694653, guid: 9f9a862eb8242b54ba45f8aec151cf7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2350704137803483435}
+  m_PrefabAsset: {fileID: 0}

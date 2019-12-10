@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class StandartEnemy : AbstractEnemy // методы данного класса юзаются в стейтмашине
 {
-	[field: SerializeField] public override bool IsAttack { get; set; }// для аниматора
+	CharBehavior charBehavior;// для аниматора
 	 
 
 	private void Awake()
 	{
+		charBehavior = GetComponent<CharBehavior>();
 		randomSpot = Random.Range(0, patrolSpots.Length);
 		_collider = GetComponent<Collider2D>();
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -29,11 +30,11 @@ public class StandartEnemy : AbstractEnemy // методы данного кла
 		if (timer <= 0)
 		{
 			playerHealth.GetDamage(enemyDamage, damageType);
-			IsAttack = true;
+			charBehavior.IsAttack = true;
 		}
 		else
 		{
-			 IsAttack = false;
+			charBehavior.IsAttack = false;
 		}
 	}
  
