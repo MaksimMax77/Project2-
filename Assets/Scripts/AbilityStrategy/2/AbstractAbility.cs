@@ -1,34 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
-public abstract class AbstractAbility : MonoBehaviour
+namespace Abilities
 {
-    public int neadMana;
-    public float timer;
-    public GameObject abilityEffect;
 
-	[Inject]
-	protected  Ihealth health;
-	[Inject]
-	protected  IMana mana;
-	protected bool abilityUse=false;
-
-	
-
-	protected void AbilityTimer ()
+	public abstract class AbstractAbility:MonoBehaviour
 	{
-		if (abilityUse)
+		public int neadMana;
+		public float timer;
+		public GameObject abilityEffect;
+
+		[Inject]
+		protected Ihealth health;
+		[Inject]
+		protected IMana mana;
+		protected bool abilityUse = false;
+
+		public  abstract void UseAbility( );
+
+		protected void AbilityTimer()//метод, который включает и выключает эффекты способностей, еще не дает возможности вызывать
+			//способность пока не перестанет использоваться текущая способность
 		{
-			abilityEffect.SetActive(true);
-			timer -= Time.deltaTime;
-		}
-		if (timer <= 0)
-		{
-			timer = 2;
-			abilityUse = false;
-			abilityEffect.SetActive(false);
+			if (abilityUse)
+			{
+				abilityEffect.SetActive(true);
+				timer -= Time.deltaTime;
+			}
+			if (timer <= 0)
+			{
+				timer = 2;
+				abilityUse = false;
+				abilityEffect.SetActive(false);
+			}
 		}
 	}
 }

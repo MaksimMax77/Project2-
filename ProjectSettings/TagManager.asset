@@ -14,6 +14,9 @@ TagManager:
   - TakeFireGun
   - TakeLaserGun
   - RocketLauncher
+  - BattleZone
+  - PlayerGun
+  - Bullet_pack
   layers:
   - Default
   - TransparentFX

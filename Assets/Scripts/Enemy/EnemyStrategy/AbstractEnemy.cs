@@ -16,6 +16,7 @@ public abstract class AbstractEnemy :MonoBehaviour
 	[SerializeField] protected float patrolTimer;
 	[SerializeField] protected float distanceToPlayer;
 	[SerializeField] protected float maxDistanceToPlayer;
+	 
 
 	abstract public void EnemyAttack();
 	 
@@ -54,7 +55,9 @@ public abstract class AbstractEnemy :MonoBehaviour
 																					  
 		if (dist < distanceToPlayer)
 		{
+		 
 			return true;
+			 
 		}
 		return false;
 	 }
@@ -64,7 +67,11 @@ public abstract class AbstractEnemy :MonoBehaviour
 	{
 		float dist = Vector3.Distance(player.transform.position, transform.position);// с какой дистанции начинается приследование 
 		if (dist < maxDistanceToPlayer && dist > distanceToPlayer)
+		{
+			 
 			return true;
+		}
+			
 		return false;
 	}
 
@@ -73,7 +80,10 @@ public abstract class AbstractEnemy :MonoBehaviour
 	{
 		float dist = Vector3.Distance(player.transform.position, transform.position);//насколько далеко или близко нужно быть чтоб враг патрулировал
 		if (dist > maxDistanceToPlayer)
+		{
+			 
 			return true;
+		}
 		return false;
 	}
 	 

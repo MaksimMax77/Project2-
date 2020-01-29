@@ -5,11 +5,18 @@ using Zenject;
 
 public class Health : MonoBehaviour,Ihealth
 {
-	[field: SerializeField] public int health { get; set; } 
-    [field: SerializeField] public int maxHealth { get; set; } = 100;
+	[field: SerializeField] private int health { get; set; } 
+    [field: SerializeField] private int maxHealth { get; set; } = 100;
     [field: SerializeField] public bool death { get; set; }
-
 	[SerializeField]DamageType ResistanceType;
+
+	public int HealthProp
+	{
+		get {return health;}
+		set {health = value;}
+	}
+
+
 	public bool Hit;//для аниматора
 	 
 

@@ -16,7 +16,7 @@ public class RedCircleOnnOff : MonoBehaviour
 
 	void Update()
     {
-		if (health.health <= 0)
+		if (health.HealthProp <= 0)
 		{
 			RedCircleOn = false;
 		}

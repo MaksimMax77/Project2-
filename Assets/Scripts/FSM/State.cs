@@ -10,7 +10,6 @@ namespace FSM
         void OnUpdate();
         void OnExit();
         bool CanTransit(out IState targetState);
-        void AddTransition(Transition transition);
     }
 
     public abstract class State : IState
@@ -40,11 +39,6 @@ namespace FSM
 
             targetState = null;
             return false;
-        }
-
-        public void AddTransition(Transition transition)
-        {
-            transitions.Add(transition);
         }
     }
 }

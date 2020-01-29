@@ -6,14 +6,17 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     public Vector2 vecocity;
-    public float speed;
-
+    [SerializeField] private float speed;
+    
+  
 	public bool WalkSide; // переменные для AnimController
+
+ 
  
 	void Update()
-    {
-        transform.position += (Vector3) vecocity.normalized * Time.deltaTime * speed;
-
+	{
+		transform.position += (Vector3) vecocity.normalized * Time.deltaTime * speed;
+		 
 		if (vecocity.x != 0)
 		{
 			WalkSide = true;

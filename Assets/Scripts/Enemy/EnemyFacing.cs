@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyFacing : MonoBehaviour
 {
 	private CharacterMovement characterMovement;
-	public bool facing;
+	private bool facing;
 
 	void Awake()
     {
@@ -26,7 +26,7 @@ public class EnemyFacing : MonoBehaviour
 	}
 	void FacingRightLeft()
 	{
-		if (characterMovement.vecocity.x > 0 && !facing)
+		if (characterMovement.vecocity.x> 0 && !facing)
 		{
 			Flip();
 		}

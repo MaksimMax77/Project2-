@@ -1,39 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
-public class UseAbility : MonoBehaviour
+namespace Abilities
 {
-	public Ihealth health;
-	public IMana mana;
-    ButtonManager buttonManager;
- 
-	[SerializeField] HealAbility2 healAbility2;
-	[SerializeField] ImpulsAbility2 impulsAbility2;
+	public class UseAbility : MonoBehaviour
+	{
 
+		[SerializeField]private AbstractAbility healAbility2;
+		[SerializeField]private AbstractAbility impulsAbility2;
+		private ButtonManager buttonManager;
 
-	void Awake()
-    {
-		buttonManager = GetComponent<ButtonManager>();
-	}
-
-    // Update is called once per frame
-    void Update()
-    {
-		if(Input.GetKeyDown(buttonManager.useAbilityButton))
+	    private void Awake()
 		{
-		  
-			healAbility2.UseAbility();
+			buttonManager = GetComponent<ButtonManager>();
 		}
-	 
-		if (Input.GetKeyDown(buttonManager.useAbilityButton3))
+
+		private void Update()
 		{
-	 
-			impulsAbility2.UseAbility();
+			
+			if (Input.GetKeyDown(buttonManager.useAbilityButton))
+			{ 
+				healAbility2.UseAbility();
+			}
+
+			if (Input.GetKeyDown(buttonManager.useAbilityButton3))
+			{
+				impulsAbility2.UseAbility();
+			}
+		}
+
+		private void OnDrawGizmos()
+		{
+			Gizmos.color = Color.cyan;
+			Gizmos.DrawLine(transform.position, Vector2.left * transform.localScale.x * 10);
 		}
 	}
- 
-
- 
 }

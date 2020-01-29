@@ -43,6 +43,7 @@ public class StandartEnemy : AbstractEnemy // методы данного кла
 	{
 		characterMovement.vecocity = new Vector2(0, 0);
 		_collider.enabled = false;
+	 
 	}
  
 }

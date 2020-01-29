@@ -6,17 +6,20 @@ namespace FSM
 {
 	class PatrolState : State
 	{
-		 
-		 
+
 		private Transform transform;
 		 
 		CharacterMovement characterMovement;
 		AbstractEnemy currentEnemy;
+
+		 
 		public PatrolState(Transform transform, AbstractEnemy currentEnemy)
 		{
 			this.currentEnemy = currentEnemy;
 			this.transform = transform;
 		}
+
+	 
 		public override void OnEnter()
 		{
 			// speed = 0.0F;
@@ -35,8 +38,10 @@ namespace FSM
 		{
 			if (currentEnemy.PatrolDistance())
 			{
+				 
 				return true;
 			}
+			 
 			return false;
 		}
 	}

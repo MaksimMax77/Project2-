@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Aim : MonoBehaviour
 {
+	[SerializeField] GameObject player;
 	Vector3 direction;
 	// This is what the player is looking at. In this example it is the dinosaur's head.
-	public string enemyTag;
-	public float lookSpeed = 500;
+	[SerializeField] string enemyTag;
+	[SerializeField] float lookSpeed = 500;
 	// How fast the rotation happens.
     public	bool isAiming;
 	RaycastHit2D hit;
@@ -44,6 +45,7 @@ public class Aim : MonoBehaviour
 		if (transform.position.x > collision.gameObject.transform.position.x)
 		{
 			direction = transform.position - collision.gameObject.transform.position;
+			 
 		}
 		else if (transform.position.x < collision.gameObject.transform.position.x)
 		{
@@ -60,7 +62,20 @@ public class Aim : MonoBehaviour
 	{
 
 		Physics2D.queriesStartInColliders = false;//
-		hit = Physics2D.Raycast(transform.position, -transform.right * transform.localScale.x, 12);
+		//hit = Physics2D.Raycast(transform.position, -transform.right * transform.localScale.x, 12);
+		if (player != null)
+		{
+			if (transform.position.x < player.transform.position.x)
+			{
+				hit = Physics2D.Raycast(transform.position, -transform.right * transform.localScale.x, 12);
+			}
+			if (transform.position.x > player.transform.position.x)
+			{
+				hit = Physics2D.Raycast(transform.position, transform.right * transform.localScale.x, 12);
+			}
+		}
+
+
 		var circle = collision.gameObject.GetComponent<RedCircleOnnOff>();
 
 		if (hit.collider != null && hit.collider.tag == enemyTag)
@@ -85,6 +100,17 @@ public class Aim : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.black;
-		Gizmos.DrawLine(transform.position, transform.position + -transform.right * transform.localScale.x * 12);
+		//Gizmos.DrawLine(transform.position, transform.position + -transform.right * transform.localScale.x * 12);
+		if (player != null)
+		{
+			if (transform.position.x < player.transform.position.x)
+			{
+				Gizmos.DrawLine(transform.position, transform.position + -transform.right * transform.localScale.x * 12);
+			}
+			if (transform.position.x > player.transform.position.x)
+			{
+				Gizmos.DrawLine(transform.position, transform.position + transform.right * transform.localScale.x * 12);
+			}
+		}
 	}
 }

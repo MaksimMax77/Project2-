@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	CharBehavior charBehavior;// атакует ли персонаж (для анимконтроллера)
 	 
 	ButtonManager buttonManager;
-	 
+	Aim aim;
  
 	void Awake()
 	{
@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 		buttonManager = GetComponent<ButtonManager>();
 		 plaHealth = GetComponent<Health>();
 		characterMovement = GetComponent<CharacterMovement>();
+		var Gun = GameObject.FindGameObjectWithTag("PlayerGun");
+		aim = Gun.GetComponent<Aim>();
 	}
 
 	void Update()
@@ -27,18 +29,19 @@ public class PlayerController : MonoBehaviour
 		if (plaHealth.death == false)//шоб обездвижить если умер 
 		{
 			characterMovement.vecocity = new Vector2(
-
-				Input.GetAxis("Horizontal"),
-				Input.GetAxis("Vertical"));
+				Input.GetAxis("Horizontal") * Time.deltaTime,
+				Input.GetAxis("Vertical") * Time.deltaTime);
 			Attack(buttonManager.attackButton);
 
 			if (characterMovement.vecocity.x > 0 && !isfacing)
 			{
-				Flip();
+				if(!aim.isAiming)
+					Flip();
 			}
 			else if (characterMovement.vecocity.x < 0 && isfacing)
 			{
-				Flip();
+				if (!aim.isAiming)
+					Flip();
 			}
 		}
 	}

@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Pool/PoolObject")]
-public class PoolObject : MonoBehaviour
+namespace ObjPool
 {
- 
-
-	#region Interface
-	public void ReturnToPool()
+	[AddComponentMenu("Pool/PoolObject")]
+	public class PoolObject : MonoBehaviour
 	{
-		gameObject.SetActive(false);
-	}
-	#endregion
 
-	public void ReturnToPool(float seconds)
-	{
-		StartCoroutine(SecondsReturnToPool(seconds));
-	}
 
-	IEnumerator SecondsReturnToPool(float seconds)
-	{
-		yield return new WaitForSeconds(seconds);
-		gameObject.SetActive(false);
-	}
+		#region Interface
+		public void ReturnToPool()
+		{
+			gameObject.SetActive(false);
+		}
+		#endregion
 
+		public void ReturnToPool(float seconds)
+		{
+			StartCoroutine(SecondsReturnToPool(seconds));
+		}
+
+		IEnumerator SecondsReturnToPool(float seconds)
+		{
+			yield return new WaitForSeconds(seconds);
+			gameObject.SetActive(false);
+		}
+	}
 }
