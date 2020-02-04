@@ -4,37 +4,38 @@ using UnityEngine;
 
 public class CollectGameObjects : MonoBehaviour
 {
-	private TakeWeapons weapons;
+	private WeaponsChanger weapons;
 	public GameObject[] bulletsList;
 	private GunEnergy gunEnergy;
 
 	void Awake()
 	{
-		weapons = GetComponent<TakeWeapons>();
-		bulletsList = GameObject.FindGameObjectsWithTag("Bullet_pack");
-
+		weapons = GetComponent<WeaponsChanger>();
 	}
 
-	void Update()
+	void OnTriggerEnter2D(Collider2D collider)
 	{
-		CollectsBullets(bulletsList);
-	}
-
-	void CollectsBullets(GameObject[] targets)
-	{
-
-		foreach (var target in targets)
+		if (collider.gameObject.tag == "Bullet_pack")
 		{
-			var headding = target.transform.position - transform.position;
-			if (headding.sqrMagnitude < 1 * 1)
+			if (collider.gameObject.activeSelf)
 			{
 				foreach (var weapon in weapons.weapons)
 				{
 					var energy = weapon.gunGO.GetComponent<GunEnergy>();
 					energy.gunEnerdy += 20;
 				}
-				
-				target.gameObject.SetActive(false);
+				collider.gameObject.SetActive(false);
+			}
+		}
+
+		if (collider.gameObject.tag == "TakeGun")
+		{
+			if (collider.gameObject.activeSelf)
+			{
+				var obj = collider.gameObject.GetComponent<WeaponHolder>();
+				weapons.weapons.Add(obj);
+				weapons.ButtonClick();
+				collider.gameObject.SetActive(false);
 			}
 		}
 	}

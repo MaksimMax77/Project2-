@@ -5,57 +5,31 @@ using UnityEngine;
 public class Aim : MonoBehaviour
 {
 	[SerializeField] GameObject player;
-	Vector3 direction;
-	// This is what the player is looking at. In this example it is the dinosaur's head.
-	[SerializeField] string enemyTag;
-	[SerializeField] float lookSpeed = 500;
-	// How fast the rotation happens.
-    public	bool isAiming;
-	RaycastHit2D hit;
+	[SerializeField] private GameObject[] Enemies;
+    [SerializeField] private string enemyTag;
+	[SerializeField] public GameObject enemyInTarget;
 
-	float angle;
+	private float minDistance = 20;
+	private float distance = Mathf.Infinity;
+	public	bool isAiming;
+    private RaycastHit2D hit;
+
+	[SerializeField] private float lookSpeed = 500;
+	private Vector3 direction;
+	private float angle;
+
 
 	private void Awake()
 	{
 		isAiming = false;
+		Enemies = GameObject.FindGameObjectsWithTag(enemyTag);
 	}
 
-
-	private void OnTriggerStay2D(Collider2D collision)
+	void Update()
 	{
-		if (collision.gameObject.tag == enemyTag)   							
-		{
-			GunAiming(collision);
-			RedCircleOffOn(collision);
-		}
+		DistanceToAim();
+		AutoAimInTarget();
 	}
-
-	private void OnTriggerExit2D(Collider2D collision)
-	{
-		if (collision.gameObject.tag == enemyTag)
-		{
-			isAiming = false;
-		}
-	}
-
-	#region //отвечает за автоприцел пушки
-	void GunAiming(Collider2D collision)
-	{
-		isAiming = true;
-		if (transform.position.x > collision.gameObject.transform.position.x)
-		{
-			direction = transform.position - collision.gameObject.transform.position;
-			 
-		}
-		else if (transform.position.x < collision.gameObject.transform.position.x)
-		{
-			direction = collision.gameObject.transform.position - transform.position;
-		}
-		angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-		Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * lookSpeed);
-	}
-	#endregion
 
 	#region // метит цель, которая в прицеле красным кругом, если в нее попадает луч из оружия
 	void RedCircleOffOn(Collider2D collision)
@@ -97,10 +71,56 @@ public class Aim : MonoBehaviour
 	}
 	#endregion
 
+	void AutoAimInTarget()
+	{
+		var headding = enemyInTarget.transform.position - transform.position;
+		if (headding.sqrMagnitude < 15 * 15)
+		{
+			GunAiming(enemyInTarget);
+		}
+		else
+		{
+			isAiming = false;
+		}
+	}
+
+	void DistanceToAim()
+	{
+		
+		for (int i = 0; i < Enemies.Length; i++)
+		{
+			var headding = Enemies[i].transform.position - transform.position;
+			float curDistance = headding.sqrMagnitude;
+			if (curDistance<minDistance*minDistance)
+			{
+				enemyInTarget = Enemies[i];
+				distance = curDistance;
+			}
+		}
+	}
+
+	void GunAiming(GameObject enemy)
+	{
+		isAiming = true;
+		if (transform.position.x > enemy.gameObject.transform.position.x)
+		{
+			direction = transform.position - enemy.gameObject.transform.position;
+		}
+
+		else if (transform.position.x < enemy.gameObject.transform.position.x)
+		{
+			direction = enemy.gameObject.transform.position - transform.position;
+		}
+
+		angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * lookSpeed);
+	}
+
+
 	private void OnDrawGizmos()
 	{
-		Gizmos.color = Color.black;
-		//Gizmos.DrawLine(transform.position, transform.position + -transform.right * transform.localScale.x * 12);
+		Gizmos.color = Color.white;
 		if (player != null)
 		{
 			if (transform.position.x < player.transform.position.x)

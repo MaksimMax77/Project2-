@@ -1,18 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class SuperEnemy : AbstractEnemy
-{ 
-	[SerializeField] Transform gun;
-	[SerializeField] GameObject fire; 
-
-	 
+{
+ 
+	[SerializeField] GameObject fire;
 	RaycastHit2D hit;
-	 
 	[SerializeField] GameObject bullet;
 	[SerializeField] Transform gunPoint;
 	[SerializeField] GameObject Gun;
 	public  Bullet currentBullet;
-
 
 	private void Awake()
 	{
@@ -22,7 +21,6 @@ public class SuperEnemy : AbstractEnemy
 		player = GameObject.FindGameObjectWithTag("Player");
 		characterMovement = GetComponent<CharacterMovement>();
 		playerHealth = player.GetComponent<Health>();
-		 
 	}	
 
 	override public void EnemyAttack()
@@ -31,7 +29,8 @@ public class SuperEnemy : AbstractEnemy
 		var heading = transform.position - player.transform.position;
 		if(heading.sqrMagnitude < distanceToPlayer * distanceToPlayer)
 		{
-          characterMovement.vecocity = new Vector2(0, 0);
+          //characterMovement.vecocity = new Vector2(0, 0);
+		  AttackMovement();
 		}
 		timer += Time.deltaTime;
 		if (timer >= 2)
@@ -68,4 +67,21 @@ public class SuperEnemy : AbstractEnemy
 		}
 	}
 	#endregion
+
+	void AttackMovement()
+	{
+		int randomValue = Random.Range(1, 2);
+		Vector2 point;
+		if (randomValue > 1)
+		{
+			 point = new Vector2(0, transform.position.y + 5);
+		}
+		else
+		{
+			 point=new Vector2(0,transform.position.y-5);
+		}
+		
+		characterMovement.vecocity.y = point.y;
+
+	}
 }

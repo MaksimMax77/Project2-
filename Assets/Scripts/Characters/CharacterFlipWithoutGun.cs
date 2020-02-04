@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFacing : MonoBehaviour
+public class CharacterFlipWithoutGun : MonoBehaviour
 {
 	private CharacterMovement characterMovement;
 	private bool facing;
