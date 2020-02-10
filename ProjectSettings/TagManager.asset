@@ -17,6 +17,7 @@ TagManager:
   - BattleZone
   - PlayerGun
   - Bullet_pack
+  - EnemyGun
   layers:
   - Default
   - TransparentFX

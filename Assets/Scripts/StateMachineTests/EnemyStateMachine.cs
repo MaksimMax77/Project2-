@@ -11,16 +11,19 @@ namespace FSM
 		[SerializeField] AbstractEnemy currentEnemy ;//
 		Health enemyHealth;
 		Collider2D _collider;
+		private GameObject player;
+
 
 		void Start()
 		{
+			player=GameObject.FindGameObjectWithTag("Player");
 			_collider = GetComponent<Collider2D>();
 			enemyHealth = GetComponent<Health>();
 			characterMovement = GetComponent<CharacterMovement>();
-			var patrol = new PatrolState(transform,  currentEnemy);
-			var Chase = new ChaseState(currentEnemy);
-			var  Attack = new AttackState(characterMovement, currentEnemy);
-			var Death = new DeathState(enemyHealth, currentEnemy);
+			var patrol = new PatrolState(transform,  currentEnemy,player);
+			var Chase = new ChaseState(currentEnemy,player);
+			var  Attack = new AttackState(characterMovement, currentEnemy,player);
+			var Death = new DeathState(enemyHealth, currentEnemy,player);
 
 			patrol.Add(new Transition(Chase, () => Chase.CanChase()));
 			patrol.Add(new Transition( Death, () => Death.CanDeath())); 

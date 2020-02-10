@@ -8,10 +8,13 @@ namespace FSM
 	class ChaseState : State
 	{
 		AbstractEnemy currentEnemy;
+		private ChangeMusic changeMusic;
 
-		public ChaseState(AbstractEnemy currentEnemy)
+		public ChaseState(AbstractEnemy currentEnemy,GameObject gameObject)
 		{
 			this.currentEnemy = currentEnemy;
+			changeMusic=new ChangeMusic();
+			changeMusic = gameObject.GetComponent<ChangeMusic>();
 		}
 
 		public override void OnEnter() { }
@@ -26,6 +29,7 @@ namespace FSM
 		{
 			if (currentEnemy.ChaseDistance())
 			{
+				changeMusic.isBattleMusic = true;
 				return true;
 			}
 			return false;

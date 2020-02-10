@@ -10,7 +10,7 @@ public class CharacterFlip : MonoBehaviour
 	private CharacterMovement characterMovement;
 	[SerializeField] bool isfacing;//направлен ли персонаж вправо или влево
 	[SerializeField] private string characterGunTag;
-
+	[SerializeField] private bool isCharacterWithGun;// если персонаж с пушкой то надо это чекнуть в инспекторе.
 
 	private Aim aim;
 
@@ -18,35 +18,48 @@ public class CharacterFlip : MonoBehaviour
 	{
 		charHealth = GetComponent<Health>();
 		characterMovement = GetComponent<CharacterMovement>();
-		var Gun = GameObject.FindGameObjectWithTag(characterGunTag);
-		aim = Gun.GetComponent<Aim>();
+		if (isCharacterWithGun)
+		{
+			var Gun = GameObject.FindGameObjectWithTag(characterGunTag);
+			aim = Gun.GetComponent<Aim>();
+		}
 	}
 
 	void Update()
 	{
-		if(aim!=null) FlipToEnemySide();
+		if(isCharacterWithGun) FlipToEnemySide();
 
 		if (charHealth.death == false)//шоб обездвижить если умер 
 		{
+			FlipToDirection();
+		}
+	}
 
-			if (characterMovement.vecocity.x > 0 && !isfacing)
+	private void FlipToDirection()
+	{
+		if (characterMovement.vecocity.x > 0 && !isfacing)
+		{
+			if (isCharacterWithGun)
 			{
 				if (!aim.isAiming)
 					Flip();
-				if (aim==null)
-				{
-					Flip();
-				}
-				 
 			}
-			else if (characterMovement.vecocity.x < 0 && isfacing)
+			else
+			{
+				Flip();
+			}
+		}
+
+		if (characterMovement.vecocity.x < 0 && isfacing)
+		{
+			if (isCharacterWithGun)
 			{
 				if (!aim.isAiming)
 					Flip();
-				if (aim == null)
-				{
-					Flip();
-				}
+			}
+			else
+			{
+				Flip();
 			}
 		}
 	}

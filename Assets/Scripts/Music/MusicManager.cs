@@ -15,7 +15,7 @@ public class MusicManager : MonoBehaviour
 	public AudioMixerGroup musicGroup;
 	 
 
-	private static MusicManager _instance;
+	private static MusicManager _instance ;
 	private static AudioSource last, current;
 	private static float musicVolume ;
 	private static bool muteMusic ;

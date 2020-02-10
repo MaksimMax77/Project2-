@@ -9,6 +9,7 @@ namespace MyAnimator
 		IAnimate animate;
 		[SerializeField] bool isPlayerAnimator;
 		[SerializeField] bool isEnemyAnimator;
+		[SerializeField] private bool isWizardEnemy;
 
 
 		void Awake()
@@ -32,6 +33,12 @@ namespace MyAnimator
 			{
 				animate = new AnimateEnemy();
 				animate.AnimatorStart(this.gameObject);
+			}
+
+			if (isWizardEnemy)
+			{
+				animate=new AnimateWizard();
+				animate.AnimatorStart((this.gameObject));
 			}
 			return animate;
 		}

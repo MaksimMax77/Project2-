@@ -9,12 +9,18 @@ namespace FSM
 	{
 		 
 		private Health health;
-		AbstractEnemy currentEnemy;
-		public DeathState(Health health , AbstractEnemy currentEnemy)
+		private AbstractEnemy currentEnemy;
+
+		private ChangeMusic changeMusic;
+
+		public DeathState(Health health , AbstractEnemy currentEnemy,GameObject gameObject)
 		{
 			this.health = health;
-			this.currentEnemy =currentEnemy; 
+			this.currentEnemy =currentEnemy;
+			changeMusic=new ChangeMusic();
+			changeMusic = gameObject.GetComponent<ChangeMusic>();
 		}
+
 		public override void OnEnter()
 		{
 			 
@@ -33,6 +39,7 @@ namespace FSM
 		{
 			if (health.death == true)
 			{
+				changeMusic.isBattleMusic = false;
 				return true;
 			}
 			return false;

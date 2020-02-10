@@ -24,19 +24,22 @@ public abstract class AbstractEnemy :MonoBehaviour
 
 	public void EnemyPatrol()
 	{
-		characterMovement.vecocity = patrolSpots[randomSpot].transform.position - transform.position;
-		if (Vector2.Distance(transform.position, patrolSpots[randomSpot].position) < 0.2f)
+		if (patrolSpots != null)
 		{
-			if (patrolTimer <= 0)
+			characterMovement.vecocity = patrolSpots[randomSpot].transform.position - transform.position;
+			if (Vector2.Distance(transform.position, patrolSpots[randomSpot].position) < 0.2f)
 			{
-				patrolTimer = 2;
-				randomSpot = Random.Range(0, patrolSpots.Length);
-			}
-			else
-			{
-				patrolTimer -= Time.deltaTime;
-				characterMovement.vecocity.x = 0;
-				characterMovement.vecocity.y = 0;
+				if (patrolTimer <= 0)
+				{
+					patrolTimer = 2;
+					randomSpot = Random.Range(0, patrolSpots.Length);
+				}
+				else
+				{
+					patrolTimer -= Time.deltaTime;
+					characterMovement.vecocity.x = 0;
+					characterMovement.vecocity.y = 0;
+				}
 			}
 		}
 	}

@@ -14,6 +14,7 @@ namespace FSM
 
     public abstract class State : IState
     {
+	   
         private List<Transition> transitions = new List<Transition>();
 
         public abstract void OnEnter();

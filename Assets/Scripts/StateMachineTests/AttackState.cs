@@ -8,13 +8,16 @@ namespace FSM
 	{
 		CharacterMovement characterMovement;
 		AbstractEnemy currentEnemy;//
-		 
+		private ChangeMusic changeMusic; 
+
 		public AttackState() { }
 
-		public AttackState(CharacterMovement characterMovement, AbstractEnemy currentEnemy)
+		public AttackState(CharacterMovement characterMovement, AbstractEnemy currentEnemy,GameObject gameObject)
 		{
 			this.characterMovement = characterMovement;
 			this.currentEnemy = currentEnemy;   
+			changeMusic=new ChangeMusic();
+			changeMusic = gameObject.GetComponent<ChangeMusic>();
 		}
 
 		public override void OnEnter() { }
@@ -30,8 +33,10 @@ namespace FSM
 		{
 			if (currentEnemy.AttackDistance())
 			{
+				changeMusic.isBattleMusic = true;
 				return true;
 			}
+
 			return false;
 		}
 	}

@@ -8,10 +8,10 @@ public class Aim : MonoBehaviour
 	[SerializeField] private GameObject[] Enemies;
     [SerializeField] private string enemyTag;
 	[SerializeField] public GameObject enemyInTarget;
-
+    public	bool isAiming;
 	private float minDistance = 20;
 	private float distance = Mathf.Infinity;
-	public	bool isAiming;
+	
     private RaycastHit2D hit;
 
 	[SerializeField] private float lookSpeed = 500;
@@ -73,14 +73,17 @@ public class Aim : MonoBehaviour
 
 	void AutoAimInTarget()
 	{
-		var headding = enemyInTarget.transform.position - transform.position;
-		if (headding.sqrMagnitude < 15 * 15)
+		if (enemyInTarget!=null)
 		{
-			GunAiming(enemyInTarget);
-		}
-		else
-		{
-			isAiming = false;
+			var headding = enemyInTarget.transform.position - transform.position;
+			if (headding.sqrMagnitude < 15 * 15)
+			{
+				GunAiming(enemyInTarget);
+			}
+			else
+			{
+				isAiming = false;
+			}
 		}
 	}
 

@@ -11,12 +11,13 @@ namespace FSM
 		 
 		CharacterMovement characterMovement;
 		AbstractEnemy currentEnemy;
-
+		private ChangeMusic changeMusic;
 		 
-		public PatrolState(Transform transform, AbstractEnemy currentEnemy)
+		public PatrolState(Transform transform, AbstractEnemy currentEnemy,GameObject gameObject)
 		{
 			this.currentEnemy = currentEnemy;
 			this.transform = transform;
+			changeMusic=gameObject.GetComponent<ChangeMusic>();
 		}
 
 	 
@@ -37,8 +38,8 @@ namespace FSM
 		public bool CanPatrol()
 		{
 			if (currentEnemy.PatrolDistance())
-			{
-				 
+			{ 
+				changeMusic.isBattleMusic= false;
 				return true;
 			}
 			 

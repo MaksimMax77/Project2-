@@ -1,78 +1,34 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Profiling;
-
+﻿using UnityEngine;
  
-	public class ChangeMusic : MonoBehaviour
+
+public class ChangeMusic : MonoBehaviour
+{
+	[SerializeField] MusicManagerComponent battleMusicCompanent;
+	[SerializeField] MusicManagerComponent fonMusicCompanent;
+	public bool isBattleMusic;
+
+	private void Start()
 	{
-		[SerializeField] MusicManagerComponent battleMusicCompanent;
-		[SerializeField] MusicManagerComponent fonMusicCompanent;
+		fonMusicCompanent.enabled = true;
+	}
 
+	private void Update()
+	{
+		Change();
+	}
 
-		[SerializeField] List<GameObject> enemies;
-		RaycastHit2D hit;
-		[SerializeField] Health enemyHealth;
-
-
-		private void Start()
+	void Change()
+	{
+		if (isBattleMusic)
 		{
+			battleMusicCompanent.enabled = true;
+			fonMusicCompanent.enabled = false;
+		}
+		else
+		{
+			battleMusicCompanent.enabled = false;
 			fonMusicCompanent.enabled = true;
 		}
-
-		private void Update()
-		{
-			ChangeWorldMusic();
-		}
-
-		private void ChangeWorldMusic()
-		{
-		 
-			if (enemies.Count != 0)
-			{
-				battleMusicCompanent.enabled = true;
-				fonMusicCompanent.enabled = false;
-				foreach (var enemy in enemies)
-				{
-					var enemyHealth = enemy.GetComponent<Health>();
-					if (enemyHealth.death)
-					{
-						RemoveEnemyFromList(enemy);
-					}
-				}
-			}
-
-			if (enemies.Count == 0)
-			{
-				battleMusicCompanent.enabled = false;
-				fonMusicCompanent.enabled = true;
-			}
- 
-		}
-
-		private void AddEnemyToList(GameObject enemyObj)
-		{
-			enemies.Add(enemyObj);
-		}
-
-		private void RemoveEnemyFromList(GameObject enemyObj)
-		{
-			enemies.Remove(enemyObj);
-		}
-
-		private void OnDrawGizmos()
-		{
-			Gizmos.color = Color.red;
-			Gizmos.DrawLine(transform.position, transform.position + -transform.right * transform.localScale.x * 20);
-		}
-
-		private void OnTriggerEnter2D(Collider2D collision)
-		{
-			if (collision.gameObject.tag == "Enemy")
-			{
-				var enemy = collision.gameObject;
-				AddEnemyToList(enemy);
-
-			}
-		}
 	}
+}
  

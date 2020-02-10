@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,16 +7,21 @@ using Random = UnityEngine.Random;
 public class SuperEnemy : AbstractEnemy
 {
  
-	[SerializeField] GameObject fire;
-	RaycastHit2D hit;
+	
 	[SerializeField] GameObject bullet;
 	[SerializeField] Transform gunPoint;
 	[SerializeField] GameObject Gun;
+	[SerializeField] private float dodgeTimer;
+
+	[SerializeField] private bool enemyIsWizard;
+	private CharBehavior charBehavior;
+
+
 	public  Bullet currentBullet;
 
 	private void Awake()
 	{
-		 
+		charBehavior = GetComponent<CharBehavior>();
 		_collider = GetComponent<Collider2D>();
 		randomSpot = Random.Range(0, patrolSpots.Length);
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -27,18 +33,23 @@ public class SuperEnemy : AbstractEnemy
 	{
 		 
 		var heading = transform.position - player.transform.position;
+
 		if(heading.sqrMagnitude < distanceToPlayer * distanceToPlayer)
 		{
-          //characterMovement.vecocity = new Vector2(0, 0);
-		  AttackMovement();
+			AttackMovement();
 		}
+
 		timer += Time.deltaTime;
+
 		if (timer >= 2)
 		{
+			if (enemyIsWizard) charBehavior.IsAttack = true;//
 			timer = 0;
 		}
+
 		if (timer <= 0)
 		{
+			if (!enemyIsWizard) charBehavior.IsAttack = false;
 			Shoot();
 		}
 	}
@@ -55,7 +66,7 @@ public class SuperEnemy : AbstractEnemy
 	#region Shoot
 	void Shoot()
 	{
-	 
+		
 		GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
 		if (gunPoint.position.x < transform.position.x)
 		{
@@ -70,18 +81,20 @@ public class SuperEnemy : AbstractEnemy
 
 	void AttackMovement()
 	{
-		int randomValue = Random.Range(1, 2);
-		Vector2 point;
-		if (randomValue > 1)
+
+		if (dodgeTimer <= 0)
 		{
-			 point = new Vector2(0, transform.position.y + 5);
+			dodgeTimer = 3;
+			characterMovement.vecocity = Vector2.right;
+			var heading = player.transform.position - transform.position;
+			if (heading.sqrMagnitude > distanceToPlayer-1*distanceToPlayer-1 || heading.sqrMagnitude<2*2)
+			{
+				characterMovement.vecocity = Vector2.left;
+			}
 		}
 		else
 		{
-			 point=new Vector2(0,transform.position.y-5);
+			dodgeTimer -= Time.deltaTime;
 		}
-		
-		characterMovement.vecocity.y = point.y;
-
 	}
 }
