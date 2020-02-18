@@ -9,6 +9,7 @@ namespace Services
 	{
 		private readonly String _fileName = "save.json";
 		private readonly String _fileLevelIndex = "saveLevelindex.json";
+		private readonly String _playerStartPos = "playerStartPos.json";
 
 		public int LoadLevelIndex()//загрузить индекс уровня
 		{
@@ -32,6 +33,31 @@ namespace Services
 				);
 
 				streamWriter.Write(json);
+			}
+		}
+
+		public void SavePlayerStartPosition(Vector3 playerStartPos)
+		{
+			using (var file = File.Open(MakePath(_playerStartPos), FileMode.Create))
+			using (var streamWriter = new StreamWriter(file))
+			{
+				var json = JsonConvert.SerializeObject(
+					new CharacterStarPosInfo(playerStartPos)
+				);
+
+				streamWriter.Write(json);
+			}
+		}
+
+		public Vector3 LoadPlayerStartPosition()//загрузить индекс уровня
+		{
+			using (var file = File.Open(MakePath(_playerStartPos), FileMode.Open))
+			using (var streamReader = new StreamReader(file))
+			{
+				var json = streamReader.ReadToEnd();
+
+				var storeInfo = JsonConvert.DeserializeObject<CharacterStarPosInfo>(json);
+				return storeInfo.StartPos;
 			}
 		}
 
@@ -79,37 +105,5 @@ namespace Services
 		{
 			return Path.Combine(Application.streamingAssetsPath.Replace("StreamingAssets", ""), name);
 		}
-
-
-	}
-
-	[Serializable]
-	public struct CharacterStoreInfo
-	{
-		[JsonProperty]
-		public readonly Vector3 position;
-		[JsonProperty]
-		public readonly int health;
-
-		[JsonConstructor]
-		public CharacterStoreInfo(Vector3 position, int health)
-		{
-			this.position = position;
-			this.health = health;
-		}
-	}
-
-	[Serializable]
-	public struct CharacterSceneInfo
-	{
-		[JsonProperty]
-		public readonly int lastSceneindex;
-
-		[JsonConstructor]
-		public CharacterSceneInfo(int lastSceneindex)
-		{
-			this.lastSceneindex = lastSceneindex;
-		}
-
 	}
 }

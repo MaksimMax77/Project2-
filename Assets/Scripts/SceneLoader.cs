@@ -17,6 +17,17 @@ public class SceneLoader : MonoBehaviour
 		saveService.SaveLevelIndex(IndexOfThisScene);
 	}
 
+	public void SaveStartPlayerPosition(Vector3 position)
+	{
+		saveService.SavePlayerStartPosition(position);
+	}
+
+	public void LoadStartPlayerPosition()
+	{
+		saveService.LoadPlayerStartPosition();
+	}
+
+
 	public void LoadSceneIndex()//должно загружать сцену
 	{
 		IndexOfThisScene = saveService.LoadLevelIndex();

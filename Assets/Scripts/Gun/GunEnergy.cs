@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunEnergy : MonoBehaviour
+namespace GunSystem
 {
-	public bool isInfiniteGunEnergy;
-	public float gunEnerdy;
 
-	void Update()
+	public class GunEnergy : MonoBehaviour
 	{
-		if (gunEnerdy > 100)
+		public bool isInfiniteGunEnergy;
+		public float gunEnerdy;
+
+		void Update()
 		{
-			gunEnerdy = 100;
+			if (gunEnerdy > 100)
+			{
+				gunEnerdy = 100;
+			}
 		}
 	}
 }

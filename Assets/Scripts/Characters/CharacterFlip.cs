@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using GunSystem;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 

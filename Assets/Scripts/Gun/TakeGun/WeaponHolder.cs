@@ -3,30 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponHolder : MonoBehaviour
+namespace GunSystem
 {
-	public string _name; // имя оружия
-	public GameObject gunGO; // го оружия
- 
-	public bool isPresent; // флаг наличия оружия
- 
-	public Sprite sprite;
-	public bool spritOn;
 
-	private void Awake()
+	public class WeaponHolder : MonoBehaviour
 	{
-		 
+		public string _name; // имя оружия
+		public GameObject gunGO; // го оружия
+
+		public bool isPresent; // флаг наличия оружия
+
+		public Sprite sprite;
+		public bool spritOn;
+
+		private void Awake()
+		{
+
+		}
+
+		private void Update()
+		{
+
+			if (isPresent)
+			{
+				gunGO.SetActive(true);
+			}
+
+		}
 	}
 
-	private void Update()
-	{
-		 
-	 	if (isPresent)
-	 	{
-			gunGO.SetActive(true);
-	 	}
-	 
-	}
-
- 
 }

@@ -7,14 +7,8 @@ public class SceneSaveLoad : MonoBehaviour
 	[SerializeField] SceneLoader sceneLoader;
 	[SerializeField] int thisSceneIndex;
 
-    void Start()
+	void Start()
     {
 		sceneLoader.SaveLoadSceneIndex(thisSceneIndex);
-	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

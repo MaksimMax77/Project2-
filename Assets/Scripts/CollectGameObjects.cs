@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GunSystem;
 using UnityEngine;
 
 public class CollectGameObjects : MonoBehaviour
