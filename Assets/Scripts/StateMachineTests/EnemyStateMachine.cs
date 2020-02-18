@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EnemySystem;
 using UnityEngine;
+
 namespace FSM
 {
 	public class EnemyStateMachine : MonoBehaviour

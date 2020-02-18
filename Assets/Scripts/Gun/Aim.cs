@@ -14,9 +14,6 @@ namespace GunSystem
 		public bool isAiming;
 		private float minDistance = 20;
 		private float distance = Mathf.Infinity;
-
-		private RaycastHit2D hit;
-
 		[SerializeField] private float lookSpeed = 500;
 		private Vector3 direction;
 		private float angle;
@@ -30,52 +27,10 @@ namespace GunSystem
 
 		void Update()
 		{
-			DistanceToAim();
+			FindTargetToAim();
 			AutoAimInTarget();
 		}
 
-		#region // метит цель, которая в прицеле красным кругом, если в нее попадает луч из оружия
-
-		void RedCircleOffOn(Collider2D collision)
-		{
-
-			Physics2D.queriesStartInColliders = false; //
-			//hit = Physics2D.Raycast(transform.position, -transform.right * transform.localScale.x, 12);
-			if (player != null)
-			{
-				if (transform.position.x < player.transform.position.x)
-				{
-					hit = Physics2D.Raycast(transform.position, -transform.right * transform.localScale.x, 12);
-				}
-
-				if (transform.position.x > player.transform.position.x)
-				{
-					hit = Physics2D.Raycast(transform.position, transform.right * transform.localScale.x, 12);
-				}
-			}
-
-
-			var circle = hit.collider.gameObject.GetComponent<RedCircleOnnOff>();
-
-			if (hit.collider != null && hit.collider.tag == enemyTag)
-			{
-				var redCircle = hit.collider.GetComponent<RedCircleOnnOff>();
-				if (redCircle != null)
-				{
-					redCircle.RedCircleOn = true;
-				}
-			}
-
-			if (hit.collider == null)
-			{
-				if (circle != null)
-				{
-					circle.RedCircleOn = false;
-				}
-			}
-		}
-
-		#endregion
 
 		void AutoAimInTarget()
 		{
@@ -93,7 +48,7 @@ namespace GunSystem
 			}
 		}
 
-		void DistanceToAim()
+		void FindTargetToAim()
 		{
 
 			for (int i = 0; i < Enemies.Length; i++)
@@ -111,6 +66,15 @@ namespace GunSystem
 		void GunAiming(GameObject enemy)
 		{
 			isAiming = true;
+			LookAtEnemy(enemy);
+
+			angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+			Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+			transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * lookSpeed);
+		}
+
+		private void LookAtEnemy(GameObject enemy)
+		{
 			if (transform.position.x > enemy.gameObject.transform.position.x)
 			{
 				direction = transform.position - enemy.gameObject.transform.position;
@@ -120,32 +84,7 @@ namespace GunSystem
 			{
 				direction = enemy.gameObject.transform.position - transform.position;
 			}
-
-			angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-			Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-			transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * lookSpeed);
 		}
-
-
-		private void OnDrawGizmos()
-		{
-			Gizmos.color = Color.white;
-			if (player != null)
-			{
-				if (transform.position.x < player.transform.position.x)
-				{
-					Gizmos.DrawLine(transform.position,
-						transform.position + -transform.right * transform.localScale.x * 12);
-				}
-
-				if (transform.position.x > player.transform.position.x)
-				{
-					Gizmos.DrawLine(transform.position,
-						transform.position + transform.right * transform.localScale.x * 12);
-				}
-			}
-		}
-
 
 	}
 }

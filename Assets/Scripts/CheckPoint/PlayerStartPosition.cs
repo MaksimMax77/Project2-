@@ -4,17 +4,18 @@ using Services;
 using UnityEngine;
 using Zenject;
 
-public class PlayerStartPosition : MonoBehaviour
+namespace ChackPointFolder
 {
-	public Transform startPoisition;// определяет начальную позицию игрока при включении уровня.
-
-	[Inject]
-	private ISaveService saveService;
-
-	void Start()
+	public class PlayerStartPosition : MonoBehaviour
 	{
-		startPoisition.position = saveService.LoadPlayerStartPosition();
-	    transform.position = startPoisition.position;
-    }
+		public Transform startPoisition; // определяет начальную позицию игрока при включении уровня.
 
+		[Inject] private ISaveService saveService;
+
+		void Start()
+		{
+			startPoisition.position = saveService.LoadPlayerStartPosition();
+			transform.position = startPoisition.position;
+		}
+	}
 }

@@ -2,75 +2,80 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSound : MonoBehaviour
+namespace Sound
 {
-	[SerializeField] AudioSource audioSource;
-	[SerializeField] AudioClip audioSteps;
-	[SerializeField] AudioClip audioShoot;
-    bool	Istepping;
-	bool IsShooting;
-	public float soundVolume;
-	SoundManager1 soundManager;
 
-	CharBehavior charBehavior;
-	CharacterMovement characterMovement;
-
-	private void Awake()
+	public class CharacterSound : MonoBehaviour
 	{
-		charBehavior = GetComponent<CharBehavior>();
-		characterMovement = GetComponent<CharacterMovement>();
-		audioSource = audioSource.GetComponent<AudioSource>();
-		soundManager = new SoundManager1(audioSource);
-	}
+		[SerializeField] AudioSource audioSource;
+		[SerializeField] AudioClip audioSteps;
+		[SerializeField] AudioClip audioShoot;
+		bool Istepping;
+		bool IsShooting;
+		public float soundVolume;
+		SoundManager1 soundManager;
 
+		CharBehavior charBehavior;
+		CharacterMovement characterMovement;
 
-	private void Update()
-	{
-		PlaySteps();
-		UseAttackSound();
-	}
-
-
-	void UseAttackSound()
-	{
-	 
-		if (charBehavior.IsAttack)
+		private void Awake()
 		{
-			if (IsShooting == false)
-			{
-				StartCoroutine(EnumeratorShoot());
-               soundManager.PlaySound(audioShoot, soundVolume);
-			}
-		} 
-	}
+			charBehavior = GetComponent<CharBehavior>();
+			characterMovement = GetComponent<CharacterMovement>();
+			audioSource = audioSource.GetComponent<AudioSource>();
+			soundManager = new SoundManager1(audioSource);
+		}
 
-	#region steps
-	void PlaySteps()//шаги
-	{
-		if (Istepping == false)
+
+		private void Update()
 		{
-			if (characterMovement.vecocity.x != 0 || characterMovement.vecocity.y != 0)
+			PlaySteps();
+			UseAttackSound();
+		}
+
+
+		void UseAttackSound()
+		{
+
+			if (charBehavior.IsAttack)
 			{
-				StartCoroutine(EnumeratorSteps());
+				if (IsShooting == false)
+				{
+					StartCoroutine(EnumeratorShoot());
+					soundManager.PlaySound(audioShoot, soundVolume);
+				}
 			}
 		}
+
+		#region steps
+
+		void PlaySteps() //шаги
+		{
+			if (Istepping == false)
+			{
+				if (characterMovement.vecocity.x != 0 || characterMovement.vecocity.y != 0)
+				{
+					StartCoroutine(EnumeratorSteps());
+				}
+			}
+		}
+
+
+		public IEnumerator EnumeratorSteps() //для шагов
+		{
+			Istepping = true;
+			soundManager.PlaySound(audioSteps, soundVolume);
+			yield return new WaitForSeconds(0.3f);
+			Istepping = false;
+		}
+
+		#endregion
+
+		public IEnumerator EnumeratorShoot() //для стрельбы
+		{
+			IsShooting = true;
+			yield return new WaitForSeconds(0.3f);
+			IsShooting = false;
+		}
 	}
-
-
-	public IEnumerator EnumeratorSteps()//для шагов
-	{
-		Istepping = true;
-		soundManager.PlaySound(audioSteps, soundVolume);
-		yield return new WaitForSeconds(0.3f);
-		Istepping = false;
-	}
-	#endregion
-
-	public IEnumerator EnumeratorShoot()//для стрельбы
-	{
-		IsShooting = true;
-		yield return new WaitForSeconds(0.3f);
-		IsShooting = false;
-	}
-
 }

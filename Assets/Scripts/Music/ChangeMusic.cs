@@ -1,33 +1,36 @@
 ﻿using UnityEngine;
- 
 
-public class ChangeMusic : MonoBehaviour
+namespace Sound
 {
-	[SerializeField] MusicManagerComponent battleMusicCompanent;
-	[SerializeField] MusicManagerComponent fonMusicCompanent;
-	public bool isBattleMusic;
 
-	private void Start()
+	public class ChangeMusic : MonoBehaviour
 	{
-		fonMusicCompanent.enabled = true;
-	}
+		[SerializeField] MusicManagerComponent battleMusicCompanent;
+		[SerializeField] MusicManagerComponent fonMusicCompanent;
+		public bool isBattleMusic;
 
-	private void Update()
-	{
-		Change();
-	}
-
-	void Change()
-	{
-		if (isBattleMusic)
+		private void Start()
 		{
-			battleMusicCompanent.enabled = true;
-			fonMusicCompanent.enabled = false;
-		}
-		else
-		{
-			battleMusicCompanent.enabled = false;
 			fonMusicCompanent.enabled = true;
+		}
+
+		private void Update()
+		{
+			Change();
+		}
+
+		void Change()
+		{
+			if (isBattleMusic)
+			{
+				battleMusicCompanent.enabled = true;
+				fonMusicCompanent.enabled = false;
+			}
+			else
+			{
+				battleMusicCompanent.enabled = false;
+				fonMusicCompanent.enabled = true;
+			}
 		}
 	}
 }

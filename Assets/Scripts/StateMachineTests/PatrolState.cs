@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using EnemySystem;
+using Sound;
 using UnityEngine;
 
 namespace FSM
