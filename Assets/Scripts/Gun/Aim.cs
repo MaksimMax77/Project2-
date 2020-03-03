@@ -7,7 +7,6 @@ namespace GunSystem
 {
 	public class Aim : MonoBehaviour
 	{
-		[SerializeField] GameObject player;
 		[SerializeField] private GameObject[] Enemies;
 		[SerializeField] private string enemyTag;
 		[SerializeField] public GameObject enemyInTarget;

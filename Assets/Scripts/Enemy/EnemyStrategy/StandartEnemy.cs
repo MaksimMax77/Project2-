@@ -15,8 +15,8 @@ namespace EnemySystem
 			randomSpot = Random.Range(0, patrolSpots.Length);
 			_collider = GetComponent<Collider2D>();
 			player = GameObject.FindGameObjectWithTag("Player");
-			playerHealth = player.GetComponent<Health>();
-			characterMovement = GetComponent<CharacterMovement>();
+			playerHealth = player.GetComponent<HealthModel>();
+			characterMovement = GetComponent<CharacterMovementModel>();
 		}
 
 
@@ -32,7 +32,7 @@ namespace EnemySystem
 
 			if (timer <= 0)
 			{
-				playerHealth.GetDamage(enemyDamage, damageType);
+				playerHealth.health -= enemyDamage;
 				charBehavior.IsAttack = true;
 			}
 			else

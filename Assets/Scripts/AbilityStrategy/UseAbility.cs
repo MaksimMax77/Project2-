@@ -20,6 +20,7 @@ namespace Abilities
 			if (Input.GetKeyDown(buttonManager.useAbilityButton))
 			{ 
 				healAbility2.UseAbility();
+			
 			}
 
 			if (Input.GetKeyDown(buttonManager.useAbilityButton3))

@@ -6,14 +6,14 @@ public class Usesound : MonoBehaviour
 {
 	[SerializeField] private bool Istepping;//для шагов
 	private ButtonManager buttonManager;
-	CharacterMovement characterMovement;
+	CharacterMovementModel characterMovement;
 
 
 	void Start()
 	{
 		var Player = GameObject.FindGameObjectWithTag("Player");
 		buttonManager = Player.GetComponent<ButtonManager>();
-		characterMovement = Player.GetComponent<CharacterMovement>();
+		characterMovement = Player.GetComponent<CharacterMovementModel>();
 	}
 
 	// Update is called once per frame

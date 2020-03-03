@@ -27,14 +27,11 @@ namespace GunSystem
 		private Aim aim;
 		public Transform player;
 		[SerializeField] private GameObject playerGo;
-		private CharacterMovement characterMovement;
 
 		private void Awake()
 		{
 			gunEnergy = GetComponent<GunEnergy>();
 			aim = GetComponent<Aim>();
-			characterMovement = playerGo.GetComponent<CharacterMovement>();
-
 		}
 
 		private void SetRotation()

@@ -8,8 +8,8 @@ namespace MyAnimator
 	public class AnimatePlayer : IAnimate
 	{
 		Animator animator;
-		CharacterMovement movement;
-		Health health;
+		CharacterMovementModel movement;
+		HealthModel health;
 
 
 		public override void AnimateObj()
@@ -34,9 +34,9 @@ namespace MyAnimator
 
 		public override void AnimatorStart(GameObject gameObject)
 		{
-			movement = gameObject.GetComponent<CharacterMovement>();
+			movement = gameObject.GetComponent<CharacterMovementModel>();
 			animator = gameObject.GetComponent<Animator>();
-			health = gameObject.GetComponent<Health>();
+			health = gameObject.GetComponent<HealthModel>();
 		}
 
 	}

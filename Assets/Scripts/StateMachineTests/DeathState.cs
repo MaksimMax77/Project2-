@@ -10,12 +10,12 @@ namespace FSM
 	public class DeathState : State
 	{
 		 
-		private Health health;
+		private HealthModel health;
 		private AbstractEnemy currentEnemy;
 
 		private ChangeMusic changeMusic;
 
-		public DeathState(Health health , AbstractEnemy currentEnemy,GameObject gameObject)
+		public DeathState(HealthModel health , AbstractEnemy currentEnemy,GameObject gameObject)
 		{
 			this.health = health;
 			this.currentEnemy =currentEnemy;

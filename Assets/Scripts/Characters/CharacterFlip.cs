@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class CharacterFlip : MonoBehaviour
 {
-	private Health charHealth;
-	private CharacterMovement characterMovement;
+	private HealthModel charHealth;
+	private CharacterMovementModel characterMovement;
 	[SerializeField] bool isfacing;//направлен ли персонаж вправо или влево
 	[SerializeField] private string characterGunTag;
 	[SerializeField] private bool isCharacterWithGun;// если персонаж с пушкой то надо это чекнуть в инспекторе.
@@ -17,8 +17,8 @@ public class CharacterFlip : MonoBehaviour
 
 	void Awake()
 	{
-		charHealth = GetComponent<Health>();
-		characterMovement = GetComponent<CharacterMovement>();
+		charHealth = GetComponent<HealthModel>();
+		characterMovement = GetComponent<CharacterMovementModel>();
 		if (isCharacterWithGun)
 		{
 			var Gun = GameObject.FindGameObjectWithTag(characterGunTag);

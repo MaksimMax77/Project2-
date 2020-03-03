@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface Ihealth 
 {
-	void AddHealth(int healthToAdd);
 	bool death { get; set; }
 }

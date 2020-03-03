@@ -9,9 +9,9 @@ namespace FSM
 	{
 		
 		private StateMachine stateMachine;
-		CharacterMovement characterMovement;
+		CharacterMovementModel characterMovement;
 		[SerializeField] AbstractEnemy currentEnemy ;//
-		Health enemyHealth;
+		HealthModel enemyHealth;
 		Collider2D _collider;
 		private GameObject player;
 
@@ -20,8 +20,8 @@ namespace FSM
 		{
 			player=GameObject.FindGameObjectWithTag("Player");
 			_collider = GetComponent<Collider2D>();
-			enemyHealth = GetComponent<Health>();
-			characterMovement = GetComponent<CharacterMovement>();
+			enemyHealth = GetComponent<HealthModel>();
+			characterMovement = GetComponent<CharacterMovementModel>();
 			var patrol = new PatrolState(transform,  currentEnemy,player);
 			var Chase = new ChaseState(currentEnemy,player);
 			var  Attack = new AttackState(characterMovement, currentEnemy,player);

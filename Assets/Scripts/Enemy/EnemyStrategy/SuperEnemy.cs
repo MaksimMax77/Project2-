@@ -25,8 +25,8 @@ namespace EnemySystem
 			_collider = GetComponent<Collider2D>();
 			randomSpot = Random.Range(0, patrolSpots.Length);
 			player = GameObject.FindGameObjectWithTag("Player");
-			characterMovement = GetComponent<CharacterMovement>();
-			playerHealth = player.GetComponent<Health>();
+			characterMovement = GetComponent<CharacterMovementModel>();
+			playerHealth = player.GetComponent<HealthModel>();
 		}
 
 		override public void EnemyAttack()
@@ -34,7 +34,7 @@ namespace EnemySystem
 
 			var heading = transform.position - player.transform.position;
 
-			if (heading.sqrMagnitude < distanceToPlayer * distanceToPlayer)
+			if (heading.sqrMagnitude < attackdistanceToPlayer * attackdistanceToPlayer)
 			{
 				AttackMovement();
 			}
@@ -89,7 +89,7 @@ namespace EnemySystem
 				dodgeTimer = 3;
 				characterMovement.vecocity = Vector2.right;
 				var heading = player.transform.position - transform.position;
-				if (heading.sqrMagnitude > distanceToPlayer - 1 * distanceToPlayer - 1 || heading.sqrMagnitude < 2 * 2)
+				if (heading.sqrMagnitude > attackdistanceToPlayer - 1 * attackdistanceToPlayer - 1 || heading.sqrMagnitude < 2 * 2)
 				{
 					characterMovement.vecocity = Vector2.left;
 				}

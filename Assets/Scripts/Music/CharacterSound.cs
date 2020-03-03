@@ -16,12 +16,12 @@ namespace Sound
 		SoundManager1 soundManager;
 
 		CharBehavior charBehavior;
-		CharacterMovement characterMovement;
+		CharacterMovementModel characterMovement;
 
 		private void Awake()
 		{
 			charBehavior = GetComponent<CharBehavior>();
-			characterMovement = GetComponent<CharacterMovement>();
+			characterMovement = GetComponent<CharacterMovementModel>();
 			audioSource = audioSource.GetComponent<AudioSource>();
 			soundManager = new SoundManager1(audioSource);
 		}

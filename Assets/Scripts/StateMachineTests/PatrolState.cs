@@ -11,7 +11,7 @@ namespace FSM
 
 		private Transform transform;
 		 
-		CharacterMovement characterMovement;
+		CharacterMovementModel characterMovement;
 		AbstractEnemy currentEnemy;
 		private ChangeMusic changeMusic;
 		 

@@ -5,7 +5,7 @@ using ObjPool;
 public class  Bullet : MonoBehaviour
 {
 	public GameObject bulletPrefab;
-	Health enemyHealth;
+	HealthModel enemyHealth;
 	public float speed;
 	[SerializeField] protected int damage;
 	[SerializeField] protected DamageType damageType;
@@ -21,8 +21,9 @@ public class  Bullet : MonoBehaviour
 	{
 		if (collision.gameObject.tag == enemyTag)
 		{
-			enemyHealth = collision.GetComponent<Health>();
-			enemyHealth.GetDamage(damage, damageType);
+			//enemyHealth = collision.GetComponent<Health>();
+			DamageTheCharacter(collision);
+			//enemyHealth.GetDamage(damage, damageType);
 			Explosion();
 		}
 		if (collision.gameObject.tag == "Platform")
@@ -35,9 +36,15 @@ public class  Bullet : MonoBehaviour
 	{
 		if (collision.gameObject.tag == enemyTag)
 		{
-			enemyHealth = collision.GetComponent<Health>();
+			enemyHealth = collision.GetComponent<HealthModel>();
 			enemyHealth.GetDamage(damage, damageType);
 		}
+	}
+
+	void DamageTheCharacter(Collider2D collision)
+	{
+		var enemyHealth = collision.GetComponent<HealthModel>();
+		enemyHealth.GetDamage(damage, damageType);
 	}
 
 	void Explosion()

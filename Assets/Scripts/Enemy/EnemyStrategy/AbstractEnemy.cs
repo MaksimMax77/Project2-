@@ -8,8 +8,8 @@ namespace EnemySystem
 
 	public abstract class AbstractEnemy : MonoBehaviour
 	{
-		protected Health playerHealth;
-		protected CharacterMovement characterMovement;
+		protected HealthModel playerHealth;
+		protected CharacterMovementModel characterMovement;
 		protected int randomSpot;
 		protected GameObject player;
 		protected Collider2D _collider;
@@ -18,8 +18,8 @@ namespace EnemySystem
 		[SerializeField] protected DamageType damageType;
 		[SerializeField] protected float timer;
 		[SerializeField] protected float patrolTimer;
-		[SerializeField] protected float distanceToPlayer;
-		[SerializeField] protected float maxDistanceToPlayer;
+		[SerializeField] protected float attackdistanceToPlayer;
+		[SerializeField] protected float chaseDistanceToPlayer;
 
 
 		abstract public void EnemyAttack();
@@ -61,7 +61,7 @@ namespace EnemySystem
 			float dist =
 				Vector3.Distance(player.transform.position, transform.position); // c какой дистанции начинается атака
 
-			if (dist < distanceToPlayer)
+			if (dist < attackdistanceToPlayer)
 			{
 
 				return true;
@@ -77,7 +77,7 @@ namespace EnemySystem
 			float dist =
 				Vector3.Distance(player.transform.position,
 					transform.position); // с какой дистанции начинается приследование 
-			if (dist < maxDistanceToPlayer && dist > distanceToPlayer)
+			if (dist < chaseDistanceToPlayer && dist > attackdistanceToPlayer)
 			{
 
 				return true;
@@ -92,7 +92,7 @@ namespace EnemySystem
 			float dist =
 				Vector3.Distance(player.transform.position,
 					transform.position); //насколько далеко или близко нужно быть чтоб враг патрулировал
-			if (dist > maxDistanceToPlayer)
+			if (dist > chaseDistanceToPlayer)
 			{
 
 				return true;

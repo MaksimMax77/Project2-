@@ -12,12 +12,12 @@ namespace UiSystem
 		[SerializeField] GameObject player;
 
 		private ISaveService saveService;
-		Health health;
+		HealthModel health;
 
 
 		private void Awake()
 		{
-			health = player.GetComponent<Health>();
+			health = player.GetComponent<HealthModel>();
 		}
 
 		[Inject]
@@ -29,7 +29,7 @@ namespace UiSystem
 
 		public void SaveCharacterPosition()
 		{
-			saveService.SaveCharacter(player.transform.position, health.HealthProp);
+			saveService.SaveCharacter(player.transform.position, health.health);
 		}
 
 		public void LoadCharacterPosition()

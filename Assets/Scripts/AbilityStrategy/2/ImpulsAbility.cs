@@ -14,7 +14,7 @@ namespace Abilities
 		{
 			damageType = DamageType.Standart;
 			var enemy = hit.collider.gameObject;
-			var _enemyHealth = enemy.GetComponent<Health>();
+			var _enemyHealth = enemy.GetComponent<HealthModel>();
 			_enemyHealth.GetDamage(damage, damageType);
 			if (transform.position.x < enemy.transform.position.x)
 			{
@@ -28,7 +28,7 @@ namespace Abilities
 
 		public override void UseAbility()
 		{
-			if (mana.mana >= neadMana && abilityUse == false)
+			if (manaModel.mana >= neadMana && abilityUse == false)
 			{
 				abilityUse = true;
 				hit = Physics2D.Raycast(  transform.position, Vector2.left * transform.localScale.x, 10);
@@ -36,7 +36,7 @@ namespace Abilities
 				{
 					PushEnemy();
 				}
-				mana.TakeMana(neadMana);
+				manaModel.mana -= neadMana;
 			}
 		}
 

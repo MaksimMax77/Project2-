@@ -11,15 +11,10 @@ namespace GunSystem
 		public int nextWeapon;
 		public List<WeaponHolder> weapons; // здесь всё оружие лежит
 		public int currentWeapon = 0; // текущее оружие
-		int nextweapon;
+		 
 
 		// метод при подборе оружия для активации у игрока
-		void OnWeaponPickup(string _name)
-		{
-			foreach (WeaponHolder wh in weapons)
-				if (wh._name == _name)
-					wh.isPresent = true;
-		}
+		 
 
 		void Update()
 		{

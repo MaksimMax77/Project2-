@@ -6,13 +6,14 @@ using Services;
 using Zenject;
 
 namespace ChackPointFolder
-{
+{	
 	public class CheckPoint : MonoBehaviour
 	{
+		 
+		[Inject] private ISaveService saveService;
 		[SerializeField] private GameObject player;
 		private PlayerStartPosition playerStartPosition;
-
-		[Inject] private ISaveService saveService;
+		 
 
 		void Awake()
 		{

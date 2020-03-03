@@ -8,13 +8,13 @@ namespace FSM
 {
 	class AttackState : State
 	{
-		CharacterMovement characterMovement;
+		CharacterMovementModel characterMovement;
 		AbstractEnemy currentEnemy;//
 		private ChangeMusic changeMusic; 
 
 		public AttackState() { }
 
-		public AttackState(CharacterMovement characterMovement, AbstractEnemy currentEnemy,GameObject gameObject)
+		public AttackState(CharacterMovementModel characterMovement, AbstractEnemy currentEnemy,GameObject gameObject)
 		{
 			this.characterMovement = characterMovement;
 			this.currentEnemy = currentEnemy;   

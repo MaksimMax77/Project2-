@@ -5,18 +5,18 @@ using UnityEngine;
 public class RedCircleOnnOff : MonoBehaviour
 {
 	public bool RedCircleOn;
-	Health health;
+	HealthModel health;
 	[SerializeField] GameObject RedCircle;
 
 
 	private void Awake()
 	{
-		health = GetComponent<Health>();
+		health = GetComponent<HealthModel>();
 	}
 
 	void Update()
     {
-		if (health.HealthProp <= 0)
+		if (health.health <= 0)
 		{
 			RedCircleOn = false;
 		}
