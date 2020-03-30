@@ -13,6 +13,7 @@ namespace EnemySystem
 		protected int randomSpot;
 		protected GameObject player;
 		protected Collider2D _collider;
+		 
 		[SerializeField] protected Transform[] patrolSpots;
 		[SerializeField] protected int enemyDamage;
 		[SerializeField] protected DamageType damageType;
@@ -20,6 +21,7 @@ namespace EnemySystem
 		[SerializeField] protected float patrolTimer;
 		[SerializeField] protected float attackdistanceToPlayer;
 		[SerializeField] protected float chaseDistanceToPlayer;
+		public GameObject enemyDeathBody;
 
 
 		abstract public void EnemyAttack();

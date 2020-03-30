@@ -10,24 +10,16 @@ namespace ChackPointFolder
 	public class CheckPoint : MonoBehaviour
 	{
 		 
-		[Inject] private ISaveService saveService;
+		//[Inject] private ISaveService saveService;
 		[SerializeField] private GameObject player;
-		private PlayerStartPosition playerStartPosition;
-		 
-
-		void Awake()
-		{
-			playerStartPosition = player.GetComponent<PlayerStartPosition>();
-		}
-
-
+		[SerializeField] private PlayerSaver playerSaver;
+		
 		void OnTriggerEnter2D(Collider2D collider)
 		{
 			if (collider.gameObject.tag == "Player")
 			{
-				playerStartPosition.startPoisition.position = transform.position;
+				playerSaver.PlayerSave();
 				Debug.Log("чекпоинт");
-				saveService.SavePlayerStartPosition(playerStartPosition.startPoisition.position);
 			}
 		}
 	}

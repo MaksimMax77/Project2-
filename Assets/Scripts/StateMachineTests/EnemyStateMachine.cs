@@ -15,10 +15,12 @@ namespace FSM
 		Collider2D _collider;
 		private GameObject player;
 
+		[SerializeField] string enemyTag;
+
 
 		void Start()
 		{
-			player=GameObject.FindGameObjectWithTag("Player");
+			player=GameObject.FindGameObjectWithTag(enemyTag);
 			_collider = GetComponent<Collider2D>();
 			enemyHealth = GetComponent<HealthModel>();
 			characterMovement = GetComponent<CharacterMovementModel>();

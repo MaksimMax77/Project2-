@@ -13,7 +13,7 @@ namespace GunSystem
 
 		public Transform zRotate; // объект для вращения по оси Z
 
-		[SerializeField] Bullet currentBullet;
+		[SerializeField] AbstractBullet currentBullet;
 
 		// ограничение вращения
 		public float minAngle = -40;
@@ -70,8 +70,9 @@ namespace GunSystem
 			{
 				curTimeout = 0;
 
-				GameObject newBullet = PoolManager2.GetObject(currentBullet.bulletPrefab.name, gunPoint.position,
+				GameObject newBullet = Instantiate(currentBullet.bulletPrefab, gunPoint.position,
 					transform.rotation);
+
 				if (!gunEnergy.isInfiniteGunEnergy)
 				{
 					gunEnergy.gunEnerdy--;

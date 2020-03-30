@@ -9,11 +9,13 @@ namespace MyAnimator
 	{
 		private CharBehavior charBehavior;
 		private Animator animator;
+		HealthModel healthModel;
 
 		public override void AnimatorStart(GameObject gameObject)
 		{
 			charBehavior = gameObject.GetComponent<CharBehavior>();
 			animator = gameObject.GetComponent<Animator>();
+			healthModel = gameObject.GetComponent<HealthModel>();
 		}
 
 		public override void AnimateObj()
@@ -26,6 +28,7 @@ namespace MyAnimator
 			{
 				animator.SetBool("AttackSide", false);
 			}
+	
 		}
 	}
 }

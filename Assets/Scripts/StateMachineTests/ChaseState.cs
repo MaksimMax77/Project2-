@@ -19,7 +19,10 @@ namespace FSM
 			changeMusic = gameObject.GetComponent<ChangeMusic>();
 		}
 
-		public override void OnEnter() { }
+		public override void OnEnter()
+		{
+			changeMusic.isBattleMusic = true;
+		}
 		public override void OnExit() { }
 
 		public override void OnUpdate()
@@ -31,7 +34,6 @@ namespace FSM
 		{
 			if (currentEnemy.ChaseDistance())
 			{
-				changeMusic.isBattleMusic = true;
 				return true;
 			}
 			return false;

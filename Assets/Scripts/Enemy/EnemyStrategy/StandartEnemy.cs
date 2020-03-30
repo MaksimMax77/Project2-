@@ -44,9 +44,10 @@ namespace EnemySystem
 
 		public override void EnemyDeath()
 		{
-			characterMovement.vecocity = new Vector2(0, 0);
-			_collider.enabled = false;
-
+			//characterMovement.vecocity = new Vector2(0, 0);
+			//_collider.enabled = false;
+			gameObject.SetActive(false);
+			Instantiate(enemyDeathBody, transform.position, Quaternion.identity);
 		}
 	}
 }

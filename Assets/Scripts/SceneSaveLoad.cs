@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SceneSaveLoad : MonoBehaviour
 {
-	[SerializeField] SceneLoader sceneLoader;
-	[SerializeField] int thisSceneIndex;
+	[SerializeField] private PlayerSaver saver;
+	public int thisSceneIndex;
 
 	void Start()
     {
-		sceneLoader.SaveLoadSceneIndex(thisSceneIndex);
+		//saver.PlayerSave();
     }
 }

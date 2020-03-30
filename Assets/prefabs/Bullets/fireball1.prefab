@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1712649633641414321}
   - component: {fileID: 1712649633641414322}
-  - component: {fileID: 1712649633641414323}
-  - component: {fileID: 7483453780138583681}
-  - component: {fileID: 2854994551711974816}
   - component: {fileID: 8997247050388374607}
+  - component: {fileID: 1712649633641414323}
+  - component: {fileID: 2854994551711974816}
   - component: {fileID: -1417402379034392629}
+  - component: {fileID: 7408745377094478482}
   m_Layer: 0
   m_Name: fireball1
   m_TagString: Untagged
@@ -85,60 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1712649633641414323
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712649633641414316}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0fbbb77bcfca35747a5c27fb9ec658ff, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7483453780138583681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712649633641414316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 105aada99677c6b47b076542962bd9af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
-  speed: 10
-  damage: 15
-  damageType: 3
-  explosion: {fileID: 7246523478323755325, guid: db1ec98cdb2586b41bb6d66af85a9657,
-    type: 3}
-  enemyTag: Player
---- !u!58 &2854994551711974816
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712649633641414316}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.8666667
 --- !u!50 &8997247050388374607
 Rigidbody2D:
   serializedVersion: 4
@@ -160,6 +106,41 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &1712649633641414323
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712649633641414316}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fbbb77bcfca35747a5c27fb9ec658ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &2854994551711974816
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712649633641414316}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8666667
 --- !u!114 &-1417402379034392629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +153,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213af8169404a474a9524866a3acf3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7408745377094478482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712649633641414316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566f614e7df1b7a48a79e1061e82483a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1712649633641414316}
+  speed: 15
+  damageOrHeal: 15
+  explosion: {fileID: 7246523478323755325, guid: db1ec98cdb2586b41bb6d66af85a9657,
+    type: 3}
+  enemyTag: Player
+  damageType: 3

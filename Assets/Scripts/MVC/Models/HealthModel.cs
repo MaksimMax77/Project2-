@@ -26,6 +26,11 @@ public class HealthModel : MonoBehaviour, Ihealth
 		health -= damage;
 	}
 
+	public void AddHeal(int addHeal)
+	{
+		health += addHeal;
+	}
+
 	IEnumerator Hitenumerator() // это для анимаций 
 	{
 		 Hit = true;

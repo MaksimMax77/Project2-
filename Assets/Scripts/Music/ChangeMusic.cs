@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Sound
 {
 
 	public class ChangeMusic : MonoBehaviour
 	{
-		[SerializeField] MusicManagerComponent battleMusicCompanent;
-		[SerializeField] MusicManagerComponent fonMusicCompanent;
+		[SerializeField] private MusicManagerComponent battleMusicCompanent;
+		[SerializeField] private MusicManagerComponent fonMusicCompanent;
+
 		public bool isBattleMusic;
 
 		private void Start()
@@ -22,16 +24,18 @@ namespace Sound
 		void Change()
 		{
 			if (isBattleMusic)
-			{
+			{ 
 				battleMusicCompanent.enabled = true;
 				fonMusicCompanent.enabled = false;
 			}
+
 			else
 			{
-				battleMusicCompanent.enabled = false;
-				fonMusicCompanent.enabled = true;
+				 battleMusicCompanent.enabled = false;
+				 fonMusicCompanent.enabled = true;
 			}
 		}
+ 
 	}
 }
  

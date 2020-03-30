@@ -25,7 +25,7 @@ namespace FSM
 
 		public override void OnEnter()
 		{
-			 
+			changeMusic.isBattleMusic = false;
 		}
 
 		public override void OnExit()
@@ -41,7 +41,6 @@ namespace FSM
 		{
 			if (health.death == true)
 			{
-				changeMusic.isBattleMusic = false;
 				return true;
 			}
 			return false;

@@ -10,27 +10,19 @@ namespace Sound
 	public class MusicManagerComponent : MonoBehaviour
 	{
 		[SerializeField] string music;
+		[SerializeField] private AudioClip audioClip;
+		[SerializeField] private AudioSource audioSource;
 
 
 		private void OnEnable()
 		{
-			PlayMusic(music);
+			MyPlayMusic();
 		}
 
-
-		public void PlayMusic(string name)
+		void MyPlayMusic()
 		{
-			MusicManager.PlayMusic(name, true);
-		}
-
-		public void MusicVolume(float volume)
-		{
-			MusicManager.MusicVolume(volume);
-		}
-
-		public void ToggleMusicMuted(bool value)
-		{
-			MusicManager.MuteMusic(!value);
+			audioSource.clip = audioClip;
+			audioSource.Play();
 		}
 	}
 }

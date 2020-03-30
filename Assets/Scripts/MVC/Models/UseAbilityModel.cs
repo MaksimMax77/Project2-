@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UseAbilityModel : MonoBehaviour
-{
-	public AbstractAbility healAbility2;
-	public AbstractAbility impulsAbility2;
+{ 
+	public int needManaToHeal;
+	public int needManaToImpuls;
+	public int impulsDamage;
+	public DamageType impulsDamageType;
+	public GameObject healEffect;
+	public GameObject impulsEffect;
 }

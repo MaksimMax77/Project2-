@@ -21,15 +21,12 @@ GameObject:
   - component: {fileID: 6465991665244812157}
   - component: {fileID: 2831547163093900308}
   - component: {fileID: 2831547163093900307}
-  - component: {fileID: 3095251688266035774}
   - component: {fileID: 1943291864543245434}
   - component: {fileID: 8917626000819810284}
   - component: {fileID: 5186946583162607820}
   - component: {fileID: 5085390218238541781}
   - component: {fileID: 4937569274720228523}
   - component: {fileID: 3919980226960845923}
-  - component: {fileID: 8320552798492726269}
-  - component: {fileID: 4090662587881517419}
   - component: {fileID: 7850855480730770492}
   - component: {fileID: 5724374305651140671}
   m_Layer: 0
@@ -289,21 +286,6 @@ MonoBehaviour:
   useAbilityButton2: 114
   useAbilityButton3: 116
   takeDropWeapon: 103
---- !u!114 &3095251688266035774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2831547163093900318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e07a0625dfe21ce4f89efb5f723d3239, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayerAnimator: 1
-  isEnemyAnimator: 0
-  isWizardEnemy: 0
 --- !u!114 &1943291864543245434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,38 +368,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletsList: []
---- !u!114 &8320552798492726269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2831547163093900318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de1faf17040d1b46b1baa10b26466f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  neadMana: 10
-  timer: 3.23
-  abilityEffect: {fileID: 0}
---- !u!114 &4090662587881517419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2831547163093900318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf3bec4128935fb4cba7479fd9eec9d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  neadMana: 15
-  timer: 3.04
-  abilityEffect: {fileID: 0}
-  damage: 15
-  damageType: 3
 --- !u!114 &7850855480730770492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,8 +395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f3291e321c55343abd384609f0db60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAbility2: {fileID: 8320552798492726269}
-  impulsAbility2: {fileID: 4090662587881517419}
 --- !u!1001 &113473131181062149
 PrefabInstance:
   m_ObjectHideFlags: 0

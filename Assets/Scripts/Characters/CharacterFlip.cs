@@ -10,7 +10,7 @@ public class CharacterFlip : MonoBehaviour
 	private HealthModel charHealth;
 	private CharacterMovementModel characterMovement;
 	[SerializeField] bool isfacing;//направлен ли персонаж вправо или влево
-	[SerializeField] private string characterGunTag;
+	[SerializeField] private int characterGunPos;
 	[SerializeField] private bool isCharacterWithGun;// если персонаж с пушкой то надо это чекнуть в инспекторе.
 
 	private Aim aim;
@@ -21,8 +21,9 @@ public class CharacterFlip : MonoBehaviour
 		characterMovement = GetComponent<CharacterMovementModel>();
 		if (isCharacterWithGun)
 		{
-			var Gun = GameObject.FindGameObjectWithTag(characterGunTag);
-			aim = Gun.GetComponent<Aim>();
+			//var Gun = GameObject.FindGameObjectWithTag(characterGunTag);
+			aim = gameObject.transform.GetChild(characterGunPos).GetComponent<Aim>();
+			//aim = Gun.GetComponent<Aim>();
 		}
 	}
 

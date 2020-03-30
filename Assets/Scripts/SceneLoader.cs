@@ -7,36 +7,24 @@ using Services;
 
 public class SceneLoader : MonoBehaviour
 {
-	JsonSaveService saveService = new JsonSaveService();
-	 
-	int IndexOfThisScene;
+	private JsonSaver jsonSaver;
+	private int lastSceneIndex;
 
-	public void SaveLoadSceneIndex(int IndexOfThisScene)// должно сохранять индекс текущей сцены, если его указать в IndexOfThisScene
+	private void Awake()
 	{
-		this.IndexOfThisScene = IndexOfThisScene;
-		saveService.SaveLevelIndex(IndexOfThisScene);
+		jsonSaver = new JsonSaver();
 	}
-
-	public void SaveStartPlayerPosition(Vector3 position)
-	{
-		saveService.SavePlayerStartPosition(position);
-	}
-
-	public void LoadStartPlayerPosition()
-	{
-		saveService.LoadPlayerStartPosition();
-	}
-
-
-	public void LoadSceneIndex()//должно загружать сцену
-	{
-		IndexOfThisScene = saveService.LoadLevelIndex();
-		Loadscene(IndexOfThisScene);
-	} 
 
 	public void Loadscene(int sceneIndex)
 	{
 		SceneManager.LoadScene(sceneIndex);
+	}
+
+	public void LoadSavedScene()
+	{
+		jsonSaver.Load();
+		lastSceneIndex = jsonSaver.characterInfo.lastSceneIndex;
+		Loadscene(lastSceneIndex);
 	}
 
 	public void RestartThisScene()

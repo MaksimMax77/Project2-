@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213af8169404a474a9524866a3acf3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5297230371127432744
+--- !u!114 &1209090750915046311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,15 +154,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7771873485423694653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 105aada99677c6b47b076542962bd9af, type: 3}
+  m_Script: {fileID: 11500000, guid: 566f614e7df1b7a48a79e1061e82483a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7771873485423694653}
-  speed: 15
-  damage: 20
-  damageType: 3
-  explosion: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+  speed: 10
+  damageOrHeal: 15
+  explosion: {fileID: 7246523478323755325, guid: db1ec98cdb2586b41bb6d66af85a9657,
+    type: 3}
   enemyTag: Enemy
+  damageType: 3
 --- !u!1001 &7771873485423728031
 PrefabInstance:
   m_ObjectHideFlags: 0

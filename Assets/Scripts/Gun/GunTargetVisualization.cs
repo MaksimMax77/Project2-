@@ -9,12 +9,13 @@ namespace GunSystem
 	{
 		[SerializeField] private GameObject player;
 		private RedCircleOnnOff redCircle;
-
 		private Aim aim;
-
+		 
+	 
+	 
 		void Awake()
 		{
-			aim = GetComponent<Aim>();
+			aim = GetComponent<Aim>();		 
 		}
 
 		void Update()
@@ -24,14 +25,19 @@ namespace GunSystem
 
 		void RedCircleOffOn()
 		{
+			
 			if (aim.isAiming)
 			{
-				redCircle = aim.enemyInTarget.GetComponent<RedCircleOnnOff>();
+			    redCircle = aim.enemyInTarget.GetComponent<RedCircleOnnOff>();
 				redCircle.RedCircleOn = true;
 			}
-			else if(!aim.isAiming && redCircle!=null)
+
+			else
 			{
-				redCircle.RedCircleOn = false;
+				if (redCircle != null)
+				{
+					redCircle.RedCircleOn = false;
+				}
 			}
 		}
 	}

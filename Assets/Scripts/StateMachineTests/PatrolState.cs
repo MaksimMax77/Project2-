@@ -25,7 +25,7 @@ namespace FSM
 	 
 		public override void OnEnter()
 		{
-			// speed = 0.0F;
+			changeMusic.isBattleMusic = false;
 		}
 
 		public override void OnUpdate()
@@ -41,7 +41,6 @@ namespace FSM
 		{
 			if (currentEnemy.PatrolDistance())
 			{ 
-				changeMusic.isBattleMusic= false;
 				return true;
 			}
 			 

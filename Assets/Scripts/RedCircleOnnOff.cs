@@ -5,7 +5,7 @@ using UnityEngine;
 public class RedCircleOnnOff : MonoBehaviour
 {
 	public bool RedCircleOn;
-	HealthModel health;
+	private HealthModel health;
 	[SerializeField] GameObject RedCircle;
 
 

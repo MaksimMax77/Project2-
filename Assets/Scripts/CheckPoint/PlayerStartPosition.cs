@@ -8,14 +8,14 @@ namespace ChackPointFolder
 {
 	public class PlayerStartPosition : MonoBehaviour
 	{
-		public Transform startPoisition; // определяет начальную позицию игрока при включении уровня.
+		//[Inject] private ISaveService saveService
+		[SerializeField] private PlayerSaver playerSaver;
 
-		[Inject] private ISaveService saveService;
 
-		void Start()
+		private void Start()
 		{
-			startPoisition.position = saveService.LoadPlayerStartPosition();
-			transform.position = startPoisition.position;
+			playerSaver.PlayerLoad();
+			transform.position = playerSaver.jsonSaver.characterInfo.startPos;
 		}
 	}
 }

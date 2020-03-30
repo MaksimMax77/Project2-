@@ -11,13 +11,17 @@ namespace EnemySystem
 		[SerializeField] GameObject bullet;
 		[SerializeField] Transform gunPoint;
 		[SerializeField] GameObject Gun;
+		[SerializeField] private float bulletReloadTime;
 		[SerializeField] private float dodgeTimer;
+	    private float shootTimer;
+		 
+
 
 		[SerializeField] private bool enemyIsWizard;
 		private CharBehavior charBehavior;
 
 
-		public Bullet currentBullet;
+		public AbstractBullet currentBullet;
 
 		private void Awake()
 		{
@@ -36,31 +40,50 @@ namespace EnemySystem
 
 			if (heading.sqrMagnitude < attackdistanceToPlayer * attackdistanceToPlayer)
 			{
-				AttackMovement();
+				 AttackMovement();
 			}
 
 			timer += Time.deltaTime;
 
-			if (timer >= 2)
+			if (enemyIsWizard)//это для того чтоб анимация включалась перед выстрелом, если у персонажа таковая есть 
 			{
-				if (enemyIsWizard) charBehavior.IsAttack = true; //
-				timer = 0;
+
+				if (timer >= bulletReloadTime)
+				{
+					charBehavior.IsAttack = true;
+					shootTimer += Time.deltaTime;
+					if (shootTimer >= 0.3f)
+					{
+						Shoot();
+						timer = 0;
+						shootTimer = 0;
+					}
+					
+				}
+				else
+				{
+					charBehavior.IsAttack = false;
+				}
 			}
 
-			if (timer <= 0)
+			if (!enemyIsWizard)
 			{
-				if (!enemyIsWizard) charBehavior.IsAttack = false;
-				Shoot();
-			}
+				if (timer >= bulletReloadTime)
+				{
+					Shoot();
+					timer = 0;
+				}
+			}		
 		}
-
 
 
 		public override void EnemyDeath()
 		{
-			characterMovement.vecocity = new Vector2(0, 0);
-			_collider.enabled = false;
-			Destroy(Gun);
+			//characterMovement.vecocity = new Vector2(0, 0);
+			//_collider.enabled = false;
+			Instantiate(enemyDeathBody,transform.position,Quaternion.identity);
+			gameObject.SetActive(false);
+			/*Destroy(Gun)*/;
 		}
 
 		#region Shoot
@@ -68,8 +91,8 @@ namespace EnemySystem
 		void Shoot()
 		{
 
-			GameObject newBullet = Instantiate(bullet, gunPoint.position, Quaternion.identity);
-			if (gunPoint.position.x < transform.position.x)
+			GameObject newBullet	=	Instantiate(	bullet,	gunPoint.position,   Quaternion.identity);
+			if (gunPoint.position.x	<	transform.position.x)
 			{
 				newBullet.GetComponent<Rigidbody2D>().velocity = -Gun.transform.right * currentBullet.speed;
 			}

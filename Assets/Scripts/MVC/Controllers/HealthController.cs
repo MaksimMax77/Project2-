@@ -5,11 +5,10 @@ using UnityEngine;
 public class HealthController : BaseController
 {
 	private HealthModel healthModel;
-	private MonoBehaviour monoBehaviour;
+
 
 	public HealthController(HealthModel healthModel)
 	{
-		monoBehaviour = new MonoBehaviour();
 		this.healthModel = healthModel;
 	}
 
@@ -19,6 +18,10 @@ public class HealthController : BaseController
 		if (healthModel.health <= 0)
 		{
 			healthModel.death = true;
+		}
+		if(healthModel.health>= healthModel.maxHealth)
+		{
+			healthModel.health = healthModel.maxHealth;
 		}
 	}
 }

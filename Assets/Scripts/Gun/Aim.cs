@@ -1,27 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+ 
 
 
 namespace GunSystem
 {
 	public class Aim : MonoBehaviour
 	{
-		[SerializeField] private GameObject[] Enemies;
 		[SerializeField] private string enemyTag;
+		[SerializeField] private string enemyHealerTag;
+		[SerializeField] private List<GameObject> enemies;
 		[SerializeField] public GameObject enemyInTarget;
-		public bool isAiming;
-		private float minDistance = 20;
-		private float distance = Mathf.Infinity;
 		[SerializeField] private float lookSpeed = 500;
 		private Vector3 direction;
 		private float angle;
-
+		public float findTargetToAimTimer;
+        public bool isAiming;
+		[SerializeField] private StartScript startScript;
+		[SerializeField] private bool isPlayer;
 
 		private void Awake()
 		{
 			isAiming = false;
-			Enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
+			if (isPlayer)
+			{
+				enemies = startScript.enemies;
+			}
+
+			else
+			{
+              FindEnemies();
+			}
+			
 		}
 
 		void Update()
@@ -30,15 +42,16 @@ namespace GunSystem
 			AutoAimInTarget();
 		}
 
-
-		void AutoAimInTarget()
+		private void AutoAimInTarget()
 		{
-			if (enemyInTarget != null)
+
+			foreach (var enemy in enemies)
 			{
-				var headding = enemyInTarget.transform.position - transform.position;
-				if (headding.sqrMagnitude < 15 * 15)
+				var headding = enemy.transform.position - transform.position;
+				enemyInTarget = enemy;
+				if (headding.sqrMagnitude < 20 * 20)
 				{
-					GunAiming(enemyInTarget);
+					GunAiming(enemy);
 				}
 				else
 				{
@@ -47,22 +60,24 @@ namespace GunSystem
 			}
 		}
 
-		void FindTargetToAim()
+		private void FindTargetToAim()
 		{
-
-			for (int i = 0; i < Enemies.Length; i++)
+			findTargetToAimTimer += Time.deltaTime;
+			if (findTargetToAimTimer >= 3)
 			{
-				var headding = Enemies[i].transform.position - transform.position;
-				float curDistance = headding.sqrMagnitude;
-				if (curDistance < minDistance * minDistance)
+				findTargetToAimTimer = 0;
+				enemies.Sort((enemy1, enemy2) =>
 				{
-					enemyInTarget = Enemies[i];
-					distance = curDistance;
-				}
+					var distance1 = (transform.position - enemy1.transform.position).sqrMagnitude;
+					var distance2 = (transform.position - enemy2.transform.position).sqrMagnitude;
+
+					if (distance1 > distance2) return -1;
+					else return 1;
+				});
 			}
 		}
 
-		void GunAiming(GameObject enemy)
+		private void GunAiming(GameObject enemy)
 		{
 			isAiming = true;
 			LookAtEnemy(enemy);
@@ -82,6 +97,26 @@ namespace GunSystem
 			else if (transform.position.x < enemy.gameObject.transform.position.x)
 			{
 				direction = enemy.gameObject.transform.position - transform.position;
+			}
+		}
+
+		public void FindEnemies()
+		{
+			var enemiesMassiv = GameObject.FindGameObjectsWithTag(enemyTag);
+
+			foreach (var enemy in enemiesMassiv)
+			{
+				enemies.Add(enemy);
+			}
+
+			if (!string.IsNullOrEmpty(enemyHealerTag))
+			{
+				var enemiesHealers = GameObject.FindGameObjectsWithTag(enemyHealerTag);
+
+				foreach (var enemy in enemiesHealers)
+				{
+					enemies.Add(enemy);
+				}
 			}
 		}
 

@@ -10,7 +10,7 @@ namespace Installers
 
         public override void InstallBindings()
         {
-            Container.Bind<ISaveService>().To<JsonSaveService>().AsSingle().NonLazy();
+            //Container.Bind<ISaveService>().To<JsonSaveService>().AsSingle().NonLazy();
 			Container.Bind<IPause>().To<PauseController>().AsSingle().NonLazy();
 		 
 
